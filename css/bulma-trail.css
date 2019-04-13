@@ -1,0 +1,17 @@
+@media screen and (min-width: 769px),
+print {
+    .field-body.has-trail {
+        flex-grow: 3;
+    }
+}
+
+@media screen and (min-width: 769px),
+print {
+    .field-label.is-trail {
+        flex-grow: 2;
+        margin-right: 0rem;
+        margin-left: 1.5rem;
+        text-align: left;
+    }
+
+}

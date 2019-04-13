@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>BrainTrain - Registrierung</title>
+
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css"
+        integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/bulma-0.7.4/css/bulma.css">
+    <link rel="stylesheet" href="css/styleguide.css">
+    <link rel="stylesheet" href="css/bulma-trail.css">
+
+    <!-- <link rel="stylesheet" href="css/debug.css"> -->
+
+    <style>
+        #space {
+            margin: 5vh;
+        }
+
+        #register-button-submit,
+        #form {
+            margin-top: 5vh;
+        }
+    </style>
+
+    <script type="text/javascript" src="scripts/jquery-3.4.0.min.js"></script>
+    <script type="text/javascript" src="scripts/script.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            $('#register-input-username-help').text("Dieser Nutzername ist bereits vergeben!");
+            $('#register-input-email-help').text("Diese Mail ist bereits vergeben!");
+            $('#register-input-repeat-help').text("Die Passwörter stimmen nicht überein!");
+            $('#register-input-privacy-help').text("Bitte setzen Sie hier ein Haken!");
+            loadMenu();
+        })
+    </script>
+
+</head>
+
+<body>
+
+    <nav id="placeholder-navbar" class="navbar background-green-light"></nav>
+
+    <div class="columns is-fullheight">
+
+        <aside id="placeholder-sidemenu"
+            class="menu column is-narrow is-sidebar-menu is-hidden-touch background-blue-dark no-padding"></aside>
+
+        <div class="column">
+
+            <section class="columns is-multiline has-margin-maincontent">
+                <h1 class="title column is-full">Registrieren</h1>
+                <div class="notification column is-full background-withe top-border-green-light">
+
+                    <p>
+                        Wir freuen uns, dass du dich bei BrainTrain anmelden möchtest. Bitte beachte, dass <b>pro E-Mail
+                            Adresse nur ein Nutzer</b> erstellt werden kann und jeder <b>Nutzername nur einmal
+                            vergeben</b> wird.
+                    </p>
+
+                    <form id="form">
+                        <div class="field is-horizontal">
+                            <div class="field-label center-vertical">
+                                <label class="label">Nutzername</label>
+                            </div>
+                            <div class="field-body has-trail">
+                                <div class="field">
+                                    <p class="control is-expanded has-icons-left has-icons-right">
+                                        <input id="register-input-username"
+                                            class="input placeholder-is-dark is-input-register" type="text"
+                                            placeholder="Max Mustermann" required="required" />
+                                        <span class="icon is-small is-left">
+                                            <i class="fas fa-user"></i>
+                                        </span>
+                                        <span id="register-input-username-icon-right"
+                                            class="icon is-small is-right is-hidden">
+                                            <i class="fas fa-check"></i>
+                                        </span>
+                                    </p>
+                                </div>
+                            </div>
+                            <p id="register-input-username-help"
+                                class="help text-red-light field-label is-trail center-vertical">
+                            </p>
+                        </div>
+
+                        <div class="field is-horizontal">
+                            <div class="field-label center-vertical">
+                                <label class="label">E-Mail</label>
+                            </div>
+                            <div class="field-body has-trail">
+                                <div class="field">
+                                    <p class="control is-expanded has-icons-left has-icons-right">
+                                        <input id="register-input-email"
+                                            class="input placeholder-is-dark is-input-register" type="email"
+                                            placeholder="muster@example.com" required="required" />
+                                        <span class="icon is-small is-left">
+                                            <i class="fas fa-envelope"></i>
+                                        </span>
+                                        <span id="register-input-email-icon-right"
+                                            class="icon is-small is-right is-hidden">
+                                            <i class="fas fa-check"></i>
+                                        </span>
+                                    </p>
+                                </div>
+                            </div>
+                            <p id="register-input-email-help"
+                                class="help text-red-light field-label is-trail center-vertical">
+                            </p>
+                        </div>
+
+                        <div id="space" class="is-hidden-mobile"></div>
+
+                        <div class="field is-horizontal">
+                            <div class="field-label center-vertical">
+                                <label class="label">Password</label>
+                            </div>
+                            <div class="field-body has-trail">
+                                <div class="field">
+                                    <p id="register-input-password"
+                                        class="control is-expanded has-icons-left has-icons-right">
+                                        <input class="input placeholder-is-dark is-input-register" type="password"
+                                            placeholder="Password" required="required" />
+                                        <span class="icon is-small is-left">
+                                            <i class="fas fa-lock"></i>
+                                        </span>
+                                        <span id="register-input-password-icon-right"
+                                            class="icon is-small is-right is-hidden">
+                                            <i class="fas fa-check"></i>
+                                        </span>
+                                    </p>
+                                </div>
+                            </div>
+                            <p id="register-input-password-help"
+                                class="help text-red-light field-label is-trail center-vertical"></p>
+                        </div>
+
+                        <div class="field is-horizontal">
+                            <div class="field-label center-vertical">
+                                <label class="label">Wiederholen</label>
+                            </div>
+                            <div class="field-body has-trail">
+                                <div class="field">
+                                    <p class="control is-expanded has-icons-left has-icons-right">
+                                        <input id="register-input-repeat"
+                                            class="input placeholder-is-dark is-input-register" type="password"
+                                            placeholder="Password wiederholen" required="required" />
+                                        <span class="icon is-small is-left">
+                                            <i class="fas fa-lock"></i>
+                                        </span>
+                                        <span id="register-input-repeat-icon-right"
+                                            class="icon is-small is-right is-hidden">
+                                            <i class="fas fa-check"></i>
+                                        </span>
+                                    </p>
+                                </div>
+                            </div>
+                            <p id="register-input-repeat-help"
+                                class="help text-red-light field-label is-trail center-vertical">
+                            </p>
+                        </div>
+
+                        <div class="field is-horizontal">
+                            <div class="field-label"></div>
+                            <div class="field-body has-trail">
+                                <div class="field">
+                                    <p class="control is-expanded">
+                                        <label class="checkbox is-flex">
+                                            <input id="register-input-privacy" type="checkbox" required="required">
+                                            <span class="is-size-7" style="padding-left: 5px">
+                                                Ich habe die nicht vorhandenen Datenschutzerklärung zur Kenntnis
+                                                genommen
+                                            </span>
+                                        </label>
+                                    </p>
+                                </div>
+                            </div>
+                            <p id="register-input-privacy-help"
+                                class="help text-red-light field-label is-trail center-vertical">
+                            </p>
+                        </div>
+
+                        <div class="field is-horizontal">
+                            <div class="field-label"></div>
+                            <div class="field-body has-trail">
+                                <div class="field">
+                                    <div id="register-button-submit" class="control center">
+                                        <button class="button background-yellow-dark text-light" type="submit">
+                                            <strong>Registrieren</strong>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="field-label is-trail"></div>
+                        </div>
+
+                    </form>
+
+                </div>
+
+            </section>
+
+        </div>
+
+    </div>
+
+</body>
+
+</html>
