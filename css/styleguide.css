@@ -160,12 +160,17 @@
     margin: 1.5vw;
 }
 
-.grid-element {
-    display: grid !important;
+.columns-with-margin>.column {
+    padding: 0;
+    margin: 0.75rem;
 }
 
 html {
     background: var(--background);
+}
+
+body {
+    color: var(--text_dark);
 }
 
 @media (min-width: 1088px) {

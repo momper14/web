@@ -1,0 +1,12 @@
+.message-body-title {
+    justify-content: space-between;
+    height: 4rem;
+}
+
+.message-body-title :first-child {
+    align-self: center;
+}
+
+.message:not(:last-child) {
+    margin-bottom: 0px;
+}

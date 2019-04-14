@@ -27,18 +27,18 @@ function load_login() {
 }
 
 function setCookie(cname, cvalue, exdays, path = "") {
-    var d = new Date();
+    let d = new Date();
     d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
-    var expires = "expires=" + d.toUTCString();
+    let expires = "expires=" + d.toUTCString();
     document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/" + path;
 }
 
 function getCookie(cname) {
-    var name = cname + "=";
-    var decodedCookie = decodeURIComponent(document.cookie);
-    var ca = decodedCookie.split(';');
-    for (var i = 0; i < ca.length; i++) {
-        var c = ca[i];
+    let name = cname + "=";
+    let decodedCookie = decodeURIComponent(document.cookie);
+    let ca = decodedCookie.split(';');
+    for (let i = 0; i < ca.length; i++) {
+        let c = ca[i];
         while (c.charAt(0) == ' ') {
             c = c.substring(1);
         }
@@ -54,7 +54,7 @@ function deleteCookie(cname) {
 }
 
 function loadMenu() {
-    var user = getCookie(USERNAME);
+    let user = getCookie(USERNAME);
     if (user != "") {
         load_login();
     } else {
@@ -63,7 +63,7 @@ function loadMenu() {
 }
 
 function login() {
-    var username = $('#input-username').val(),
+    let username = $('#input-username').val(),
         password = $('input-password').val();
 
     setCookie(USERNAME, username, 1);
