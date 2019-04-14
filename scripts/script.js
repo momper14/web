@@ -1,5 +1,11 @@
 const USERNAME = "username";
 
+$(document).ready(function () {
+    $('.dropdown').click(function () {
+        $(this).toggleClass("is-active");
+    });
+})
+
 function load_no_login() {
     $('#placeholder-navbar').load("res/html/navbar_no_login.html", function () {
         $('#button-login').click(function () {
