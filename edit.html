@@ -23,6 +23,10 @@
             margin-top: 3vh;
         }
 
+        #box {
+            max-width: 50rem;
+        }
+
         .field-label.is-trail {
             flex-grow: 1;
         }
@@ -33,6 +37,7 @@
 
     <script>
         $(document).ready(function () {
+            $('#edit-input-kategorie-help').text("Pflichtfeld!");
             loadMenu();
         })
     </script>
@@ -52,12 +57,11 @@
         <main class="column">
 
             <section class="columns is-multiline has-margin-maincontent center-tablet">
-                <h1 class="title column is-full" style="margin-bottom: 0px; padding-bottom: 0px;">Karteikasten erstellen
+                <h1 class="title column is-full has-subtext">Karteikasten erstellen
                     / Karteikasten bearbeiten</h1>
-                <p class="column is-full" style="padding-top: 0px; padding-bottom: 2rem;">Hier kannst du eine nue Kartei
+                <p class="column is-full subtext">Hier kannst du eine neue Kartei
                     erstellen oder eine vorhandene nach Bedarf bearbeiten</p>
-                <div class="notification column is-full background-withe top-border-green-light"
-                    style="max-width: 50rem">
+                <div id="box" class="notification column is-full background-withe top-border-green-light">
 
                     <h2 class="subtitle" style="padding-left: 0.5vw;"><strong>Allgemeine Daten</strong></h2>
 
@@ -99,7 +103,7 @@
                                     </optgroup>
                                 </select>
                             </div>
-                            <p id="edit-input-email-help"
+                            <p id="edit-input-kategorie-help"
                                 class="help text-red-light field-label is-trail center-vertical">
                             </p>
                         </div>

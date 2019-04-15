@@ -33,16 +33,6 @@ function loadKaesten() {
     });
 }
 
-function loadTemplate(path, todo) {
-    $.ajax({
-        url: path,
-        success: function (data) {
-            todo(data);
-        },
-        dataType: 'html'
-    });
-}
-
 function loadTemplateKasten(kategorie, todo = function () {}) {
     loadTemplate("res/html/karteikasten/kasten-template.html", function (data) {
         let $kasten = $('<html />', {

@@ -81,3 +81,13 @@ function logout() {
     deleteCookie(USERNAME);
     load_no_login();
 }
+
+function loadTemplate(path, todo) {
+    $.ajax({
+        url: path,
+        success: function (data) {
+            todo(data);
+        },
+        dataType: 'html'
+    });
+}

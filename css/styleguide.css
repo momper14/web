@@ -34,6 +34,10 @@
     background: var(--color_blue_dark) !important;
 }
 
+.background-red-dark {
+    background: var(--color_red_dark) !important;
+}
+
 .background-withe {
     background: #FFFFFF !important;
 }
@@ -144,6 +148,10 @@
     overflow-y: auto;
 }
 
+.is-fullwidth {
+    width: 100%;
+}
+
 .top-border-green-light {
     border-style: solid;
     border-width: 3px 0px 0px 0px;
@@ -170,7 +178,7 @@
 }
 
 .has-margin-maincontent {
-    margin: 1.5vw;
+    margin: 2vh 1.5vw;
 }
 
 .columns-with-margin>.column {
@@ -180,6 +188,24 @@
 
 .is-inline-grid {
     display: inline-grid !important;
+}
+
+.notification {
+    padding: 1.25rem 1.5rem;
+}
+
+.title.has-subtext {
+    margin-bottom: 0px;
+    padding-bottom: 0px;
+}
+
+.title.has-subtext+.subtext {
+    padding-top: 0px;
+    padding-bottom: 2rem;
+}
+
+.has-overflow-y {
+    overflow-y: auto;
 }
 
 html {
