@@ -14,7 +14,7 @@
     --placeholder-dark: #777;
 }
 
-.backgound-as-given {
+.background-as-given {
     background: var(--background);
 }
 
@@ -105,6 +105,14 @@
     justify-content: center;
 }
 
+@media screen and (min-width: 769px) {
+    .center-tablet {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+}
+
 .center-text {
     align-self: center;
 }
@@ -168,6 +176,10 @@
 .columns-with-margin>.column {
     padding: 0;
     margin: 0.75rem;
+}
+
+.is-inline-grid {
+    display: inline-grid !important;
 }
 
 html {
