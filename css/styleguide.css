@@ -38,6 +38,10 @@
     background: var(--color_red_dark) !important;
 }
 
+.background-red-light {
+    background: var(--color_red_light) !important;
+}
+
 .background-withe {
     background: #FFFFFF !important;
 }
@@ -210,6 +214,14 @@
 
 .has-overflow-y {
     overflow-y: auto;
+}
+
+.button.is-xl {
+  font-size: 1.75rem;
+}
+
+.button.is-xxl {
+  font-size: 2rem;
 }
 
 html {

@@ -1,0 +1,12 @@
+.headline-item {
+    align-self: center;
+    margin: 5px 0px 0px 5px;
+}
+
+.headline-title {
+    font-size: 0.75em;
+}
+
+.headline-title+.headline-title {
+    line-height: 24px;
+}
