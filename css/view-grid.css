@@ -1,0 +1,34 @@
+#description {
+    grid-area: d;
+}
+
+#headline {
+    grid-area: h;
+}
+
+#cards {
+    grid-area: c;
+}
+
+#build {
+    grid-area: b;
+}
+
+#grid {
+    height: calc(100% - (2*2vh));
+    display: grid;
+    grid-gap: 1rem;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: 4rem 3rem auto;
+    grid-template-areas:
+        "d d d d d"
+        "h h h h h"
+        "c b b b b";
+}
+
+#headline {
+    display: grid;
+    grid-gap: 1rem;
+    width: 100%;
+    grid-template-columns: 15% auto 20% 10% 3rem;
+}

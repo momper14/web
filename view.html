@@ -11,11 +11,10 @@
 
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css"
         integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
-    <link rel="stylesheet" href="css/simplemde.min.css">
     <link rel="stylesheet" href="css/bulma-0.7.4/css/bulma.css">
     <link rel="stylesheet" href="css/styleguide.css">
     <link rel="stylesheet" href="css/hexagon.css">
-    <link rel="stylesheet" href="css/edit-2-grid.css">
+    <link rel="stylesheet" href="css/view-grid.css">
 
     <!-- <link rel="stylesheet" href="css/debug.css"> -->
 
@@ -37,34 +36,36 @@
             margin: 2rem 2rem 2rem 0px;
         }
 
-        .CodeMirror {
-            min-height: 1vh;
-            height: 19vh;
-        }
-
         .notification {
             padding: 0.5rem 0.75rem;
         }
 
-        .field-label{
+        .field-label {
             min-width: 5rem;
             max-width: 5rem;
         }
+
+        .content {
+            height: 31vh;
+        }
+
+        .hexagon.is-small {
+            margin-left: 0.5rem;
+        }
+
+        #card-1{
+            background: var(--color_green_dark);
+            color: var(--text_light);
+        }
     </style>
 
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
     <script type="text/javascript" src="scripts/jquery-3.4.0.min.js"></script>
-    <script type="text/javascript" src="scripts/simplemde.min.js"></script>
     <script type="text/javascript" src="scripts/script.js"></script>
-    <script type="text/javascript" src="scripts/karteikasten-bearbeiten.js"></script>
+    <script type="text/javascript" src="scripts/karteikasten-ansehen.js"></script>
 
     <script>
         $(document).ready(function () {
-            var fragemde = new SimpleMDE({
-                element: $('#edit-input-frage')[0]
-            });
-            var antwortmde = new SimpleMDE({
-                element: $('#edit-input-antwort')[0]
-            });
             $('#edit-text-anzahl').text(23);
             loadkarten();
             loadMenu();
@@ -94,11 +95,11 @@
                 </div>
 
                 <div id="headline" class="top-border-green-light">
-                    <div id="name" class="headline-item">
+                    <div class="headline-item">
                         <p class="headline-title">Name</p>
                         <p><strong>Geometrie</strong></p>
                     </div>
-                    <div id=kategorie class="headline-item">
+                    <div class="headline-item">
                         <p class="headline-title">Kategorie</p>
                         <p>
                             <strong>
@@ -110,17 +111,16 @@
                             </strong>
                         </p>
                     </div>
-                    <div id="fortschritt" class="headline-item">
+                    <div class="headline-item">
+                        <p class="headline-title">Erstellt von</p>
+                        <p><strong>Max Mustermann</strong></p>
+                    </div>
+                    <div class="headline-item">
                         <p class="headline-title">Fortschritt</p>
                         <p><strong><span id="edit-text-fortschritt">0</span> %</strong></p>
                     </div>
-                    <div id="bearbeiten" class="control headline-item">
-                        <button class="button background-green-light text-light" type="submit">
-                            <strong>Bearbeiten</strong>
-                        </button>
-                    </div>
                     <div class="headline-item">
-                        <div id="hexagon" class="hexagon">
+                        <div class="hexagon">
                             <div class="count">
                                 <p id="edit-text-anzahl">0</p>
                                 <span>Karten</span>
@@ -132,18 +132,40 @@
                 <div id="cards" class="has-overflow-y"></div>
 
                 <div id="build" class="top-border-green-light background-withe ">
-                    <form id="form">
+                    <div id="form">
 
                         <div class="field is-horizontal">
                             <div class="field-label center-vertical">
                                 <label class="label">Titel</label>
                             </div>
                             <div class="field-body">
-                                <div class="field">
-                                    <p class="control is-expanded">
-                                        <input id="edit-input-title" class="input placeholder-is-dark" type="text"
-                                            placeholder="Titel" required="required" />
-                                    </p>
+                                <span id="edit-input-title" class="center-vertical" type="text" placeholder="Titel">
+                                    <strong>Titel der Karte</strong>
+                                </span>
+                                <div class="hexagon is-small flex-right is-inactive">
+                                    <div class="count-single">
+                                        <p id="edit-text-anzahl">0</p>
+                                    </div>
+                                </div>
+                                <div class="hexagon is-small">
+                                    <div class="count-single">
+                                        <p id="edit-text-anzahl">1</p>
+                                    </div>
+                                </div>
+                                <div class="hexagon is-small is-inactive">
+                                    <div class="count-single">
+                                        <p id="edit-text-anzahl">2</p>
+                                    </div>
+                                </div>
+                                <div class="hexagon is-small is-inactive">
+                                    <div class="count-single">
+                                        <p id="edit-text-anzahl">3</p>
+                                    </div>
+                                </div>
+                                <div class="hexagon is-small is-inactive">
+                                    <div class="count-single">
+                                        <p id="edit-text-anzahl">4</p>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -154,10 +176,18 @@
                             </div>
                             <div class="field-body">
                                 <div class="field">
-                                    <p class="control is-expanded">
-                                        <textarea id="edit-input-frage" class="textarea placeholder-is-dark" type="text"
-                                            placeholder="Frage"></textarea>
-                                    </p>
+                                    <div class="content">Lorem ipsum dolor sit amet, consectetur
+                                        adipiscing elit. <strong> Pellentesque risus mi </strong>, tempus quis placerat
+                                        ut,
+                                        porta nec nulla.Vestibulum rhoncus ac ex sit amet fringilla. Nullam gravida
+                                        purus
+                                        diam, et dictum <a> felis venenatis </a> efficitur. Aenean ac <em>eleifend lacus
+                                        </em>, in mollis lectus. Donec sodales, arcu et sollicitudin porttitor, tortor
+                                        urna
+                                        tempor ligula, id porttitor mi magna a neque.Donec dui urna, vehicula et sem
+                                        eget,
+                                        facilisis sodales sem.
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -168,33 +198,23 @@
                             </div>
                             <div class="field-body">
                                 <div class="field">
-                                    <p class="control is-expanded">
-                                        <textarea id="edit-input-antwort" class="textarea placeholder-is-dark"
-                                            type="text" placeholder="Antwort"></textarea>
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="field is-horizontal">
-                            <div class="field-label"></div>
-                            <div class="field-body">
-                                <div class="field">
-                                    <div id="edit-button-next" class="control center">
-                                        <div class="buttons">
-                                            <button class="button background-yellow-dark text-light" type="submit">
-                                                <strong>Speichern</strong>
-                                            </button>
-                                            <button class="button background-red-dark text-light" type="submit">
-                                                <strong>Abbrechen</strong>
-                                            </button>
-                                        </div>
+                                    <div class="content">Lorem ipsum dolor sit amet, consectetur
+                                        adipiscing elit. <strong> Pellentesque risus mi </strong>, tempus quis placerat
+                                        ut,
+                                        porta nec nulla.Vestibulum rhoncus ac ex sit amet fringilla. Nullam gravida
+                                        purus
+                                        diam, et dictum <a> felis venenatis </a> efficitur. Aenean ac <em>eleifend lacus
+                                        </em>, in mollis lectus. Donec sodales, arcu et sollicitudin porttitor, tortor
+                                        urna
+                                        tempor ligula, id porttitor mi magna a neque.Donec dui urna, vehicula et sem
+                                        eget,
+                                        facilisis sodales sem.
                                     </div>
                                 </div>
                             </div>
                         </div>
 
-                    </form>
+                    </div>
                 </div>
 
             </section>

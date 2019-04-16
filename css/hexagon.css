@@ -1,12 +1,13 @@
 :root {
     --hexagon-size: 2rem;
+    --hexagon-color: var(--color_green_light);
 }
 
 .hexagon {
     position: relative;
     width: var(--hexagon-size);
     height: calc(0.5774 * var(--hexagon-size));
-    background-color: var(--color_green_light);
+    background-color: var(--hexagon-color);
     margin: calc(0.2887 * var(--hexagon-size)) 0;
     color: var(--text_light);
 }
@@ -22,26 +23,43 @@
 
 .hexagon:before {
     bottom: 100%;
-    border-bottom: calc(0.2887 * var(--hexagon-size)) solid var(--color_green_light);
+    border-bottom: calc(0.2887 * var(--hexagon-size)) solid var(--hexagon-color);
 }
 
 .hexagon:after {
     top: 100%;
     width: 0;
-    border-top: calc(0.2887 * var(--hexagon-size)) solid var(--color_green_light);
+    border-top: calc(0.2887 * var(--hexagon-size)) solid var(--hexagon-color);
 }
 
-.count {
+.count,
+.count-single{
     position: absolute;
     width: var(--hexagon-size);
     text-align: center;
+}
+
+.count {
     font-size: calc((0.30/0.58) * var(--hexagon-size));
     line-height: 0.5;
-    background: var(--color_green_light);
 }
 
 .count span {
     font-size: calc((0.15/0.58) * var(--hexagon-size));
-    background: var(--color_green_light);
+    background: var(--hexagon-color);
     display: inline-table;
+}
+
+.hexagon.is-small {
+    --hexagon-size: 1.75rem;
+}
+
+.count-single {
+    line-height: calc((0.64/0.58) * var(--hexagon-size));
+    font-size: calc((0.40/0.58) * var(--hexagon-size));
+    top: calc((-0.1674/0.58) * var(--hexagon-size));
+}
+
+.hexagon.is-inactive {
+    --hexagon-color: var(--color_blue_dark);
 }

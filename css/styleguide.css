@@ -46,6 +46,10 @@
     color: var(--text_light) !important;
 }
 
+.text-dark {
+    color: var(--text_dark) !important;
+}
+
 .text-green-dark {
     color: var(--color_green_dark) !important;
 }

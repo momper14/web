@@ -24,4 +24,8 @@ function templateKarteReplace($karte, nr, title) {
 
     $karte.find('#placeholder-titel').html(title);
     $karte.find('#placeholder-titel').removeAttr('id');
+
+    $karte.find('.buttons').toggleClass('is-invisible', true);
+
+    $karte.find('.notification').attr('id', `card-${nr}`);
 }
