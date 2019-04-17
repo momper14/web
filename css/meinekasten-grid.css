@@ -1,0 +1,45 @@
+.inner-card-grid {
+    display: grid;
+    grid-gap: 1rem;
+    grid-template-columns: auto auto 2.1rem;
+    grid-template-rows: 0rem 0.5rem 0.5rem 0rem 2rem;
+    grid-template-areas:
+        " .  .  ."
+        "sl st  ."
+        "fl ft  ."
+        " .  .  ."
+        "bl bb bd";
+}
+
+.sichtbarkeit-label {
+    grid-area: sl;
+}
+
+.sichtbarkeit-text {
+    grid-area: st;
+}
+
+.fortschritt-label {
+    grid-area: fl;
+}
+
+.fortschritt-text {
+    grid-area: ft;
+}
+
+.button-lernen {
+    grid-area: bl;
+}
+
+.button-bearbeiten {
+    grid-area: bb;
+}
+
+.button-loeschen {
+    grid-area: bd;
+}
+
+.message-body-text {
+    overflow-y: auto;
+    height: 9rem;
+}

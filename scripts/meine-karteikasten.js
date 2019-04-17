@@ -3,7 +3,7 @@ const KATEGORIE_PREFIX = "placeholder-kategorie-";
 
 function loadKategorien() {
     loadTemplateKategorie(function ($kategorie) {
-        templateKategorieReplace($kategorie, "Naturwissenschaften");
+        templateKategorieReplace($kategorie, "Selbst erstellte Karteikästen");
     });
     loadTemplateKategorie(function ($kategorie) {
         templateKategorieReplace($kategorie, "Sprachen");
@@ -12,29 +12,26 @@ function loadKategorien() {
 }
 
 function loadKaesten() {
-    loadTemplateKasten("naturwissenschaften", function ($kasten) {
-        templateKastenReplace($kasten, "Mathematik", "Geometrische Formen und Körper", 23, BESCHREIBUNG);
+    loadTemplateKasten("selbst-erstellte-karteikästen", function ($kasten) {
+        templateKastenReplace($kasten, "Naturwissenschaften", "Mathematik", "Geometrische Formen und Körper", 23, BESCHREIBUNG, "Öffentlich", 76);
     });
-    loadTemplateKasten("naturwissenschaften", function ($kasten) {
-        templateKastenReplace($kasten, "Chemie", "Atome A-Z", 23, BESCHREIBUNG);
+    loadTemplateKasten("selbst-erstellte-karteikästen", function ($kasten) {
+        templateKastenReplace($kasten, "Naturwissenschaften", "Chemie", "Atome A-Z", 23, BESCHREIBUNG, "Privat", 20);
     });
-    loadTemplateKasten("naturwissenschaften", function ($kasten) {
-        templateKastenReplace($kasten, "Physik", "Licht in Wellen und Teilchen - Modelle und Versuche", 23, BESCHREIBUNG);
+    loadTemplateKasten("selbst-erstellte-karteikästen", function ($kasten) {
+        templateKastenReplace($kasten, "Sprachen", "Latein", "Vokabeln Lekrtion 1", 23, BESCHREIBUNG, "Öffentlich", 0);
     });
-    loadTemplateKasten("naturwissenschaften", function ($kasten) {
-        templateKastenReplace($kasten, "Mathematik", "Geometrische Formen und Körper", 23, BESCHREIBUNG);
+    loadTemplateKasten("selbst-erstellte-karteikästen", function ($kasten) {
+        templateKastenReplace($kasten, "Gesellschaft", "Verkehrskunde", "Theoriefragen Fahrprüfung", 23, BESCHREIBUNG, "Öffentlich", 6);
     });
 
     loadTemplateKasten("sprachen", function ($kasten) {
-        templateKastenReplace($kasten, "Latein", "Vokabel Lektion 1", 23, BESCHREIBUNG);
-    });
-    loadTemplateKasten("sprachen", function ($kasten) {
-        templateKastenReplace($kasten, "Englisch", "Unit 2", 23, BESCHREIBUNG);
+        templateKastenReplace($kasten, "Naturwissenschaften", "Physik", "Lorem Ipsum", 23, BESCHREIBUNG, "Öffentlich", 100);
     });
 }
 
 function loadTemplateKasten(kategorie, todo = function () {}) {
-    loadTemplate("res/html/karteikasten/kasten-template.html", function (data) {
+    loadTemplate("res/html/karteikasten/mein-kasten-template.html", function (data) {
         let $kasten = $('<html />', {
             html: data
         });
@@ -57,7 +54,10 @@ function loadTemplateKategorie(todo = function () {}) {
     })
 }
 
-function templateKastenReplace($kasten, unterkategorie, title, anzahl, beschreibung) {
+function templateKastenReplace($kasten, kategorie, unterkategorie, title, anzahl, beschreibung, sichtbarkeit, fortschritt) {
+    $kasten.find('#placeholder-kategorie').html(kategorie);
+    $kasten.find('#placeholder-kategorie').removeAttr('id');
+
     $kasten.find('#placeholder-unterkategorie').html(unterkategorie);
     $kasten.find('#placeholder-unterkategorie').removeAttr('id');
 
@@ -70,8 +70,11 @@ function templateKastenReplace($kasten, unterkategorie, title, anzahl, beschreib
     $kasten.find('#placeholder-beschreibung').html(beschreibung);
     $kasten.find('#placeholder-beschreibung').removeAttr('id');
 
-    //$kasten.find('#placeholder-unterkategorie').html("Mathematik");
-    $kasten.find('#button').removeAttr('id');
+    $kasten.find('#placeholder-sichtbarkeit').html(sichtbarkeit);
+    $kasten.find('#placeholder-sichtbarkeit').removeAttr('id');
+
+    $kasten.find('#placeholder-fortschritt').html(fortschritt);
+    $kasten.find('#placeholder-fortschritt').removeAttr('id');
 }
 
 function templateKategorieReplace($kategorie, title) {
