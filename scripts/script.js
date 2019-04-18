@@ -82,12 +82,13 @@ function logout() {
     load_no_login();
 }
 
-function loadTemplate(path, todo) {
+function loadTemplate(path, todo, async = true) {
     $.ajax({
         url: path,
         success: function (data) {
             todo(data);
         },
+        async: async,
         dataType: 'html'
     });
 }

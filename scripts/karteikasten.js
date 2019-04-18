@@ -54,7 +54,7 @@ function loadTemplateKategorie(todo = function () {}) {
         todo($kategorie);
 
         $('#placeholder-kategorien').append($kategorie.html());
-    })
+    }, false)
 }
 
 function templateKastenReplace($kasten, unterkategorie, title, anzahl, beschreibung) {

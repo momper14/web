@@ -6,7 +6,7 @@ function loadKategorien() {
         templateKategorieReplace($kategorie, "Selbst erstellte Karteikästen");
     });
     loadTemplateKategorie(function ($kategorie) {
-        templateKategorieReplace($kategorie, "Sprachen");
+        templateKategorieReplace($kategorie, "Gelernte Karteikästen anderer Nutzer");
     });
     loadKaesten();
 }
@@ -25,7 +25,7 @@ function loadKaesten() {
         templateKastenReplace($kasten, "Gesellschaft", "Verkehrskunde", "Theoriefragen Fahrprüfung", 23, BESCHREIBUNG, "Öffentlich", 6);
     });
 
-    loadTemplateKasten("sprachen", function ($kasten) {
+    loadTemplateKasten("gelernte-karteikästen-anderer-nutzer", function ($kasten) {
         templateKastenReplace($kasten, "Naturwissenschaften", "Physik", "Lorem Ipsum", 23, BESCHREIBUNG, "Öffentlich", 100);
     });
 }
@@ -51,7 +51,7 @@ function loadTemplateKategorie(todo = function () {}) {
         todo($kategorie);
 
         $('#placeholder-kategorien').append($kategorie.html());
-    })
+    }, false)
 }
 
 function templateKastenReplace($kasten, kategorie, unterkategorie, title, anzahl, beschreibung, sichtbarkeit, fortschritt) {
