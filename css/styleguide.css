@@ -34,6 +34,10 @@
     background: var(--color_blue_dark) !important;
 }
 
+.background-blue-light {
+    background: var(--color_blue_light) !important;
+}
+
 .background-red-dark {
     background: var(--color_red_dark) !important;
 }
@@ -183,6 +187,10 @@
 
 .text-is-right {
     text-align: right;
+}
+
+.text-is-center {
+    text-align: center;
 }
 
 .has-margin-maincontent {

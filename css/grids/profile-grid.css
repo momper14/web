@@ -1,0 +1,105 @@
+#description {
+    grid-area: d;
+}
+
+#overview {
+    grid-area: o;
+}
+
+#statistic {
+    grid-area: s;
+}
+
+#edit {
+    grid-area: e;
+}
+
+#grid {
+    height: calc(100% - (2*2vh));
+    display: grid;
+    grid-gap: 5%;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: 4rem auto auto 4rem;
+    grid-template-areas:
+        "d d d d"
+        "o e e e"
+        "s e e e"
+        ". . . .";
+}
+
+#statistic-grid {
+    display: grid;
+    grid-gap: 0.5rem;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: 5vh repeat(3, 4vh);
+}
+
+#edit-title {
+    grid-area: et;
+}
+
+#edit-mail-label {
+    grid-area: eml;
+}
+
+#edit-mail-input {
+    grid-area: emi;
+}
+
+#edit-mail-help {
+    grid-area: emh;
+}
+
+#edit-oldpw-label {
+    grid-area: eol;
+}
+
+#edit-oldpw-input {
+    grid-area: eoi;
+}
+
+#edit-newpw-label {
+    grid-area: enl;
+}
+
+#edit-newpw-input {
+    grid-area: eni;
+}
+
+#edit-newpw-help {
+    grid-area: enh;
+}
+
+#edit-reppw-label {
+    grid-area: erl;
+}
+
+#edit-reppw-input {
+    grid-area: eri;
+}
+
+#edit-button-save {
+    grid-area: ebs;
+}
+
+#edit-button-delete {
+    grid-area: ebd;
+}
+
+#form {
+    display: grid;
+    grid-gap: 1rem;
+    grid-template-columns: 15rem auto 8vw;
+    grid-template-rows: 3rem repeat(8, 2rem) auto;
+    grid-template-areas:
+        "et  et  et "
+        " .   .   . "
+        "eml emi emh"
+        " .   .   . "
+        "eol eoi enh"
+        "enl eni enh"
+        "erl eri enh"
+        " .   .   . "
+        " .   .   . "
+        " .  ebs ebd";
+}
