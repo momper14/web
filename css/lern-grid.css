@@ -15,7 +15,7 @@
     display: grid;
     grid-gap: 1rem;
     grid-template-columns: 10% auto 10%;
-    grid-template-rows: 4rem 3rem auto;
+    grid-template-rows: 4rem 3.5rem auto;
     grid-template-areas:
         "d d d"
         "h h h"

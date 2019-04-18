@@ -87,10 +87,11 @@
 }
 
 #form {
+    height: 100%;
     display: grid;
     grid-gap: 1rem;
     grid-template-columns: 15rem auto 8vw;
-    grid-template-rows: 3rem repeat(8, 2rem) auto;
+    grid-template-rows: 3rem repeat(6, 2rem) auto 8rem;
     grid-template-areas:
         "et  et  et "
         " .   .   . "
@@ -99,7 +100,6 @@
         "eol eoi enh"
         "enl eni enh"
         "erl eri enh"
-        " .   .   . "
         " .   .   . "
         " .  ebs ebd";
 }

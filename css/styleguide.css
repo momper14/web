@@ -181,7 +181,7 @@
     background: var(--color_blue_light);
 }
 
-.sidemenu-element .bottom {
+.sidemenu-element.bottom {
     border-bottom-width: 1px;
 }
 
