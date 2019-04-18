@@ -88,7 +88,7 @@ function loadTemplate(path, todo, async = true) {
         success: function (data) {
             todo(data);
         },
-        async: async,
+        async: false,
         dataType: 'html'
     });
 }
