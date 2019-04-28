@@ -8,6 +8,7 @@ import (
 	"github.com/gorilla/pat"
 )
 
+// GetRouter returns all routers
 func GetRouter() *pat.Router {
 	common := pat.New()
 	fs := utils.FileSystemStatic{FileSystem: http.Dir("static")}
