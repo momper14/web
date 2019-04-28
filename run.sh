@@ -1,0 +1,1 @@
+sudo $GOBIN/gin --port 80 .
