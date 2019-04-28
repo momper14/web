@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Karteikasten erstellen/bearbeiten</title>
+
+    <link rel="icon" href="static/res/Favicons/favicon.ico" type="image/x-icon">
+
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css"
+        integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+    <link rel="stylesheet" href="static/css/bulma-0.7.4/css/bulma.css">
+    <link rel="stylesheet" href="static/css/styleguide.css">
+    <link rel="stylesheet" href="static/css/bulma-trail.css">
+
+    <!-- <link rel="stylesheet" href="css/debug.css"> -->
+
+    <style>
+        #edit-button-next,
+        #form {
+            margin-top: 3vh;
+        }
+
+        #box {
+            max-width: 50rem;
+        }
+
+        .field-label.is-trail {
+            flex-grow: 1;
+        }
+    </style>
+
+    <script type="text/javascript" src="scripts/jquery-3.4.0.min.js"></script>
+    <script type="text/javascript" src="scripts/script.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            $('#edit-input-kategorie-help').text("Pflichtfeld!");
+            loadMenu();
+        })
+    </script>
+
+</head>
+
+<body>
+    <header>
+        <nav id="placeholder-navbar" class="navbar background-green-light"></nav>
+    </header>
+
+    <div class="columns is-fullheight">
+
+        <aside id="placeholder-sidemenu"
+            class="menu column is-narrow is-sidebar-menu is-hidden-touch background-blue-dark no-padding"></aside>
+
+        <main class="column">
+
+            <section class="columns is-multiline has-margin-maincontent center-tablet">
+                <h1 class="title column is-full has-subtext">Karteikasten erstellen
+                    / Karteikasten bearbeiten</h1>
+                <p class="column is-full subtext">Hier kannst du eine neue Kartei
+                    erstellen oder eine vorhandene nach Bedarf bearbeiten.</p>
+                <div id="box" class="notification column is-full background-withe top-border-green-light">
+
+                    <h2 class="subtitle" style="padding-left: 0.5vw;"><strong>Allgemeine Daten</strong></h2>
+
+                    <form id="form">
+                        <div class="field is-horizontal">
+                            <div class="field-label center-vertical">
+                                <label class="label">Titel</label>
+                            </div>
+                            <div class="field-body has-trail">
+                                <div class="field">
+                                    <p class="control is-expanded">
+                                        <input id="edit-input-title" class="input placeholder-is-dark" type="text"
+                                            placeholder="Titel" required="required" />
+                                    </p>
+                                </div>
+                            </div>
+                            <p id="edit-input-title-help"
+                                class="help text-red-light field-label is-trail center-vertical">
+                            </p>
+                        </div>
+
+                        <div class="field is-horizontal">
+                            <div class="field-label center-vertical">
+                                <label class="label">Kategorie</label>
+                            </div>
+                            <div class="field-body has-trail select is-inline-grid">
+                                <select>
+                                    <optgroup label="Gruppe 1">
+                                        <option>Option 1.1</option>
+                                    </optgroup>
+                                    <optgroup label="Gruppe 2">
+                                        <option>Option 2.1</option>
+                                        <option>Option 2.2</option>
+                                    </optgroup>
+                                    <optgroup label="Gruppe 3" disabled>
+                                        <option>Option 3.1</option>
+                                        <option>Option 3.2</option>
+                                        <option>Option 3.3</option>
+                                    </optgroup>
+                                </select>
+                            </div>
+                            <p id="edit-input-kategorie-help"
+                                class="help text-red-light field-label is-trail center-vertical">
+                            </p>
+                        </div>
+
+                        <div class="field is-horizontal">
+                            <div class="field-label">
+                                <label class="label">Beschreibung</label>
+                            </div>
+                            <div class="field-body has-trail">
+                                <div class="field">
+                                    <p id="edit-input-beschreibung" class="control is-expanded">
+                                        <textarea class="textarea placeholder-is-dark" type="password"
+                                            placeholder="Beschreibung" required="required"></textarea>
+                                    </p>
+                                </div>
+                            </div>
+                            <p id="edit-input-beschreibung-help"
+                                class="help text-red-light field-label is-trail center-vertical"></p>
+                        </div>
+
+                        <div class="field is-horizontal">
+                            <div class="field-label center-vertical">
+                                <label class="label">Sichtbarkeit</label>
+                            </div>
+                            <div class="field-body has-trail">
+                                <div class="field" style="margin-left: 1vw;">
+                                    <div class="control">
+                                        <label class="radio">
+                                            <input type="radio" name="Sichtbarkeit" value="Öffentlich" />
+                                            Öffentlich
+                                        </label>
+                                        <label class="radio" style="margin-left: 2vw;">
+                                            <input type="radio" name="Sichtbarkeit" value="Privat" checked="checked" />
+                                            Privat
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                            <p id="edit-input-sichtbarkeit-help"
+                                class="help text-red-light field-label is-trail center-vertical">
+                            </p>
+                        </div>
+
+                        <div class="field is-horizontal">
+                            <div class="field-label"></div>
+                            <div class="field-body has-trail">
+                                <div class="field">
+                                    <div id="edit-button-next" class="control center">
+                                        <button class="button background-yellow-dark text-light" type="submit">
+                                            <strong>Speichern und weiter</strong>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="field-label is-trail"></div>
+                        </div>
+
+                    </form>
+
+                </div>
+
+            </section>
+
+        </main>
+
+    </div>
+
+</body>
+
+</html>

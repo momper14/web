@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Karteikasten anschauen</title>
+
+    <link rel="icon" href="static/res/Favicons/favicon.ico" type="image/x-icon">
+
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css"
+        integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+    <link rel="stylesheet" href="static/css/bulma-0.7.4/css/bulma.css">
+    <link rel="stylesheet" href="static/css/styleguide.css">
+    <link rel="stylesheet" href="static/css/hexagon.css">
+    <link rel="stylesheet" href="static/css/grids/view-grid.css">
+    <link rel="stylesheet" href="static/css/headline.css">
+
+    <!-- <link rel="stylesheet" href="css/debug.css"> -->
+
+    <style>
+        #form {
+            margin: 2rem 2rem 2rem 0px;
+        }
+
+        .notification {
+            padding: 0.5rem 0.75rem;
+        }
+
+        .field-label {
+            min-width: 5rem;
+            max-width: 5rem;
+        }
+
+        .content {
+            height: 30vh;
+        }
+
+        .hexagon.is-small {
+            margin-left: 0.5rem;
+        }
+
+        #card-1 {
+            background: var(--color_green_dark) !important;
+            color: var(--text_light);
+        }
+    </style>
+
+    <script type="text/javascript" src="static/cripts/jquery-3.4.0.min.js"></script>
+    <script type="text/javascript" src="static/scripts/script.js"></script>
+    <script type="text/javascript" src="static/scripts/karteikasten-ansehen.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            $('#edit-text-anzahl').text(23);
+            loadkarten();
+            loadMenu();
+        })
+    </script>
+
+</head>
+
+<body>
+    <header>
+        <nav id="placeholder-navbar" class="navbar background-green-light"></nav>
+    </header>
+
+    <div class="columns is-fullheight">
+
+        <aside id="placeholder-sidemenu"
+            class="menu column is-narrow is-sidebar-menu is-hidden-touch background-blue-dark no-padding"></aside>
+
+        <main class="column is-flex">
+
+            <section id="grid" class="is-fullwidth has-margin-maincontent">
+                <div id="description">
+                    <h1 class="title has-subtext">Karteikasten anschauen</h1>
+                    <p class="subtext">Hier kannst du dir eine beliebige Karte anschauen ohne sie zu bearbeiten.</p>
+                </div>
+
+                <div id="headline" class="top-border-green-light background-withe">
+                    <div class="headline-item">
+                        <p class="headline-title">Name</p>
+                        <p><strong>Geometrie</strong></p>
+                    </div>
+                    <div class="headline-item">
+                        <p class="headline-title">Kategorie</p>
+                        <p>
+                            <strong>
+                                Naturwissenschaften
+                                <span class="icon is-small">
+                                    <i class="fas fa-caret-right"></i>
+                                </span>
+                                Mathematik
+                            </strong>
+                        </p>
+                    </div>
+                    <div class="headline-item">
+                        <p class="headline-title">Erstellt von</p>
+                        <p><strong>Max Mustermann</strong></p>
+                    </div>
+                    <div class="headline-item">
+                        <p class="headline-title">Fortschritt</p>
+                        <p><strong><span id="edit-text-fortschritt">0</span> %</strong></p>
+                    </div>
+                    <div class="headline-item">
+                        <div class="hexagon">
+                            <div class="count">
+                                <p id="edit-text-anzahl">0</p>
+                                <span>Karten</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="cards" class="has-overflow-y"></div>
+
+                <div id="build" class="top-border-green-light background-withe ">
+                    <div id="form">
+
+                        <div class="field is-horizontal">
+                            <div class="field-label center-vertical">
+                                <label class="label">Titel</label>
+                            </div>
+                            <div class="field-body">
+                                <span id="edit-input-title" class="center-vertical" type="text" placeholder="Titel">
+                                    <strong>Titel der Karte</strong>
+                                </span>
+                                <div class="hexagon is-small flex-right is-inactive">
+                                    <div class="count-single">
+                                        <p id="edit-text-anzahl">0</p>
+                                    </div>
+                                </div>
+                                <div class="hexagon is-small">
+                                    <div class="count-single">
+                                        <p id="edit-text-anzahl">1</p>
+                                    </div>
+                                </div>
+                                <div class="hexagon is-small is-inactive">
+                                    <div class="count-single">
+                                        <p id="edit-text-anzahl">2</p>
+                                    </div>
+                                </div>
+                                <div class="hexagon is-small is-inactive">
+                                    <div class="count-single">
+                                        <p id="edit-text-anzahl">3</p>
+                                    </div>
+                                </div>
+                                <div class="hexagon is-small is-inactive">
+                                    <div class="count-single">
+                                        <p id="edit-text-anzahl">4</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="field is-horizontal">
+                            <div class="field-label">
+                                <label class="label">Frage</label>
+                            </div>
+                            <div class="field-body">
+                                <div class="field">
+                                    <div class="content">Lorem ipsum dolor sit amet, consectetur
+                                        adipiscing elit. <strong> Pellentesque risus mi </strong>, tempus quis placerat
+                                        ut,
+                                        porta nec nulla.Vestibulum rhoncus ac ex sit amet fringilla. Nullam gravida
+                                        purus
+                                        diam, et dictum <a> felis venenatis </a> efficitur. Aenean ac <em>eleifend lacus
+                                        </em>, in mollis lectus. Donec sodales, arcu et sollicitudin porttitor, tortor
+                                        urna
+                                        tempor ligula, id porttitor mi magna a neque.Donec dui urna, vehicula et sem
+                                        eget,
+                                        facilisis sodales sem.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="field is-horizontal">
+                            <div class="field-label">
+                                <label class="label">Antwort</label>
+                            </div>
+                            <div class="field-body">
+                                <div class="field">
+                                    <div class="content">Lorem ipsum dolor sit amet, consectetur
+                                        adipiscing elit. <strong> Pellentesque risus mi </strong>, tempus quis placerat
+                                        ut,
+                                        porta nec nulla.Vestibulum rhoncus ac ex sit amet fringilla. Nullam gravida
+                                        purus
+                                        diam, et dictum <a> felis venenatis </a> efficitur. Aenean ac <em>eleifend lacus
+                                        </em>, in mollis lectus. Donec sodales, arcu et sollicitudin porttitor, tortor
+                                        urna
+                                        tempor ligula, id porttitor mi magna a neque.Donec dui urna, vehicula et sem
+                                        eget,
+                                        facilisis sodales sem.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+            </section>
+
+        </main>
+
+    </div>
+
+</body>
+
+</html>
