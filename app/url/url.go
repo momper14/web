@@ -1,4 +1,4 @@
-package urls
+package url
 
 const (
 	// StaticPath URL path to static elements
