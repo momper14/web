@@ -7,15 +7,15 @@
 
     <title>Lernen</title>
 
-    <link rel="icon" href="static/res/Favicons/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="/static/res/Favicons/favicon.ico" type="image/x-icon">
 
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css"
         integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
-    <link rel="stylesheet" href="static/css/bulma-0.7.4/css/bulma.css">
-    <link rel="stylesheet" href="static/css/styleguide.css">
-    <link rel="stylesheet" href="static/css/hexagon.css">
-    <link rel="stylesheet" href="static/css/grids/lern-grid.css">
-    <link rel="stylesheet" href="static/css/headline.css">
+    <link rel="stylesheet" href="/static/css/bulma-0.7.4/css/bulma.css">
+    <link rel="stylesheet" href="/static/css/styleguide.css">
+    <link rel="stylesheet" href="/static/css/hexagon.css">
+    <link rel="stylesheet" href="/static/css/grids/lern-grid.css">
+    <link rel="stylesheet" href="/static/css/headline.css">
 
     <!-- <link rel="stylesheet" href="css/debug.css"> -->
 
@@ -50,17 +50,15 @@
         }
     </style>
 
-    <script type="text/javascript" src="static/scripts/jquery-3.4.0.min.js"></script>
-    <script type="text/javascript" src="static/scripts/script.js"></script>
-    <script type="text/javascript" src="static/scripts/lernen.js"></script>
+    <script type="text/javascript" src="/static/scripts/jquery-3.4.0.min.js"></script>
+    <script type="text/javascript" src="/static/scripts/script.js"></script>
+    <script type="text/javascript" src="/static/scripts/lernen.js"></script>
 
     <script>
         $(document).ready(function () {
-            $('#edit-text-anzahl').text(23);
             $('#lern-button-aufdecken').click(function () {
                 aufdecken();
             });
-            loadMenu();
         })
     </script>
 
@@ -68,13 +66,15 @@
 
 <body>
     <header>
-        <nav id="placeholder-navbar" class="navbar background-green-light"></nav>
+        <nav id="placeholder-navbar" class="navbar background-green-light">{{ template "navbar" .Navbar}}</nav>
     </header>
 
     <div class="columns is-fullheight">
 
         <aside id="placeholder-sidemenu"
-            class="menu column is-narrow is-sidebar-menu is-hidden-touch background-blue-dark no-padding"></aside>
+            class="menu column is-narrow is-sidebar-menu is-hidden-touch background-blue-dark no-padding">
+            {{ template "sidemenu" .Sidemenu }}
+        </aside>
 
         <main class="column is-flex">
 
@@ -84,26 +84,27 @@
                     <p class="subtext">Hier wird dir zufällig eine Karte aus der gewählten kartei angezeigt.</p>
                 </div>
 
+                {{ block "headline" .Headline }}
                 <div id="headline" class="top-border-green-light background-withe">
                     <div class="headline-item">
                         <p class="headline-title">Name</p>
-                        <p><strong>Geometrie</strong></p>
+                        <p><strong>{{ .Name }}</strong></p>
                     </div>
                     <div class="headline-item">
                         <p class="headline-title">Kategorie</p>
                         <p>
                             <strong>
-                                Naturwissenschaften
+                                {{ .Kategorie }}
                                 <span class="icon is-small">
                                     <i class="fas fa-caret-right"></i>
                                 </span>
-                                Mathematik
+                                {{ .SubKat }}
                             </strong>
                         </p>
                     </div>
                     <div class="headline-item">
                         <p class="headline-title">Fortschritt</p>
-                        <p><strong><span id="edit-text-fortschritt">0</span> %</strong></p>
+                        <p><strong>{{ .Fortschritt }} %</strong></p>
                     </div>
                     <div id="status" class="headline-item">
                         <div>
@@ -112,34 +113,35 @@
                         </div>
                         <div>
                             <p class="headline-title">0</p>
-                            <p class="headline-title"><strong>5</strong></p>
+                            <p class="headline-title"><strong>{{ .A0 }}</strong></p>
                         </div>
                         <div>
                             <p class="headline-title">1</p>
-                            <p class="headline-title"><strong>6</strong></p>
+                            <p class="headline-title"><strong>{{ .A1 }}</strong></p>
                         </div>
                         <div>
                             <p class="headline-title">2</p>
-                            <p class="headline-title"><strong>2</strong></p>
+                            <p class="headline-title"><strong>{{ .A2 }}</strong></p>
                         </div>
                         <div>
                             <p class="headline-title">3</p>
-                            <p class="headline-title"><strong>1</strong></p>
+                            <p class="headline-title"><strong>{{ .A3 }}</strong></p>
                         </div>
                         <div>
                             <p class="headline-title">4</p>
-                            <p class="headline-title"><strong>0</strong></p>
+                            <p class="headline-title"><strong>{{ .A4 }}</strong></p>
                         </div>
                     </div>
                     <div class="headline-item">
                         <div class="hexagon">
                             <div class="count">
-                                <p id="edit-text-anzahl">0</p>
+                                <p>{{ .Anzahl }}</p>
                                 <span>Karten</span>
                             </div>
                         </div>
                     </div>
                 </div>
+                {{ end }}
 
                 <div id="build" class="top-border-green-light background-withe ">
                     <div id="form">
@@ -150,29 +152,29 @@
                             </div>
                             <div class="field-body">
                                 <span id="edit-input-title" class="center-vertical" type="text" placeholder="Titel">
-                                    <strong>Titel der Karte</strong>
+                                    <strong>{{ .Titel }}</strong>
                                 </span>
-                                <div class="hexagon is-small flex-right is-inactive">
+                                <div class="hexagon is-small flex-right {{ if not .F0 }} is-inactive {{ end }}">
                                     <div class="count-single">
                                         <p id="edit-text-anzahl">0</p>
                                     </div>
                                 </div>
-                                <div class="hexagon is-small">
+                                <div class="hexagon is-small {{ if not .F1 }} is-inactive {{ end }}">
                                     <div class="count-single">
                                         <p id="edit-text-anzahl">1</p>
                                     </div>
                                 </div>
-                                <div class="hexagon is-small is-inactive">
+                                <div class="hexagon is-small {{ if not .F2 }} is-inactive {{ end }}">
                                     <div class="count-single">
                                         <p id="edit-text-anzahl">2</p>
                                     </div>
                                 </div>
-                                <div class="hexagon is-small is-inactive">
+                                <div class="hexagon is-small {{ if not .F3 }} is-inactive {{ end }}">
                                     <div class="count-single">
                                         <p id="edit-text-anzahl">3</p>
                                     </div>
                                 </div>
-                                <div class="hexagon is-small is-inactive">
+                                <div class="hexagon is-small {{ if not .F4 }} is-inactive {{ end }}">
                                     <div class="count-single">
                                         <p id="edit-text-anzahl">4</p>
                                     </div>
@@ -186,17 +188,8 @@
                             </div>
                             <div class="field-body">
                                 <div class="field">
-                                    <div class="sized">Lorem ipsum dolor sit amet, consectetur
-                                        adipiscing elit. <strong> Pellentesque risus mi </strong>, tempus quis placerat
-                                        ut,
-                                        porta nec nulla.Vestibulum rhoncus ac ex sit amet fringilla. Nullam gravida
-                                        purus
-                                        diam, et dictum <a> felis venenatis </a> efficitur. Aenean ac <em>eleifend lacus
-                                        </em>, in mollis lectus. Donec sodales, arcu et sollicitudin porttitor, tortor
-                                        urna
-                                        tempor ligula, id porttitor mi magna a neque.Donec dui urna, vehicula et sem
-                                        eget,
-                                        facilisis sodales sem.
+                                    <div class="sized">
+                                        {{ .Frage }}
                                     </div>
                                 </div>
                             </div>
@@ -208,7 +201,9 @@
                             </div>
                             <div class="field-body">
                                 <div class="field">
-                                    <div id="answer"></div>
+                                    <div id="answer" class="sized is-hidden">
+                                        {{ .Antwort }}
+                                    </div>
                                 </div>
                             </div>
                         </div>

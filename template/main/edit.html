@@ -7,13 +7,13 @@
 
     <title>Karteikasten erstellen/bearbeiten</title>
 
-    <link rel="icon" href="static/res/Favicons/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="/static/res/Favicons/favicon.ico" type="image/x-icon">
 
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css"
         integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
-    <link rel="stylesheet" href="static/css/bulma-0.7.4/css/bulma.css">
-    <link rel="stylesheet" href="static/css/styleguide.css">
-    <link rel="stylesheet" href="static/css/bulma-trail.css">
+    <link rel="stylesheet" href="/static/css/bulma-0.7.4/css/bulma.css">
+    <link rel="stylesheet" href="/static/css/styleguide.css">
+    <link rel="stylesheet" href="/static/css/bulma-trail.css">
 
     <!-- <link rel="stylesheet" href="css/debug.css"> -->
 
@@ -38,7 +38,6 @@
     <script>
         $(document).ready(function () {
             $('#edit-input-kategorie-help').text("Pflichtfeld!");
-            loadMenu();
         })
     </script>
 
@@ -46,13 +45,15 @@
 
 <body>
     <header>
-        <nav id="placeholder-navbar" class="navbar background-green-light"></nav>
+        <nav id="placeholder-navbar" class="navbar background-green-light">{{ template "navbar" .Navbar}}</nav>
     </header>
 
     <div class="columns is-fullheight">
 
         <aside id="placeholder-sidemenu"
-            class="menu column is-narrow is-sidebar-menu is-hidden-touch background-blue-dark no-padding"></aside>
+            class="menu column is-narrow is-sidebar-menu is-hidden-touch background-blue-dark no-padding">
+            {{ template "sidemenu" .Sidemenu}}
+        </aside>
 
         <main class="column">
 
@@ -89,100 +90,14 @@
                             </div>
                             <div class="field-body has-trail select is-inline-grid">
                                 <select>
-                                    <optgroup label="Naturwissenschaften">
-                                        <option>Biologie</option>
-                                        <option>Chemie</option>
-                                        <option>Elektrotechnik</option>
-                                        <option>Informatik</option>
-                                        <option>Mathematik</option>
-                                        <option>Medizin</option>
-                                        <option>Naturkunde</option>
-                                        <option>Physik</option>
-                                        <option>Sonstiges</option>
+                                    {{ range .Kategorien }}
+                                    <optgroup label="{{ .Name }}">
+                                        {{ range .Sub }}
+                                        <option value="{{ . }}">{{ . }}</option>
+                                        {{ end }}
                                     </optgroup>
-                                    <optgroup label="Sprachen">
-                                        <option>Chinesisch</option>
-                                        <option>Deutsch</option>
-                                        <option>Englisch</option>
-                                        <option>Französisch</option>
-                                        <option>Griechisch</option>
-                                        <option>Italienisch</option>
-                                        <option>Latein</option>
-                                        <option>Russisch</option>
-                                        <option>Sonstiges</option>
-                                    </optgroup>
-                                    <optgroup label="Gesellschaft">
-                                        <option value="">
-                                            Ethik
-                                        </option>
-                                        <option value="">
-                                            Geschichte
-                                        </option>
-                                        <option value="">
-                                            Literatur
-                                        </option>
-                                        <option value="">
-                                            Musik
-                                        </option>
-                                        <option value="">
-                                            Politik
-                                        </option>
-                                        <option value="">
-                                            Recht
-                                        </option>
-                                        <option value="">
-                                            Soziales
-                                        </option>
-                                        <option value="">
-                                            Sport
-                                        </option>
-                                        <option value="">
-                                            Verkehrskunde
-                                        </option>
-                                        <option value="">
-                                            Sonstiges
-                                        </option>
-                                    </optgroup>
-                                    <optgroup label="Wirtschaft">
-                                        <option value="">
-                                            BWL
-                                        </option>
-                                        <option value="">
-                                            Finanzen
-                                        </option>
-                                        <option value="">
-                                            Landwirtschaft
-                                        </option>
-                                        <option value="">
-                                            Marketing
-                                        </option>
-                                        <option value="">
-                                            VWL
-                                        </option>
-                                        <option value="">
-                                            Sonstiges
-                                        </option>
-                                    </optgroup>
-                                    <optgroup label="Geisteswissenschaften">
-                                        <option value="">
-                                            Kriminologie
-                                        </option>
-                                        <option value="">
-                                            Philosophie
-                                        </option>
-                                        <option value="">
-                                            Psychologie
-                                        </option>
-                                        <option value="">
-                                            Pädagogik
-                                        </option>
-                                        <option value="">
-                                            Theologie
-                                        </option>
-                                        <option value="">
-                                            Sonstiges
-                                        </option>
-                                    </optgroup>
+                                    {{ end }}
+                                    
                                 </select>
                             </div>
                             <p id="edit-input-kategorie-help"

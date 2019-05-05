@@ -7,13 +7,13 @@
 
     <title>Karteikasten erstellen/bearbeiten</title>
 
-    <link rel="icon" href="static/res/Favicons/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="/static/res/Favicons/favicon.ico" type="image/x-icon">
 
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css"
         integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
-    <link rel="stylesheet" href="static/css/bulma-0.7.4/css/bulma.css">
-    <link rel="stylesheet" href="static/css/styleguide.css">
-    <link rel="stylesheet" href="static/css/grids/profile-grid.css">
+    <link rel="stylesheet" href="/static/css/bulma-0.7.4/css/bulma.css">
+    <link rel="stylesheet" href="/static/css/styleguide.css">
+    <link rel="stylesheet" href="/static/css/grids/profile-grid.css">
 
     <!-- <link rel="stylesheet" href="css/debug.css"> -->
 
@@ -48,9 +48,8 @@
         }
     </style>
 
-    <script type="text/javascript" src="static/scripts/jquery-3.4.0.min.js"></script>
-    <script type="text/javascript" src="static/scripts/script.js"></script>
-    <script type="text/javascript" src="static/scripts/karteikasten-bearbeiten.js"></script>
+    <script type="text/javascript" src="/static/scripts/jquery-3.4.0.min.js"></script>
+    <script type="text/javascript" src="/static/scripts/script.js"></script>
 
     <script>
         $(document).ready(function () {
@@ -60,7 +59,6 @@
             $('#profil-modal-button-keep').click(function () {
                 $('#modal').toggleClass("is-active", false);
             });
-            loadMenu();
         })
     </script>
 
@@ -68,13 +66,15 @@
 
 <body>
     <header>
-        <nav id="placeholder-navbar" class="navbar background-green-light"></nav>
+        <nav id="placeholder-navbar" class="navbar background-green-light">{{ template "navbar" .Navbar }}</nav>
     </header>
 
     <div class="columns is-fullheight">
 
         <aside id="placeholder-sidemenu"
-            class="menu column is-narrow is-sidebar-menu is-hidden-touch background-blue-dark no-padding"></aside>
+            class="menu column is-narrow is-sidebar-menu is-hidden-touch background-blue-dark no-padding">
+            {{ template "sidemenu" .Sidemenu }}
+        </aside>
 
         <main class="column is-flex">
 
@@ -88,16 +88,16 @@
                     <div class="card text-is-center">
                         <div class="card-image is-inline-block">
                             <figure class="image is-128x128">
-                                <img class="is-rounded background-blue-light" src="static/res/Icons/Mein-Profil.svg"
-                                    alt="Placeholder image" style="margin-top: 0.5rem;">
+                                <img class="is-rounded background-blue-light" src="{{ .Bild }}" alt="Placeholder image"
+                                    style="margin-top: 0.5rem;">
                             </figure>
                             <button id="profil-button-edit" class="button background-yellow-dark text-light">
                                 <strong>Edit</strong>
                             </button>
                         </div>
                         <div class="card-content">
-                            <h2 class="title" style="margin-bottom: 0.5rem">Max Mustermann</h2>
-                            <p>mustermann@example.com</p>
+                            <h2 class="title" style="margin-bottom: 0.5rem">{{ .Name }}</h2>
+                            <p>{{ .Email }}</p>
                         </div>
                     </div>
                 </div>
@@ -106,11 +106,11 @@
                     <div id="statistic-grid" style="margin: 1rem;">
                         <p class="subtitle" style="grid-column: span 2"><strong>Statistik</strong></p>
                         <span>Erstellte Karten:</span>
-                        <span>24</span>
+                        <span>{{ .Karten }}</span>
                         <span>Erstellte Karteien:</span>
-                        <span>7</span>
+                        <span>{{ .Karteien }}</span>
                         <span>Mitglied seit:</span>
-                        <span>24.12.2018</span>
+                        <span>{{ .Seit }}</span>
                     </div>
                 </div>
 
@@ -124,8 +124,9 @@
                         <p id="edit-oldpw-input" class="control"> <input class="input" type="password" /> </p>
                         <p id="edit-newpw-label" class="front">Neues Password</p>
                         <p id="edit-newpw-input" class="control"> <input class="input" type="password" /> </p>
-                        <p id="edit-newpw-help" class="help" style="align-self: center;">Altes Password darf nicht mit
-                            neuem übereinstimmen!</p>
+                        <p id="edit-newpw-help" class="help" style="align-self: center;">
+                            Altes Password darf nicht mit neuem übereinstimmen!
+                        </p>
                         <p id="edit-reppw-label" class="front">Password Wiederholen</p>
                         <p id="edit-reppw-input" class="control"> <input class="input" type="password" /> </p>
                         <div id="edit-button-save" class="buttons center">
@@ -142,7 +143,8 @@
                                         <p class="subtitle"><strong>Löschen</strong></p>
                                         <p>Bist du dir sicher, dass du dein Profil löschen möchtest?</p>
                                         <div class="buttons center" style="margin-top: 2rem;">
-                                            <button id="profil-modal-button-keep" class="button background-green-light text-light button-bearbeiten">
+                                            <button id="profil-modal-button-keep"
+                                                class="button background-green-light text-light button-bearbeiten">
                                                 <strong>Profil behalten</strong>
                                             </button>
                                             <button class="button background-red-light text-light">

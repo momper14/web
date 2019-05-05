@@ -7,13 +7,13 @@
 
     <title>Registrierung</title>
 
-    <link rel="icon" href="static/res/Favicons/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="/static/res/Favicons/favicon.ico" type="image/x-icon">
 
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css"
         integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
-    <link rel="stylesheet" href="static/css/bulma-0.7.4/css/bulma.css">
-    <link rel="stylesheet" href="static/css/styleguide.css">
-    <link rel="stylesheet" href="static/css/bulma-trail.css">
+    <link rel="stylesheet" href="/static/css/bulma-0.7.4/css/bulma.css">
+    <link rel="stylesheet" href="/static/css/styleguide.css">
+    <link rel="stylesheet" href="/static/css/bulma-trail.css">
 
     <!-- <link rel="stylesheet" href="css/debug.css"> -->
 
@@ -28,8 +28,8 @@
         }
     </style>
 
-    <script type="text/javascript" src="static/scripts/jquery-3.4.0.min.js"></script>
-    <script type="text/javascript" src="static/scripts/script.js"></script>
+    <script type="text/javascript" src="/static/scripts/jquery-3.4.0.min.js"></script>
+    <script type="text/javascript" src="/static/scripts/script.js"></script>
 
     <script>
         $(document).ready(function () {
@@ -37,7 +37,6 @@
             $('#register-input-email-help').text("Diese Mail ist bereits vergeben!");
             $('#register-input-repeat-help').text("Die Passwörter stimmen nicht überein!");
             $('#register-input-privacy-help').text("Bitte setzen Sie hier ein Haken!");
-            loadMenu();
         })
     </script>
 
@@ -46,13 +45,15 @@
 <body>
 
     <header>
-        <nav id="placeholder-navbar" class="navbar background-green-light"></nav>
+        <nav id="placeholder-navbar" class="navbar background-green-light">{{ template "navbar" .Navbar }}</nav>
     </header>
 
     <div class="columns is-fullheight">
 
         <aside id="placeholder-sidemenu"
-            class="menu column is-narrow is-sidebar-menu is-hidden-touch background-blue-dark no-padding"></aside>
+            class="menu column is-narrow is-sidebar-menu is-hidden-touch background-blue-dark no-padding">
+            {{ template "sidemenu" .Sidemenu }}
+        </aside>
 
         <main class="column">
 

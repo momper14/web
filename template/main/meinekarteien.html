@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Meine Karteikästen</title>
+
+    <link rel="icon" href="/static/res/Favicons/favicon.ico" type="image/x-icon">
+
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css"
+        integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+    <link rel="stylesheet" href="/static/css/bulma-0.7.4/css/bulma.css">
+    <link rel="stylesheet" href="/static/css/styleguide.css">
+    <link rel="stylesheet" href="/static/css/bulma-message-with-subtitle.css">
+    <link rel="stylesheet" href="/static/css/hexagon.css">
+    <link rel="stylesheet" href="/static/css/grids/meinekasten-grid.css">
+
+    <!-- <link rel="stylesheet" href="css/debug.css"> -->
+
+    <style>
+        @media screen and (min-width: 1500px) {
+            .column.is-kasten {
+                flex: none;
+                width: 23%;
+            }
+        }
+
+        @media screen and (min-width: 1200px) and (max-width: 1499px) {
+            .column.is-kasten {
+                flex: none;
+                width: 31%;
+            }
+        }
+
+        @media screen and (min-width: 769px) and (max-width: 1199px) {
+            .column.is-kasten {
+                flex: none;
+                width: 48%;
+            }
+        }
+
+        @media screen and (max-width: 768px) {
+            .column.is-kasten {
+                flex: none;
+                width: 100%;
+            }
+        }
+
+        #sidemenu-element-meine-karteikaesten {
+            background: var(--color_blue_light);
+        }
+
+        .sized {
+            width: 12rem;
+        }
+    </style>
+
+    <script type="text/javascript" src="/static/scripts/jquery-3.4.0.min.js"></script>
+    <script type="text/javascript" src="/static/scripts/script.js"></script>
+
+</head>
+
+<body>
+    <nav id="placeholder-navbar" class="navbar background-green-light">{{ template "navbar" .Navbar }}</nav>
+
+    <div class="columns is-fullheight">
+
+        <aside id="placeholder-sidemenu"
+            class="menu column is-narrow is-sidebar-menu is-hidden-touch background-blue-dark no-padding">
+            {{ template "sidemenu" .Sidemenu }}
+        </aside>
+
+        <main class="column">
+            <section class="has-margin-maincontent ">
+                <h1 class="title has-subtext">Meine Karteikästen</h1>
+                <div class="is-flex subtext">
+
+                    <p class="center-text">Hier findest du deine Karteien, so wie öffentliche Karteien, die du
+                        angefangen hast zu lernen.</p>
+
+                    <div class="dropdown flex-right is-hidden-mobile has-border" style="margin-right: 1rem;">
+                        <div class="dropdown-trigger">
+                            <button class="button sized background-as-given" style="justify-content: flex-start"
+                                aria-haspopup="true" aria-controls="dropdown-menu">
+                                <span>Sortieren nach...</span>
+                                <span class="icon is-small flex-right">
+                                    <i class="fa fa-angle-down" aria-hidden="true"></i>
+                                </span>
+                            </button>
+                        </div>
+                        <div class="dropdown-menu" role="menu">
+                            <div class="dropdown-content">
+                                <a href="#" class="dropdown-item">
+                                    Dropdown item
+                                </a>
+                                <hr class="dropdown-divider">
+                                <a href="#" class="dropdown-item">
+                                    With a divider
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="control sized is-hidden-mobile has-border">
+                        <input class="input placeholder-is-dark background-as-given" type="text" placeholder="suche">
+                    </div>
+
+                </div>
+
+                <section>
+
+                    <h2 class="title is-size-4">Selbst erstellte Karteien</h2>
+                    <section class="columns columns-with-margin is-mobile" style="overflow-x: auto">
+
+                        {{ range .Selbst}}
+                        <article class="message is-small column is-kasten">
+                            <div class="message-header background-green-light center">
+                                <p class="is-size-6">
+                                    <strong>
+                                        <span>{{ .Kategorie }}</span>
+                                        <span class="icon is-small">
+                                            <i class="fas fa-caret-right"></i>
+                                        </span>
+                                        <span>{{ .SubKat }}</span>
+                                    </strong>
+                                </p>
+                            </div>
+                            <div class="message-body background-withe">
+                                <div class="is-flex message-body-title" style="margin-top: 1rem;">
+                                    <strong class="subtitle">{{ .Titel }}</strong>
+
+                                    <div class="hexagon">
+                                        <div class="count">
+                                            <p>{{ .Anzahl }}</p>
+                                            <span>Karten</span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <p class="message-body-text">{{ .Beschreibung }}</p>
+
+                                <div class="inner-card-grid">
+                                    <span class="sichtbarkeit-label">Sichtbarkeit:</span>
+                                    <strong class="sichtbarkeit-text">{{ .Sichtbarkeit }}</strong>
+                                    <span class="fortschritt-label">Fortschritt:</span>
+                                    <strong class="fortschritt-text">{{ .Fortschritt }} %</strong>
+
+                                    <button class="button background-yellow-dark text-light button-lernen">
+                                        <strong>Lernen</strong>
+                                    </button>
+                                    <button class="button background-green-light text-light button-bearbeiten">
+                                        <strong>Bearbeiten</strong>
+                                    </button>
+                                    <button class="button background-red-light text-light button-loeschen">
+                                        <span class="icon is-small text-light">
+                                            <i class="fas fa-trash-alt"></i>
+                                        </span>
+                                    </button>
+                                </div>
+                            </div>
+                        </article>
+                        {{ end }}
+
+                    </section>
+
+                    <h2 class="title is-size-4" style="margin-top: 1.5rem;">Gelernte Karteien anderer Nutzer</h2>
+                    <section class="columns columns-with-margin is-mobile" style="overflow-x: auto">
+                        {{ range .Andere}}
+                        <article class="message is-small column is-kasten">
+                            <div class="message-header background-green-light center">
+                                <p class="is-size-6">
+                                    <strong>
+                                        <span>{{ .Kategorie }}</span>
+                                        <span class="icon is-small">
+                                            <i class="fas fa-caret-right"></i>
+                                        </span>
+                                        <span>{{ .SubKat }}</span>
+                                    </strong>
+                                </p>
+                            </div>
+                            <div class="message-body background-withe">
+                                <div class="is-flex message-body-title" style="margin-top: 1rem;">
+                                    <strong class="subtitle">{{ .Titel }}</strong>
+
+                                    <div class="hexagon">
+                                        <div class="count">
+                                            <p>{{ .Anzahl }}</p>
+                                            <span>Karten</span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <p class="message-body-text">{{ .Beschreibung }}</p>
+
+                                <div class="inner-card-grid other">
+                                    <span class="sichtbarkeit-label">Sichtbarkeit:</span>
+                                    <strong class="sichtbarkeit-text">{{ .Sichtbarkeit }}</strong>
+                                    <span class="fortschritt-label">Fortschritt:</span>
+                                    <strong class="fortschritt-text">{{ .Fortschritt }} %</strong>
+
+                                    <button class="button background-yellow-dark text-light button-lernen">
+                                        <strong>Lernen</strong>
+                                    </button>
+                                    <button class="button background-red-light text-light button-loeschen">
+                                        <span class="icon is-small text-light">
+                                            <i class="fas fa-trash-alt"></i>
+                                        </span>
+                                    </button>
+                                </div>
+                            </div>
+                        </article>
+                        {{ end }}
+                    </section>
+
+                </section>
+
+            </section>
+        </main>
+
+    </div>
+
+</body>
+
+</html>

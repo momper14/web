@@ -7,16 +7,16 @@
 
     <title>Karteikasten erstellen/bearbeiten</title>
 
-    <link rel="icon" href="static/res/Favicons/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="/static/res/Favicons/favicon.ico" type="image/x-icon">
 
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css"
         integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
-    <link rel="stylesheet" href="static/css/simplemde.min.css">
-    <link rel="stylesheet" href="static/css/bulma-0.7.4/css/bulma.css">
-    <link rel="stylesheet" href="static/css/styleguide.css">
-    <link rel="stylesheet" href="static/css/hexagon.css">
-    <link rel="stylesheet" href="static/css/grids/edit-2-grid.css">
-    <link rel="stylesheet" href="static/css/headline.css">
+    <link rel="stylesheet" href="/static/css/simplemde.min.css">
+    <link rel="stylesheet" href="/static/css/bulma-0.7.4/css/bulma.css">
+    <link rel="stylesheet" href="/static/css/styleguide.css">
+    <link rel="stylesheet" href="/static/css/hexagon.css">
+    <link rel="stylesheet" href="/static/css/grids/edit-2-grid.css">
+    <link rel="stylesheet" href="/static/css/headline.css">
 
     <!-- <link rel="stylesheet" href="css/debug.css"> -->
 
@@ -34,16 +34,19 @@
             padding: 0.5rem 0.75rem;
         }
 
-        .field-label{
+        .field-label {
             min-width: 5rem;
             max-width: 5rem;
         }
+
+        .textarea {
+            height: 27vh;
+        }
     </style>
 
-    <script type="text/javascript" src="static/scripts/jquery-3.4.0.min.js"></script>
-    <script type="text/javascript" src="static/scripts/simplemde.min.js"></script>
-    <script type="text/javascript" src="static/scripts/script.js"></script>
-    <script type="text/javascript" src="static/scripts/karteikasten-bearbeiten.js"></script>
+    <script type="text/javascript" src="/static/scripts/jquery-3.4.0.min.js"></script>
+    <script type="text/javascript" src="/static/scripts/simplemde.min.js"></script>
+    <script type="text/javascript" src="/static/scripts/script.js"></script>
 
     <script>
         $(document).ready(function () {
@@ -53,9 +56,6 @@
             var antwortmde = new SimpleMDE({
                 element: $('#edit-input-antwort')[0]
             });
-            $('#edit-text-anzahl').text(23);
-            loadkarten();
-            loadMenu();
         })
     </script>
 
@@ -63,13 +63,15 @@
 
 <body>
     <header>
-        <nav id="placeholder-navbar" class="navbar background-green-light"></nav>
+        <nav id="placeholder-navbar" class="navbar background-green-light">{{ template "navbar" .Navbar}}</nav>
     </header>
 
     <div class="columns is-fullheight">
 
         <aside id="placeholder-sidemenu"
-            class="menu column is-narrow is-sidebar-menu is-hidden-touch background-blue-dark no-padding"></aside>
+            class="menu column is-narrow is-sidebar-menu is-hidden-touch background-blue-dark no-padding">
+            {{ template "sidemenu" .Sidemenu}}
+        </aside>
 
         <main class="column is-flex">
 
@@ -84,23 +86,23 @@
                 <div id="headline" class="top-border-green-light background-withe">
                     <div id="name" class="headline-item">
                         <p class="headline-title">Name</p>
-                        <p><strong>Geometrie</strong></p>
+                        <p><strong>{{ .Name }}</strong></p>
                     </div>
                     <div id=kategorie class="headline-item">
                         <p class="headline-title">Kategorie</p>
                         <p>
                             <strong>
-                                Naturwissenschaften
+                                {{ .Kategorie }}
                                 <span class="icon is-small">
                                     <i class="fas fa-caret-right"></i>
                                 </span>
-                                Mathematik
+                                {{ .SubKat }}
                             </strong>
                         </p>
                     </div>
                     <div id="fortschritt" class="headline-item">
                         <p class="headline-title">Fortschritt</p>
-                        <p><strong><span id="edit-text-fortschritt">0</span> %</strong></p>
+                        <p><strong>{{ .Fortschritt }} %</strong></p>
                     </div>
                     <div id="bearbeiten" class="control headline-item">
                         <button class="button background-green-light text-light" type="submit">
@@ -110,14 +112,31 @@
                     <div class="headline-item">
                         <div id="hexagon" class="hexagon">
                             <div class="count">
-                                <p id="edit-text-anzahl">0</p>
+                                <p>{{ .Anzahl }}</p>
                                 <span>Karten</span>
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <div id="cards" class="has-overflow-y"></div>
+                <div id="cards" class="has-overflow-y">                        {{ range .Karten }}
+
+                    <div class="notification background-withe top-border-green-light">
+                        <p># {{ .Nr }}</p>
+                        <strong id="placeholder-titel">{{ .Titel }}</strong>
+                        <div class="buttons">
+                            <button class="button flex-right background-green-light text-light">
+                                <strong>Bearbeiten</strong>
+                            </button>
+                            <button class="button background-red-light">
+                                <span class="icon is-small text-light">
+                                    <i class="fas fa-trash-alt"></i>
+                                </span>
+                            </button>
+                        </div>
+                    </div>
+                    {{ end }}
+                </div>
 
                 <div id="build" class="top-border-green-light background-withe ">
                     <form id="form">

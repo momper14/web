@@ -1,8 +1,8 @@
-<html>
+{{ define "navbar" }}
 
 <div class="navbar-brand">
     <a id="navbar-brand" class="navbar-item background-green-dark" href=".">
-        <img src="static/res/Logo/Logo.svg" />
+        <img src="/static/res/Logo/Logo.svg" />
         <h2 id="navbar-brand-text" class="is-size-4-tablet is-size-6 text-light">
             <strong class="text-light">Brain</strong>Train
         </h2>
@@ -34,14 +34,16 @@
         </div>
         <div class="navbar-item">
             <ul style="line-height: 1.1;">
-                <li><strong id="navbar-username" class="text-light">Max Mustermann</strong></li>
-                <li class="text-is-right"><a id="button-logout" class="text-light" style="font-size: 90%;">Logout</a></li>
+                <li><strong id="navbar-username" class="text-light">{{ .Name }}</strong></li>
+                <li class="text-is-right"><a id="button-logout" class="text-light" style="font-size: 90%;">Logout</a>
+                </li>
             </ul>
         </div>
         <figure class="image" style="padding: 0px; display: flex; align-items: center;">
-            <img src="static/res/Icons/Mein-Profil.svg" class="is-rounded background-blue-light" style="height: 44px; width: 44px;" />
+            <img src="/static/res/Icons/Mein-Profil.svg" class="is-rounded background-blue-light"
+                style="height: 44px; width: 44px;" />
         </figure>
     </div>
 </div>
 
-</html>
+{{ end }}

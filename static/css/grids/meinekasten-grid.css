@@ -11,6 +11,15 @@
         "bl bb bd";
 }
 
+.inner-card-grid.other {
+    grid-template-areas:
+        " .  .  ."
+        "sl st  ."
+        "fl ft  ."
+        " .  .  ."
+        "bl bl bd";
+}
+
 .sichtbarkeit-label {
     grid-area: sl;
 }

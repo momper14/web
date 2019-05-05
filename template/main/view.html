@@ -7,15 +7,15 @@
 
     <title>Karteikasten anschauen</title>
 
-    <link rel="icon" href="static/res/Favicons/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="/static/res/Favicons/favicon.ico" type="image/x-icon">
 
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css"
         integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
-    <link rel="stylesheet" href="static/css/bulma-0.7.4/css/bulma.css">
-    <link rel="stylesheet" href="static/css/styleguide.css">
-    <link rel="stylesheet" href="static/css/hexagon.css">
-    <link rel="stylesheet" href="static/css/grids/view-grid.css">
-    <link rel="stylesheet" href="static/css/headline.css">
+    <link rel="stylesheet" href="/static/css/bulma-0.7.4/css/bulma.css">
+    <link rel="stylesheet" href="/static/css/styleguide.css">
+    <link rel="stylesheet" href="/static/css/hexagon.css">
+    <link rel="stylesheet" href="/static/css/grids/view-grid.css">
+    <link rel="stylesheet" href="/static/css/headline.css">
 
     <!-- <link rel="stylesheet" href="css/debug.css"> -->
 
@@ -41,35 +41,28 @@
             margin-left: 0.5rem;
         }
 
-        #card-1 {
+        .is-active {
             background: var(--color_green_dark) !important;
             color: var(--text_light);
         }
     </style>
 
-    <script type="text/javascript" src="static/cripts/jquery-3.4.0.min.js"></script>
-    <script type="text/javascript" src="static/scripts/script.js"></script>
-    <script type="text/javascript" src="static/scripts/karteikasten-ansehen.js"></script>
-
-    <script>
-        $(document).ready(function () {
-            $('#edit-text-anzahl').text(23);
-            loadkarten();
-            loadMenu();
-        })
-    </script>
+    <script type="text/javascript" src="/static/cripts/jquery-3.4.0.min.js"></script>
+    <script type="text/javascript" src="/static/scripts/script.js"></script>
 
 </head>
 
 <body>
     <header>
-        <nav id="placeholder-navbar" class="navbar background-green-light"></nav>
+        <nav id="placeholder-navbar" class="navbar background-green-light">{{ template "navbar" .Navbar }}</nav>
     </header>
 
     <div class="columns is-fullheight">
 
         <aside id="placeholder-sidemenu"
-            class="menu column is-narrow is-sidebar-menu is-hidden-touch background-blue-dark no-padding"></aside>
+            class="menu column is-narrow is-sidebar-menu is-hidden-touch background-blue-dark no-padding">
+            {{ template "sidemenu" .Sidemenu }}
+        </aside>
 
         <main class="column is-flex">
 
@@ -79,42 +72,64 @@
                     <p class="subtext">Hier kannst du dir eine beliebige Karte anschauen ohne sie zu bearbeiten.</p>
                 </div>
 
+
+                {{ block "headline" .Headline}}
                 <div id="headline" class="top-border-green-light background-withe">
                     <div class="headline-item">
                         <p class="headline-title">Name</p>
-                        <p><strong>Geometrie</strong></p>
+                        <p><strong>{{ .Name }}</strong></p>
                     </div>
                     <div class="headline-item">
                         <p class="headline-title">Kategorie</p>
                         <p>
                             <strong>
-                                Naturwissenschaften
+                                {{ .Kategorie }}
                                 <span class="icon is-small">
                                     <i class="fas fa-caret-right"></i>
                                 </span>
-                                Mathematik
+                                {{ .SubKat }}
                             </strong>
                         </p>
                     </div>
                     <div class="headline-item">
                         <p class="headline-title">Erstellt von</p>
-                        <p><strong>Max Mustermann</strong></p>
+                        <p><strong>{{ .Ersteller}}</strong></p>
                     </div>
                     <div class="headline-item">
                         <p class="headline-title">Fortschritt</p>
-                        <p><strong><span id="edit-text-fortschritt">0</span> %</strong></p>
+                        <p><strong>{{ .Fortschritt }} %</strong></p>
                     </div>
                     <div class="headline-item">
                         <div class="hexagon">
                             <div class="count">
-                                <p id="edit-text-anzahl">0</p>
+                                <p>{{ .Anzahl }}</p>
                                 <span>Karten</span>
                             </div>
                         </div>
                     </div>
                 </div>
+                {{ end }}
 
-                <div id="cards" class="has-overflow-y"></div>
+                <div id="cards" class="has-overflow-y">
+
+                    {{ range .Karten }}
+                    <div class="notification background-withe top-border-green-light {{ if .Aktiv }} is-active {{ end }}">
+                        <p># {{ .Nr }}</p>
+                        <strong>{{ .Titel }}</strong>
+                        <div class="buttons is-invisible">
+                            <button class="button flex-right background-green-light text-light">
+                                <strong>Bearbeiten</strong>
+                            </button>
+                            <button class="button background-red-light">
+                                <span class="icon is-small text-light">
+                                    <i class="fas fa-trash-alt"></i>
+                                </span>
+                            </button>
+                        </div>
+                    </div>
+                    {{ end }}
+
+                </div>
 
                 <div id="build" class="top-border-green-light background-withe ">
                     <div id="form">
@@ -125,29 +140,29 @@
                             </div>
                             <div class="field-body">
                                 <span id="edit-input-title" class="center-vertical" type="text" placeholder="Titel">
-                                    <strong>Titel der Karte</strong>
+                                    <strong>{{ .Titel }}</strong>
                                 </span>
-                                <div class="hexagon is-small flex-right is-inactive">
+                                <div class="hexagon is-small flex-right {{ if not .F0 }} is-inactive {{ end }}">
                                     <div class="count-single">
                                         <p id="edit-text-anzahl">0</p>
                                     </div>
                                 </div>
-                                <div class="hexagon is-small">
+                                <div class="hexagon is-small {{ if not .F1 }} is-inactive {{ end }}">
                                     <div class="count-single">
                                         <p id="edit-text-anzahl">1</p>
                                     </div>
                                 </div>
-                                <div class="hexagon is-small is-inactive">
+                                <div class="hexagon is-small {{ if not .F2 }} is-inactive {{ end }}">
                                     <div class="count-single">
                                         <p id="edit-text-anzahl">2</p>
                                     </div>
                                 </div>
-                                <div class="hexagon is-small is-inactive">
+                                <div class="hexagon is-small {{ if not .F3 }} is-inactive {{ end }}">
                                     <div class="count-single">
                                         <p id="edit-text-anzahl">3</p>
                                     </div>
                                 </div>
-                                <div class="hexagon is-small is-inactive">
+                                <div class="hexagon is-small {{ if not .F4 }} is-inactive {{ end }}">
                                     <div class="count-single">
                                         <p id="edit-text-anzahl">4</p>
                                     </div>
@@ -161,18 +176,7 @@
                             </div>
                             <div class="field-body">
                                 <div class="field">
-                                    <div class="content">Lorem ipsum dolor sit amet, consectetur
-                                        adipiscing elit. <strong> Pellentesque risus mi </strong>, tempus quis placerat
-                                        ut,
-                                        porta nec nulla.Vestibulum rhoncus ac ex sit amet fringilla. Nullam gravida
-                                        purus
-                                        diam, et dictum <a> felis venenatis </a> efficitur. Aenean ac <em>eleifend lacus
-                                        </em>, in mollis lectus. Donec sodales, arcu et sollicitudin porttitor, tortor
-                                        urna
-                                        tempor ligula, id porttitor mi magna a neque.Donec dui urna, vehicula et sem
-                                        eget,
-                                        facilisis sodales sem.
-                                    </div>
+                                    <div class="content">{{ .Frage }}</div>
                                 </div>
                             </div>
                         </div>
@@ -183,18 +187,7 @@
                             </div>
                             <div class="field-body">
                                 <div class="field">
-                                    <div class="content">Lorem ipsum dolor sit amet, consectetur
-                                        adipiscing elit. <strong> Pellentesque risus mi </strong>, tempus quis placerat
-                                        ut,
-                                        porta nec nulla.Vestibulum rhoncus ac ex sit amet fringilla. Nullam gravida
-                                        purus
-                                        diam, et dictum <a> felis venenatis </a> efficitur. Aenean ac <em>eleifend lacus
-                                        </em>, in mollis lectus. Donec sodales, arcu et sollicitudin porttitor, tortor
-                                        urna
-                                        tempor ligula, id porttitor mi magna a neque.Donec dui urna, vehicula et sem
-                                        eget,
-                                        facilisis sodales sem.
-                                    </div>
+                                    <div class="content">{{ .Antwort }}</div>
                                 </div>
                             </div>
                         </div>

@@ -5,17 +5,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Meine Karteikästen</title>
+    <title>Karteikästen</title>
 
-    <link rel="icon" href="static/res/Favicons/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="/static/res/Favicons/favicon.ico" type="image/x-icon">
 
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css"
         integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
-    <link rel="stylesheet" href="static/css/bulma-0.7.4/css/bulma.css">
-    <link rel="stylesheet" href="static/css/styleguide.css">
-    <link rel="stylesheet" href="static/css/bulma-message-with-subtitle.css">
-    <link rel="stylesheet" href="static/css/hexagon.css">
-    <link rel="stylesheet" href="static/css/grids/meinekasten-grid.css">
+    <link rel="stylesheet" href="/static/css/bulma-0.7.4/css/bulma.css">
+    <link rel="stylesheet" href="/static/css/styleguide.css">
+    <link rel="stylesheet" href="/static/css/bulma-message-with-subtitle.css">
+    <link rel="stylesheet" href="/static/css/hexagon.css">
 
     <!-- <link rel="stylesheet" href="css/debug.css"> -->
 
@@ -48,7 +47,12 @@
             }
         }
 
-        #sidemenu-element-meine-karteikaesten {
+        .message-body-text {
+            overflow-y: auto;
+            height: 9rem;
+        }
+
+        #sidemenu-element-karteikaesten {
             background: var(--color_blue_light);
         }
 
@@ -57,34 +61,27 @@
         }
     </style>
 
-    <script type="text/javascript" src="static/scripts/jquery-3.4.0.min.js"></script>
-    <script type="text/javascript" src="static/scripts/script.js"></script>
-    <script type="text/javascript" src="static/scripts/meine-karteien.js"></script>
-
-    <script>
-        $(document).ready(function () {
-            loadKategorien();
-            loadMenu();
-        })
-    </script>
+    <script type="text/javascript" src="/static/scripts/jquery-3.4.0.min.js"></script>
+    <script type="text/javascript" src="/static/scripts/script.js"></script>
 
 </head>
 
 <body>
-    <nav id="placeholder-navbar" class="navbar background-green-light"></nav>
+    <nav id="placeholder-navbar" class="navbar background-green-light">{{ template "navbar" .Navbar}}</nav>
 
     <div class="columns is-fullheight">
 
         <aside id="placeholder-sidemenu"
-            class="menu column is-narrow is-sidebar-menu is-hidden-touch background-blue-dark no-padding"></aside>
+            class="menu column is-narrow is-sidebar-menu is-hidden-touch background-blue-dark no-padding">
+            {{ template "sidemenu" .Sidemenu}}
+        </aside>
 
         <main class="column">
             <section class="has-margin-maincontent ">
-                <h1 class="title" style="margin-bottom: 1.0rem;">Meine Karteikästen</h1>
+                <h1 class="title" style="margin-bottom: 1.0rem;">Karteikästen</h1>
                 <div class="is-flex">
 
-                    <p class="center-text">Hier findest du deine Karteien, so wie öffentliche Karteien, die du
-                        angefangen hast zu lernen.</p>
+                    <p class="center-text">Im Karteikasten findest du alle öffentlichen Karteien.</p>
 
                     <div class="dropdown flex-right is-hidden-mobile has-border" style="margin-right: 1rem;">
                         <div class="dropdown-trigger">
@@ -115,7 +112,38 @@
 
                 </div>
 
-                <section id="placeholder-kategorien"></section>
+                <section id="placeholder-kategorien">
+                    {{ range .Kategorien }}
+                    <h2 class="title is-size-4" style="margin-top: 1.5rem;">{{ .Name }}</h2>
+                    <section class="columns columns-with-margin is-mobile" style="overflow-x: auto">
+
+                        {{ range .Kasten }}
+                        <article class="message is-small column is-kasten">
+                            <div class="message-header background-green-light center">
+                                <p class="is-size-6">{{ .SubKat }}</p>
+                            </div>
+                            <div class="message-body background-withe">
+                                <div class="is-flex message-body-title" style="margin-top: 1rem;">
+                                    <strong class="subtitle">{{ .Titel }}</strong>
+
+                                    <div class="hexagon">
+                                        <div class="count">
+                                            <p>{{ .Anzahl }}</p>
+                                            <span>Karten</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <p class="message-body-text">{{ .Beschreibung }}</p>
+                                <div class="buttons center" style="margin-top: 1rem;">
+                                    <button id="button" class="button background-yellow-dark text-light">Lernen</button>
+                                </div>
+                            </div>
+                        </article>
+                        {{ end }}
+
+                    </section>
+                    {{ end }}
+                </section>
 
             </section>
         </main>
