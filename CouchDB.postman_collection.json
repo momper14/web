@@ -478,6 +478,92 @@
 						}
 					],
 					"_postman_isSubFolder": true
+				},
+				{
+					"name": "views",
+					"item": [
+						{
+							"name": "karten",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"id": "4d553af9-95dc-4d2f-8466-a4755d058dc5",
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"type": "text",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"_id\": \"_design/karten\",\n    \"views\": {\n        \"kastenid-kartenid\": {\n            \"reduce\": \"_count\",\n            \"map\": \"function (doc) {\\n  if(doc.Karten && doc.Karten.length > 0){\\n    for(var i in doc.Karten){\\n      emit(doc._id, doc.Karten[i]._id);\\n    }\\n  }\\n}\"\n        }\n    },\n    \"language\": \"javascript\"\n}"
+								},
+								"url": {
+									"raw": "{{url}}/{{db}}",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"{{db}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "kasten",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"id": "4d553af9-95dc-4d2f-8466-a4755d058dc5",
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"type": "text",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"_id\": \"_design/kasten\",\n    \"views\": {\n        \"kategorie-kasten\": {\n            \"map\": \"function (doc) {\\n  if(doc.Kategorie){\\n    emit(doc.Kategorie, doc._id);\\n  }\\n}\"\n        },\n        \"autor-kasten\": {\n            \"map\": \"function (doc) {\\n  if(doc.Autor){\\n    emit(doc.Autor, doc._id);\\n  }\\n}\"\n        }\n    },\n    \"language\": \"javascript\"\n}"
+								},
+								"url": {
+									"raw": "{{url}}/{{db}}",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"{{db}}"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"_postman_isSubFolder": true
 				}
 			],
 			"event": [
@@ -553,7 +639,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n\t\"_id\": \"Geisteswissenschaften\",\n    \"unterkategorie\": [\n        \"Kriminologie\",\n        \"Philosophie\",\n        \"Psychologie\",\n        \"Pädagogik\",\n        \"Theologie\",\n        \"Sonstige\"\n    ]\n}"
+							"raw": "{\n\t\"_id\": \"Geisteswissenschaften\",\n    \"Unterkategorie\": [\n        \"Kriminologie\",\n        \"Philosophie\",\n        \"Psychologie\",\n        \"Pädagogik\",\n        \"Theologie\",\n        \"Sonstige\"\n    ]\n}"
 						},
 						"url": {
 							"raw": "{{url}}/{{db}}",
@@ -593,7 +679,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n\t\"_id\": \"Gesellschaft\",\n    \"unterkategorie\": [\n        \"Ethik\",\n        \"Geschichte\",\n        \"Literatur\",\n        \"Musik\",\n        \"Politik\",\n        \"Recht\",\n        \"Soziales\",\n        \"Sport\",\n        \"Verkehrskunde\",\n        \"Sonstige\"\n    ]\n}"
+							"raw": "{\n\t\"_id\": \"Gesellschaft\",\n    \"Unterkategorie\": [\n        \"Ethik\",\n        \"Geschichte\",\n        \"Literatur\",\n        \"Musik\",\n        \"Politik\",\n        \"Recht\",\n        \"Soziales\",\n        \"Sport\",\n        \"Verkehrskunde\",\n        \"Sonstige\"\n    ]\n}"
 						},
 						"url": {
 							"raw": "{{url}}/{{db}}",
@@ -633,7 +719,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n\t\"_id\": \"Naturwissenschaften\",\n    \"unterkategorie\": [\n        \"Biologie\",\n        \"Chemie\",\n        \"Elektrotechnik\",\n        \"Informatik\",\n        \"Mathematik\",\n        \"Medizin\",\n        \"Naturkunde\",\n        \"Physik\",\n        \"Sonstige\"\n    ]\n}"
+							"raw": "{\n\t\"_id\": \"Naturwissenschaften\",\n    \"Unterkategorie\": [\n        \"Biologie\",\n        \"Chemie\",\n        \"Elektrotechnik\",\n        \"Informatik\",\n        \"Mathematik\",\n        \"Medizin\",\n        \"Naturkunde\",\n        \"Physik\",\n        \"Sonstige\"\n    ]\n}"
 						},
 						"url": {
 							"raw": "{{url}}/{{db}}",
@@ -673,7 +759,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n\t\"_id\": \"Sprachen\",\n    \"unterkategorie\": [\n        \"Chinesisch\",\n        \"Deutsch\",\n        \"Englisch\",\n        \"Französisch\",\n        \"Griechisch\",\n        \"Italienisch\",\n        \"Latein\",\n        \"Russisch\",\n        \"Sonstige\"\n    ]\n}"
+							"raw": "{\n\t\"_id\": \"Sprachen\",\n    \"Unterkategorie\": [\n        \"Chinesisch\",\n        \"Deutsch\",\n        \"Englisch\",\n        \"Französisch\",\n        \"Griechisch\",\n        \"Italienisch\",\n        \"Latein\",\n        \"Russisch\",\n        \"Sonstige\"\n    ]\n}"
 						},
 						"url": {
 							"raw": "{{url}}/{{db}}",
@@ -713,7 +799,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n\t\"_id\": \"Wirtschaft\",\n    \"unterkategorie\": [\n        \"BWL\",\n        \"Finanzen\",\n        \"Landwirtschaft\",\n        \"Marketing\",\n        \"VWL\",\n        \"Sonstige\"\n    ]\n}"
+							"raw": "{\n\t\"_id\": \"Wirtschaft\",\n    \"Unterkategorie\": [\n        \"BWL\",\n        \"Finanzen\",\n        \"Landwirtschaft\",\n        \"Marketing\",\n        \"VWL\",\n        \"Sonstige\"\n    ]\n}"
 						},
 						"url": {
 							"raw": "{{url}}/{{db}}",
@@ -801,7 +887,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n\t\"_id\": \"Max Mustermann\",\n\t\"password\": \"ba3253876aed6bc22d4a6ff53d8406c6ad864195ed144ab5c87621b6c233b548baeae6956df346ec8c17f5ea10f35ee3cbc514797ed7ddd3145464e2a0bab413\",\n\t\"email\": \"mustermann@example.com\",\n\t\"seit\": \"1545606000000\"\n}"
+							"raw": "{\n\t\"_id\": \"Max Mustermann\",\n\t\"Password\": \"ba3253876aed6bc22d4a6ff53d8406c6ad864195ed144ab5c87621b6c233b548baeae6956df346ec8c17f5ea10f35ee3cbc514797ed7ddd3145464e2a0bab413\",\n\t\"Email\": \"mustermann@example.com\",\n\t\"Seit\": \"1545606000000\"\n}"
 						},
 						"url": {
 							"raw": "{{url}}/{{db}}",
@@ -841,7 +927,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n\t\"_id\": \"Unknown\",\n\t\"password\": \"disabled\"\n}"
+							"raw": "{\n\t\"_id\": \"Unknown\",\n\t\"Password\": \"disabled\"\n}"
 						},
 						"url": {
 							"raw": "{{url}}/{{db}}",
@@ -929,7 +1015,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"_id\": \"6ea1e0c363e519c0b386b8d54c014012\",\n    \"user\": \"Max Mustermann\",\n    \"kasten\": \"6ea1e0c363e519c0b386b8d54c009d7d\",\n    \"karten\": {\n    \t\"1\": 4,\n    \t\"2\": 4,\n    \t\"3\": 3,\n    \t\"4\": 4,\n    \t\"5\": 4,\n    \t\"6\": 2,\n    \t\"7\": 2,\n    \t\"8\": 1,\n    \t\"9\": 1\n    }\n}"
+							"raw": "{\n    \"_id\": \"6ea1e0c363e519c0b386b8d54c014012\",\n    \"User\": \"Max Mustermann\",\n    \"Kasten\": \"6ea1e0c363e519c0b386b8d54c009d7d\",\n    \"Karten\": {\n    \t\"1\": 4,\n    \t\"2\": 4,\n    \t\"3\": 3,\n    \t\"4\": 4,\n    \t\"5\": 4,\n    \t\"6\": 2,\n    \t\"7\": 2,\n    \t\"8\": 1,\n    \t\"9\": 1\n    }\n}"
 						},
 						"url": {
 							"raw": "{{url}}/{{db}}",
@@ -969,7 +1055,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"_id\": \"6ea1e0c363e519c0b386b8d54c014ecc\",\n    \"user\": \"Max Mustermann\",\n    \"kasten\": \"6ea1e0c363e519c0b386b8d54c00bbfa\",\n    \"karten\": {\n    \t\"1\": 0,\n    \t\"2\": 2,\n    \t\"3\": 0,\n    \t\"4\": 0,\n    \t\"5\": 1,\n    \t\"6\": 1,\n    \t\"7\": 0,\n    \t\"8\": 1,\n    \t\"9\": 1\n    }\n}"
+							"raw": "{\n    \"_id\": \"6ea1e0c363e519c0b386b8d54c014ecc\",\n    \"User\": \"Max Mustermann\",\n    \"Kasten\": \"6ea1e0c363e519c0b386b8d54c00bbfa\",\n    \"Karten\": {\n    \t\"1\": 0,\n    \t\"2\": 2,\n    \t\"3\": 0,\n    \t\"4\": 0,\n    \t\"5\": 1,\n    \t\"6\": 1,\n    \t\"7\": 0,\n    \t\"8\": 1,\n    \t\"9\": 1\n    }\n}"
 						},
 						"url": {
 							"raw": "{{url}}/{{db}}",
@@ -1009,7 +1095,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"_id\": \"6ea1e0c363e519c0b386b8d54c015b6f\",\n    \"user\": \"Max Mustermann\",\n    \"kasten\": \"6ea1e0c363e519c0b386b8d54c00c942\",\n    \"karten\": {\n    \t\"6ea1e0c363e519c0b386b8d54c00d677\": 1,\n    \t\"6ea1e0c363e519c0b386b8d54c00e0dd\": 0,\n    \t\"6ea1e0c363e519c0b386b8d54c00e3e4\": 0,\n    \t\"6ea1e0c363e519c0b386b8d54c00eb44\": 0,\n    \t\"6ea1e0c363e519c0b386b8d54c00f837\": 0,\n    \t\"6ea1e0c363e519c0b386b8d54c00ffed\": 0,\n    \t\"6ea1e0c363e519c0b386b8d54c0100c1\": 0,\n    \t\"6ea1e0c363e519c0b386b8d54c010ccc\": 0,\n    \t\"6ea1e0c363e519c0b386b8d54c011a0a\": 0,\n    \t\"6ea1e0c363e519c0b386b8d54c0125c4\": 0\n    }\n}"
+							"raw": "{\n    \"_id\": \"6ea1e0c363e519c0b386b8d54c015b6f\",\n    \"User\": \"Max Mustermann\",\n    \"Kasten\": \"6ea1e0c363e519c0b386b8d54c00c942\",\n    \"Karten\": {\n    \t\"6ea1e0c363e519c0b386b8d54c00d677\": 1,\n    \t\"6ea1e0c363e519c0b386b8d54c00e0dd\": 0,\n    \t\"6ea1e0c363e519c0b386b8d54c00e3e4\": 0,\n    \t\"6ea1e0c363e519c0b386b8d54c00eb44\": 0,\n    \t\"6ea1e0c363e519c0b386b8d54c00f837\": 0,\n    \t\"6ea1e0c363e519c0b386b8d54c00ffed\": 0,\n    \t\"6ea1e0c363e519c0b386b8d54c0100c1\": 0,\n    \t\"6ea1e0c363e519c0b386b8d54c010ccc\": 0,\n    \t\"6ea1e0c363e519c0b386b8d54c011a0a\": 0,\n    \t\"6ea1e0c363e519c0b386b8d54c0125c4\": 0\n    }\n}"
 						},
 						"url": {
 							"raw": "{{url}}/{{db}}",
@@ -1049,7 +1135,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"_id\": \"6ea1e0c363e519c0b386b8d54c015ef3\",\n    \"user\": \"Max Mustermann\",\n    \"kasten\": \"6ea1e0c363e519c0b386b8d54c00c942\",\n    \"karten\": {\n    \t\"1\": 0,\n    \t\"2\": 0,\n    \t\"3\": 0\n    }\n}"
+							"raw": "{\n    \"_id\": \"6ea1e0c363e519c0b386b8d54c015ef3\",\n    \"User\": \"Max Mustermann\",\n    \"Kasten\": \"6ea1e0c363e519c0b386b8d54c00c942\",\n    \"Karten\": {\n    \t\"1\": 0,\n    \t\"2\": 0,\n    \t\"3\": 0\n    }\n}"
 						},
 						"url": {
 							"raw": "{{url}}/{{db}}",
@@ -1089,7 +1175,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"_id\": \"6ea1e0c363e519c0b386b8d54c016992\",\n    \"user\": \"Max Mustermann\",\n    \"kasten\": \"6ea1e0c363e519c0b386b8d54c00d102\",\n    \"karten\": {\n    \t\"1\": 0,\n    \t\"2\": 2,\n    \t\"3\": 0,\n    \t\"4\": 0,\n    \t\"5\": 1,\n    \t\"6\": 1,\n    \t\"7\": 0,\n    \t\"8\": 1,\n    \t\"9\": 1\n    }\n}"
+							"raw": "{\n    \"_id\": \"6ea1e0c363e519c0b386b8d54c016992\",\n    \"User\": \"Max Mustermann\",\n    \"Kasten\": \"6ea1e0c363e519c0b386b8d54c00d102\",\n    \"Karten\": {\n    \t\"1\": 0,\n    \t\"2\": 2,\n    \t\"3\": 0,\n    \t\"4\": 0,\n    \t\"5\": 1,\n    \t\"6\": 1,\n    \t\"7\": 0,\n    \t\"8\": 1,\n    \t\"9\": 1\n    }\n}"
 						},
 						"url": {
 							"raw": "{{url}}/{{db}}",
@@ -1167,31 +1253,31 @@
 	],
 	"variable": [
 		{
-			"id": "0e334c87-d455-4d1d-81b3-f2761af885ce",
+			"id": "cac898ff-8fd1-476f-94cb-cb34a9448a75",
 			"key": "ip",
 			"value": "localhost",
 			"type": "string"
 		},
 		{
-			"id": "f8ad7754-9180-41b3-84cb-c603226c13ab",
+			"id": "19b45450-2036-46d4-b236-47218e25305b",
 			"key": "port",
 			"value": "5984",
 			"type": "string"
 		},
 		{
-			"id": "7ded24fc-0ef0-4247-a52d-b1f7d1e5053c",
+			"id": "7472b4c3-c77d-4375-868d-a2c57a1ade20",
 			"key": "url",
 			"value": "{{ip}}:{{port}}",
 			"type": "string"
 		},
 		{
-			"id": "d31c7a0e-2e7c-4ff6-9856-c6294995fb32",
+			"id": "be17e8c8-5bfb-46c9-a062-948937321540",
 			"key": "username",
 			"value": "admin",
 			"type": "string"
 		},
 		{
-			"id": "b6ed1b8b-a3db-4f40-a0ce-c616dbc6047d",
+			"id": "f9b7710f-73d3-410d-b548-67515d1eb5ab",
 			"key": "db",
 			"value": "",
 			"type": "string"
