@@ -1,0 +1,1200 @@
+{
+	"info": {
+		"_postman_id": "c28d14d9-86f9-4b51-9fab-8ee9190cdf4a",
+		"name": "CouchDB",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "DB karteikaesten",
+			"item": [
+				{
+					"name": "create DB",
+					"item": [
+						{
+							"name": "create DB",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "{{url}}/{{db}}",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"{{db}}"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "Naturwissenschaften",
+					"item": [
+						{
+							"name": "Geometrische Formen und Körper",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"id": "4d553af9-95dc-4d2f-8466-a4755d058dc5",
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"type": "text",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"_id\": \"6ea1e0c363e519c0b386b8d54c009d7d\",\n\t\"Autor\": \"Max Mustermann\",\n\t\"Kategorie\": \"{{kategorie}}\",\n\t\"Unterkategorie\": \"Mathematik\",\n\t\"name\": \"Geometrische Formen und Körper\",\n\t\"Beschreibung\": \"Lorem ipsum dolor sit amet, consectetur adipiscing elit. <strong> Pellentesque risus mi </strong>, tempus quis placerat ut, porta nec nulla.Vestibulum rhoncus ac ex sit amet fringilla. Nullam gravida purus diam, et dictum <a> felis venenatis </a> efficitur. Aenean ac <em>eleifend lacus </em>, in mollis lectus. Donec sodales, arcu et sollicitudin porttitor, tortor urna tempor ligula, id porttitor mi magna a neque.Donec dui urna, vehicula et sem eget, facilisis sodales sem.\",\n\t\"Sichtbarkeit\": \"Öffentlich\",\n\t\"Karten\": [\n\t\t{\n\t\t\t\"_id\": \"\",\n\t\t\t\"Nr\": 1,\n\t\t\t\"Titel\": \"Titel der Karte\",\n\t\t\t\"Frage\": \"\",\n\t\t\t\"Antwort\": \"\"\n\t\t},\n\t\t{\n\t\t\t\"_id\": \"\",\n\t\t\t\"Nr\": 2,\n\t\t\t\"Titel\": \"Titel der Karte\",\n\t\t\t\"Frage\": \"\",\n\t\t\t\"Antwort\": \"\"\n\t\t},\n\t\t{\n\t\t\t\"_id\": \"\",\n\t\t\t\"Nr\": \"3\",\n\t\t\t\"Titel\": \"Titel der Karte\",\n\t\t\t\"Frage\": \"\",\n\t\t\t\"Antwort\": \"\"\n\t\t},\n\t\t{\n\t\t\t\"_id\": \"\",\n\t\t\t\"Nr\": 4,\n\t\t\t\"Titel\": \"Titel der Karte\",\n\t\t\t\"Frage\": \"\",\n\t\t\t\"Antwort\": \"\"\n\t\t},\n\t\t{\n\t\t\t\"_id\": \"\",\n\t\t\t\"Nr\": 5,\n\t\t\t\"Titel\": \"Titel der Karte\",\n\t\t\t\"Frage\": \"\",\n\t\t\t\"Antwort\": \"\"\n\t\t},\n\t\t{\n\t\t\t\"_id\": \"\",\n\t\t\t\"Nr\": 6,\n\t\t\t\"Titel\": \"Titel der Karte\",\n\t\t\t\"Frage\": \"\",\n\t\t\t\"Antwort\": \"\"\n\t\t},\n\t\t{\n\t\t\t\"_id\": \"\",\n\t\t\t\"Nr\": 7,\n\t\t\t\"Titel\": \"Titel der Karte\",\n\t\t\t\"Frage\": \"\",\n\t\t\t\"Antwort\": \"\"\n\t\t},\n\t\t{\n\t\t\t\"_id\": \"\",\n\t\t\t\"Nr\": 8,\n\t\t\t\"Titel\": \"Titel der Karte\",\n\t\t\t\"Frage\": \"\",\n\t\t\t\"Antwort\": \"\"\n\t\t},\n\t\t{\n\t\t\t\"_id\": \"\",\n\t\t\t\"Nr\": 9,\n\t\t\t\"Titel\": \"Titel der Karte\",\n\t\t\t\"Frage\": \"\",\n\t\t\t\"Antwort\": \"\"\n\t\t}\n\t]\n}"
+								},
+								"url": {
+									"raw": "{{url}}/{{db}}",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"{{db}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Atome A-Z",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"id": "4d553af9-95dc-4d2f-8466-a4755d058dc5",
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"type": "text",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"_id\": \"6ea1e0c363e519c0b386b8d54c009f97\",\n\t\"Autor\": \"Unknown\",\n\t\"Kategorie\": \"{{kategorie}}\",\n\t\"Unterkategorie\": \"Chemie\",\n\t\"name\": \"Atome A-Z\",\n\t\"Beschreibung\": \"Lorem ipsum dolor sit amet, consectetur adipiscing elit. <strong> Pellentesque risus mi </strong>, tempus quis placerat ut, porta nec nulla.Vestibulum rhoncus ac ex sit amet fringilla. Nullam gravida purus diam, et dictum <a> felis venenatis </a> efficitur. Aenean ac <em>eleifend lacus </em>, in mollis lectus. Donec sodales, arcu et sollicitudin porttitor, tortor urna tempor ligula, id porttitor mi magna a neque.Donec dui urna, vehicula et sem eget, facilisis sodales sem.\",\n\t\"Sichtbarkeit\": \"Öffentlich\",\n\t\"Karten\": [\n\t\t{\n\t\t\t\"_id\": \"\",\n\t\t\t\"Nr\": 1,\n\t\t\t\"Titel\": \"Titel der Karte\",\n\t\t\t\"Frage\": \"\",\n\t\t\t\"Antwort\": \"\"\n\t\t},\n\t\t{\n\t\t\t\"_id\": \"\",\n\t\t\t\"Nr\": 2,\n\t\t\t\"Titel\": \"Titel der Karte\",\n\t\t\t\"Frage\": \"\",\n\t\t\t\"Antwort\": \"\"\n\t\t},\n\t\t{\n\t\t\t\"_id\": \"\",\n\t\t\t\"Nr\": 3,\n\t\t\t\"Titel\": \"Titel der Karte\",\n\t\t\t\"Frage\": \"\",\n\t\t\t\"Antwort\": \"\"\n\t\t},\n\t\t{\n\t\t\t\"_id\": \"\",\n\t\t\t\"Nr\": 4,\n\t\t\t\"Titel\": \"Titel der Karte\",\n\t\t\t\"Frage\": \"\",\n\t\t\t\"Antwort\": \"\"\n\t\t},\n\t\t{\n\t\t\t\"_id\": \"\",\n\t\t\t\"Nr\": 5,\n\t\t\t\"Titel\": \"Titel der Karte\",\n\t\t\t\"Frage\": \"\",\n\t\t\t\"Antwort\": \"\"\n\t\t},\n\t\t{\n\t\t\t\"_id\": \"\",\n\t\t\t\"Nr\": 6,\n\t\t\t\"Titel\": \"Titel der Karte\",\n\t\t\t\"Frage\": \"\",\n\t\t\t\"Antwort\": \"\"\n\t\t},\n\t\t{\n\t\t\t\"_id\": \"\",\n\t\t\t\"Nr\": 7,\n\t\t\t\"Titel\": \"Titel der Karte\",\n\t\t\t\"Frage\": \"\",\n\t\t\t\"Antwort\": \"\"\n\t\t},\n\t\t{\n\t\t\t\"_id\": \"\",\n\t\t\t\"Nr\": 8,\n\t\t\t\"Titel\": \"Titel der Karte\",\n\t\t\t\"Frage\": \"\",\n\t\t\t\"Antwort\": \"\"\n\t\t},\n\t\t{\n\t\t\t\"_id\": \"\",\n\t\t\t\"Nr\": 9,\n\t\t\t\"Titel\": \"Titel der Karte\",\n\t\t\t\"Frage\": \"\",\n\t\t\t\"Antwort\": \"\"\n\t\t},\n\t\t{\n\t\t\t\"_id\": \"\",\n\t\t\t\"Nr\": 10,\n\t\t\t\"Titel\": \"Titel der Karte\",\n\t\t\t\"Frage\": \"\",\n\t\t\t\"Antwort\": \"\"\n\t\t},\n\t\t{\n\t\t\t\"_id\": \"\",\n\t\t\t\"Nr\": 11,\n\t\t\t\"Titel\": \"Titel der Karte\",\n\t\t\t\"Frage\": \"\",\n\t\t\t\"Antwort\": \"\"\n\t\t}\n\t]\n}"
+								},
+								"url": {
+									"raw": "{{url}}/{{db}}",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"{{db}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Licht in Wellen und Teilchen - Modelle und Versuche",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"id": "4d553af9-95dc-4d2f-8466-a4755d058dc5",
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"type": "text",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"_id\": \"6ea1e0c363e519c0b386b8d54c00b3bc\",\n\t\"Autor\": \"Unknown\",\n\t\"Kategorie\": \"{{kategorie}}\",\n\t\"Unterkategorie\": \"Physik\",\n\t\"name\": \"Licht in Wellen und Teilchen - Modelle und Versuche\",\n\t\"Beschreibung\": \"Lorem ipsum dolor sit amet, consectetur adipiscing elit. <strong> Pellentesque risus mi </strong>, tempus quis placerat ut, porta nec nulla.Vestibulum rhoncus ac ex sit amet fringilla. Nullam gravida purus diam, et dictum <a> felis venenatis </a> efficitur. Aenean ac <em>eleifend lacus </em>, in mollis lectus. Donec sodales, arcu et sollicitudin porttitor, tortor urna tempor ligula, id porttitor mi magna a neque.Donec dui urna, vehicula et sem eget, facilisis sodales sem.\",\n\t\"Sichtbarkeit\": \"Öffentlich\",\n\t\"Karten\": [\n\t\t{\n\t\t\t\"_id\": \"\",\n\t\t\t\"Nr\": 1,\n\t\t\t\"Titel\": \"Titel der Karte\",\n\t\t\t\"Frage\": \"\",\n\t\t\t\"Antwort\": \"\"\n\t\t},\n\t\t{\n\t\t\t\"_id\": \"\",\n\t\t\t\"Nr\": 2,\n\t\t\t\"Titel\": \"Titel der Karte\",\n\t\t\t\"Frage\": \"\",\n\t\t\t\"Antwort\": \"\"\n\t\t},\n\t\t{\n\t\t\t\"_id\": \"\",\n\t\t\t\"Nr\": 3,\n\t\t\t\"Titel\": \"Titel der Karte\",\n\t\t\t\"Frage\": \"\",\n\t\t\t\"Antwort\": \"\"\n\t\t},\n\t\t{\n\t\t\t\"_id\": \"\",\n\t\t\t\"Nr\": 4,\n\t\t\t\"Titel\": \"Titel der Karte\",\n\t\t\t\"Frage\": \"\",\n\t\t\t\"Antwort\": \"\"\n\t\t},\n\t\t{\n\t\t\t\"_id\": \"\",\n\t\t\t\"Nr\": 5,\n\t\t\t\"Titel\": \"Titel der Karte\",\n\t\t\t\"Frage\": \"\",\n\t\t\t\"Antwort\": \"\"\n\t\t},\n\t\t{\n\t\t\t\"_id\": \"\",\n\t\t\t\"Nr\": 6,\n\t\t\t\"Titel\": \"Titel der Karte\",\n\t\t\t\"Frage\": \"\",\n\t\t\t\"Antwort\": \"\"\n\t\t},\n\t\t{\n\t\t\t\"_id\": \"\",\n\t\t\t\"Nr\": 7,\n\t\t\t\"Titel\": \"Titel der Karte\",\n\t\t\t\"Frage\": \"\",\n\t\t\t\"Antwort\": \"\"\n\t\t},\n\t\t{\n\t\t\t\"_id\": \"\",\n\t\t\t\"Nr\": 8,\n\t\t\t\"Titel\": \"Titel der Karte\",\n\t\t\t\"Frage\": \"\",\n\t\t\t\"Antwort\": \"\"\n\t\t}\n\t]\n}"
+								},
+								"url": {
+									"raw": "{{url}}/{{db}}",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"{{db}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Das kleine 1x1",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"id": "4d553af9-95dc-4d2f-8466-a4755d058dc5",
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"type": "text",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"_id\": \"6ea1e0c363e519c0b386b8d54c00b8b1\",\n\t\"Autor\": \"Unknown\",\n\t\"Kategorie\": \"{{kategorie}}\",\n\t\"Unterkategorie\": \"Mathematik\",\n\t\"name\": \"Das kleine 1x1\",\n\t\"Beschreibung\": \"Lorem ipsum dolor sit amet, consectetur adipiscing elit. <strong> Pellentesque risus mi </strong>, tempus quis placerat ut, porta nec nulla.Vestibulum rhoncus ac ex sit amet fringilla. Nullam gravida purus diam, et dictum <a> felis venenatis </a> efficitur. Aenean ac <em>eleifend lacus </em>, in mollis lectus. Donec sodales, arcu et sollicitudin porttitor, tortor urna tempor ligula, id porttitor mi magna a neque.Donec dui urna, vehicula et sem eget, facilisis sodales sem.\",\n\t\"Sichtbarkeit\": \"Öffentlich\",\n\t\"Karten\": [\n\t\t{\n\t\t\t\"_id\": \"\",\n\t\t\t\"Nr\": 1,\n\t\t\t\"Titel\": \"Titel der Karte\",\n\t\t\t\"Frage\": \"\",\n\t\t\t\"Antwort\": \"\"\n\t\t},\n\t\t{\n\t\t\t\"_id\": \"\",\n\t\t\t\"Nr\": 2,\n\t\t\t\"Titel\": \"Titel der Karte\",\n\t\t\t\"Frage\": \"\",\n\t\t\t\"Antwort\": \"\"\n\t\t},\n\t\t{\n\t\t\t\"_id\": \"\",\n\t\t\t\"Nr\": 3,\n\t\t\t\"Titel\": \"Titel der Karte\",\n\t\t\t\"Frage\": \"\",\n\t\t\t\"Antwort\": \"\"\n\t\t},\n\t\t{\n\t\t\t\"_id\": \"\",\n\t\t\t\"Nr\": 4,\n\t\t\t\"Titel\": \"Titel der Karte\",\n\t\t\t\"Frage\": \"\",\n\t\t\t\"Antwort\": \"\"\n\t\t},\n\t\t{\n\t\t\t\"_id\": \"\",\n\t\t\t\"Nr\": 5,\n\t\t\t\"Titel\": \"Titel der Karte\",\n\t\t\t\"Frage\": \"\",\n\t\t\t\"Antwort\": \"\"\n\t\t},\n\t\t{\n\t\t\t\"_id\": \"\",\n\t\t\t\"Nr\": 6,\n\t\t\t\"Titel\": \"Titel der Karte\",\n\t\t\t\"Frage\": \"\",\n\t\t\t\"Antwort\": \"\"\n\t\t}\n\t]\n}"
+								},
+								"url": {
+									"raw": "{{url}}/{{db}}",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"{{db}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Lorem Impus",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"id": "4d553af9-95dc-4d2f-8466-a4755d058dc5",
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"type": "text",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"_id\": \"6ea1e0c363e519c0b386b8d54c00bbfa\",\n\t\"Autor\": \"Unknown\",\n\t\"Kategorie\": \"{{kategorie}}\",\n\t\"Unterkategorie\": \"Physik\",\n\t\"name\": \"Lorem Ipsum\",\n\t\"Beschreibung\": \"Lorem ipsum dolor sit amet, consectetur adipiscing elit. <strong> Pellentesque risus mi </strong>, tempus quis placerat ut, porta nec nulla.Vestibulum rhoncus ac ex sit amet fringilla. Nullam gravida purus diam, et dictum <a> felis venenatis </a> efficitur. Aenean ac <em>eleifend lacus </em>, in mollis lectus. Donec sodales, arcu et sollicitudin porttitor, tortor urna tempor ligula, id porttitor mi magna a neque.Donec dui urna, vehicula et sem eget, facilisis sodales sem.\",\n\t\"Sichtbarkeit\": \"Öffentlich\",\n\t\"Karten\": [\n\t\t{\n\t\t\t\"_id\": \"\",\n\t\t\t\"Nr\": 1,\n\t\t\t\"Titel\": \"Titel der Karte\",\n\t\t\t\"Frage\": \"\",\n\t\t\t\"Antwort\": \"\"\n\t\t},\n\t\t{\n\t\t\t\"_id\": \"\",\n\t\t\t\"Nr\": 2,\n\t\t\t\"Titel\": \"Titel der Karte\",\n\t\t\t\"Frage\": \"\",\n\t\t\t\"Antwort\": \"\"\n\t\t},\n\t\t{\n\t\t\t\"_id\": \"\",\n\t\t\t\"Nr\": 3,\n\t\t\t\"Titel\": \"Titel der Karte\",\n\t\t\t\"Frage\": \"\",\n\t\t\t\"Antwort\": \"\"\n\t\t},\n\t\t{\n\t\t\t\"_id\": \"\",\n\t\t\t\"Nr\": 4,\n\t\t\t\"Titel\": \"Titel der Karte\",\n\t\t\t\"Frage\": \"\",\n\t\t\t\"Antwort\": \"\"\n\t\t},\n\t\t{\n\t\t\t\"_id\": \"\",\n\t\t\t\"Nr\": 5,\n\t\t\t\"Titel\": \"Titel der Karte\",\n\t\t\t\"Frage\": \"\",\n\t\t\t\"Antwort\": \"\"\n\t\t},\n\t\t{\n\t\t\t\"_id\": \"\",\n\t\t\t\"Nr\": 6,\n\t\t\t\"Titel\": \"Titel der Karte\",\n\t\t\t\"Frage\": \"\",\n\t\t\t\"Antwort\": \"\"\n\t\t},\n\t\t{\n\t\t\t\"_id\": \"\",\n\t\t\t\"Nr\": 7,\n\t\t\t\"Titel\": \"Titel der Karte\",\n\t\t\t\"Frage\": \"\",\n\t\t\t\"Antwort\": \"\"\n\t\t},\n\t\t{\n\t\t\t\"_id\": \"\",\n\t\t\t\"Nr\": 8,\n\t\t\t\"Titel\": \"Titel der Karte\",\n\t\t\t\"Frage\": \"\",\n\t\t\t\"Antwort\": \"\"\n\t\t},\n\t\t{\n\t\t\t\"_id\": \"\",\n\t\t\t\"Nr\": 9,\n\t\t\t\"Titel\": \"Titel der Karte\",\n\t\t\t\"Frage\": \"\",\n\t\t\t\"Antwort\": \"\"\n\t\t},\n\t\t{\n\t\t\t\"_id\": \"\",\n\t\t\t\"Nr\": 10,\n\t\t\t\"Titel\": \"Titel der Karte\",\n\t\t\t\"Frage\": \"\",\n\t\t\t\"Antwort\": \"\"\n\t\t},\n\t\t{\n\t\t\t\"_id\": \"\",\n\t\t\t\"Nr\": 11,\n\t\t\t\"Titel\": \"Titel der Karte\",\n\t\t\t\"Frage\": \"\",\n\t\t\t\"Antwort\": \"\"\n\t\t}\n\t]\n}"
+								},
+								"url": {
+									"raw": "{{url}}/{{db}}",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"{{db}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Geometrie",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"id": "4d553af9-95dc-4d2f-8466-a4755d058dc5",
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"type": "text",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"_id\": \"6ea1e0c363e519c0b386b8d54c00c942\",\n\t\"Autor\": \"Max Mustermann\",\n\t\"Kategorie\": \"{{kategorie}}\",\n\t\"Unterkategorie\": \"Mathematik\",\n\t\"name\": \"Geometrie\",\n\t\"Beschreibung\": \"Lorem ipsum dolor sit amet, consectetur adipiscing elit. <strong> Pellentesque risus mi </strong>, tempus quis placerat ut, porta nec nulla.Vestibulum rhoncus ac ex sit amet fringilla. Nullam gravida purus diam, et dictum <a> felis venenatis </a> efficitur. Aenean ac <em>eleifend lacus </em>, in mollis lectus. Donec sodales, arcu et sollicitudin porttitor, tortor urna tempor ligula, id porttitor mi magna a neque.Donec dui urna, vehicula et sem eget, facilisis sodales sem.\",\n\t\"Sichtbarkeit\": \"Privat\",\n\t\"Karten\": [\n\t\t{\n\t\t\t\"_id\": \"6ea1e0c363e519c0b386b8d54c00d677\",\n\t\t\t\"Nr\": 1,\n\t\t\t\"Titel\": \"Titel der Karte\",\n\t\t\t\"Frage\": \"Lorem ipsum dolor sit amet, consectetur adipiscing elit. <strong> Pellentesque risus mi </strong>, tempus quis placerat ut, porta nec nulla.Vestibulum rhoncus ac ex sit amet fringilla. Nullam gravida purus diam, et dictum <a> felis venenatis </a> efficitur. Aenean ac <em>eleifend lacus </em>, in mollis lectus. Donec sodales, arcu et sollicitudin porttitor, tortor urna tempor ligula, id porttitor mi magna a neque.Donec dui urna, vehicula et sem eget, facilisis sodales sem.\",\n\t\t\t\"Antwort\": \"Lorem ipsum dolor sit amet, consectetur adipiscing elit. <strong> Pellentesque risus mi </strong>, tempus quis placerat ut, porta nec nulla.Vestibulum rhoncus ac ex sit amet fringilla. Nullam gravida purus diam, et dictum <a> felis venenatis </a> efficitur. Aenean ac <em>eleifend lacus </em>, in mollis lectus. Donec sodales, arcu et sollicitudin porttitor, tortor urna tempor ligula, id porttitor mi magna a neque.Donec dui urna, vehicula et sem eget, facilisis sodales sem.\"\n\t\t},\n\t\t{\n\t\t\t\"_id\": \"6ea1e0c363e519c0b386b8d54c00e0dd\",\n\t\t\t\"Nr\": 2,\n\t\t\t\"Titel\": \"Titel der Karte\",\n\t\t\t\"Frage\": \"\",\n\t\t\t\"Antwort\": \"\"\n\t\t},\n\t\t{\n\t\t\t\"_id\": \"6ea1e0c363e519c0b386b8d54c00e3e4\",\n\t\t\t\"Nr\": 3,\n\t\t\t\"Titel\": \"Titel der Karte\",\n\t\t\t\"Frage\": \"\",\n\t\t\t\"Antwort\": \"\"\n\t\t},\n\t\t{\n\t\t\t\"_id\": \"6ea1e0c363e519c0b386b8d54c00eb44\",\n\t\t\t\"Nr\": 4,\n\t\t\t\"Titel\": \"Titel der Karte\",\n\t\t\t\"Frage\": \"\",\n\t\t\t\"Antwort\": \"\"\n\t\t},\n\t\t{\n\t\t\t\"_id\": \"6ea1e0c363e519c0b386b8d54c00f837\",\n\t\t\t\"Nr\": 5,\n\t\t\t\"Titel\": \"Titel der Karte\",\n\t\t\t\"Frage\": \"\",\n\t\t\t\"Antwort\": \"\"\n\t\t},\n\t\t{\n\t\t\t\"_id\": \"6ea1e0c363e519c0b386b8d54c00ffed\",\n\t\t\t\"Nr\": 6,\n\t\t\t\"Titel\": \"Titel der Karte\",\n\t\t\t\"Frage\": \"\",\n\t\t\t\"Antwort\": \"\"\n\t\t},\n\t\t{\n\t\t\t\"_id\": \"6ea1e0c363e519c0b386b8d54c0100c1\",\n\t\t\t\"Nr\": 7,\n\t\t\t\"Titel\": \"Titel der Karte\",\n\t\t\t\"Frage\": \"\",\n\t\t\t\"Antwort\": \"\"\n\t\t},\n\t\t{\n\t\t\t\"_id\": \"6ea1e0c363e519c0b386b8d54c010ccc\",\n\t\t\t\"Nr\": 8,\n\t\t\t\"Titel\": \"Titel der Karte\",\n\t\t\t\"Frage\": \"\",\n\t\t\t\"Antwort\": \"\"\n\t\t},\n\t\t{\n\t\t\t\"_id\": \"6ea1e0c363e519c0b386b8d54c011a0a\",\n\t\t\t\"Nr\": 9,\n\t\t\t\"Titel\": \"Titel der Karte\",\n\t\t\t\"Frage\": \"\",\n\t\t\t\"Antwort\": \"\"\n\t\t},\n\t\t{\n\t\t\t\"_id\": \"6ea1e0c363e519c0b386b8d54c0125c4\",\n\t\t\t\"Nr\": 10,\n\t\t\t\"Titel\": \"Titel der Karte\",\n\t\t\t\"Frage\": \"\",\n\t\t\t\"Antwort\": \"\"\n\t\t}\n\t]\n}"
+								},
+								"url": {
+									"raw": "{{url}}/{{db}}",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"{{db}}"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "584ae583-e2f4-4d8e-8f46-39a7e7971559",
+								"type": "text/javascript",
+								"exec": [
+									"postman.setEnvironmentVariable(\"kategorie\", \"Naturwissenschaften\");"
+								]
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"id": "cada3ba5-69c1-4e90-8bbc-7ae21f223a40",
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						}
+					],
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "Gesellschaft",
+					"item": [
+						{
+							"name": "Theoriefragen Fahrprüfung",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"id": "4d553af9-95dc-4d2f-8466-a4755d058dc5",
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"type": "text",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"_id\": \"6ea1e0c363e519c0b386b8d54c00cb0a\",\n\t\"Autor\": \"Max Mustermann\",\n\t\"Kategorie\": \"{{kategorie}}\",\n\t\"Unterkategorie\": \"Verkehrskunde\",\n\t\"name\": \"Theoriefragen Fahrprüfung\",\n\t\"Beschreibung\": \"Lorem ipsum dolor sit amet, consectetur adipiscing elit. <strong> Pellentesque risus mi </strong>, tempus quis placerat ut, porta nec nulla.Vestibulum rhoncus ac ex sit amet fringilla. Nullam gravida purus diam, et dictum <a> felis venenatis </a> efficitur. Aenean ac <em>eleifend lacus </em>, in mollis lectus. Donec sodales, arcu et sollicitudin porttitor, tortor urna tempor ligula, id porttitor mi magna a neque.Donec dui urna, vehicula et sem eget, facilisis sodales sem.\",\n\t\"Sichtbarkeit\": \"Öffentlich\",\n\t\"Karten\": [\n\t\t{\n\t\t\t\"_id\": \"\",\n\t\t\t\"Nr\": 1,\n\t\t\t\"Titel\": \"Titel der Karte\",\n\t\t\t\"Frage\": \"\",\n\t\t\t\"Antwort\": \"\"\n\t\t},\n\t\t{\n\t\t\t\"_id\": \"\",\n\t\t\t\"Nr\": 2,\n\t\t\t\"Titel\": \"Titel der Karte\",\n\t\t\t\"Frage\": \"\",\n\t\t\t\"Antwort\": \"\"\n\t\t},\n\t\t{\n\t\t\t\"_id\": \"\",\n\t\t\t\"Nr\": 3,\n\t\t\t\"Titel\": \"Titel der Karte\",\n\t\t\t\"Frage\": \"\",\n\t\t\t\"Antwort\": \"\"\n\t\t}\n\t]\n}"
+								},
+								"url": {
+									"raw": "{{url}}/{{db}}",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"{{db}}"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "584ae583-e2f4-4d8e-8f46-39a7e7971559",
+								"type": "text/javascript",
+								"exec": [
+									"postman.setEnvironmentVariable(\"kategorie\", \"Gesellschaft\");"
+								]
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"id": "cada3ba5-69c1-4e90-8bbc-7ae21f223a40",
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						}
+					],
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "Sprachen",
+					"item": [
+						{
+							"name": "Vokabel Lektion 1",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"id": "4d553af9-95dc-4d2f-8466-a4755d058dc5",
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"type": "text",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"_id\": \"6ea1e0c363e519c0b386b8d54c00d102\",\n\t\"Autor\": \"Max Mustermann\",\n\t\"Kategorie\": \"{{kategorie}}\",\n\t\"Unterkategorie\": \"Latein\",\n\t\"name\": \"Vokabel Lektion 1\",\n\t\"Beschreibung\": \"Lorem ipsum dolor sit amet, consectetur adipiscing elit. <strong> Pellentesque risus mi </strong>, tempus quis placerat ut, porta nec nulla.Vestibulum rhoncus ac ex sit amet fringilla. Nullam gravida purus diam, et dictum <a> felis venenatis </a> efficitur. Aenean ac <em>eleifend lacus </em>, in mollis lectus. Donec sodales, arcu et sollicitudin porttitor, tortor urna tempor ligula, id porttitor mi magna a neque.Donec dui urna, vehicula et sem eget, facilisis sodales sem.\",\n\t\"Sichtbarkeit\": \"Öffentlich\",\n\t\"Karten\": [\n\t\t{\n\t\t\t\"_id\": \"\",\n\t\t\t\"Nr\": 1,\n\t\t\t\"Titel\": \"Titel der Karte\",\n\t\t\t\"Frage\": \"\",\n\t\t\t\"Antwort\": \"\"\n\t\t},\n\t\t{\n\t\t\t\"_id\": \"\",\n\t\t\t\"Nr\": 2,\n\t\t\t\"Titel\": \"Titel der Karte\",\n\t\t\t\"Frage\": \"\",\n\t\t\t\"Antwort\": \"\"\n\t\t},\n\t\t{\n\t\t\t\"_id\": \"\",\n\t\t\t\"Nr\": 3,\n\t\t\t\"Titel\": \"Titel der Karte\",\n\t\t\t\"Frage\": \"\",\n\t\t\t\"Antwort\": \"\"\n\t\t},\n\t\t{\n\t\t\t\"_id\": \"\",\n\t\t\t\"Nr\": 4,\n\t\t\t\"Titel\": \"Titel der Karte\",\n\t\t\t\"Frage\": \"\",\n\t\t\t\"Antwort\": \"\"\n\t\t},\n\t\t{\n\t\t\t\"_id\": \"\",\n\t\t\t\"Nr\": 5,\n\t\t\t\"Titel\": \"Titel der Karte\",\n\t\t\t\"Frage\": \"\",\n\t\t\t\"Antwort\": \"\"\n\t\t},\n\t\t{\n\t\t\t\"_id\": \"\",\n\t\t\t\"Nr\": 6,\n\t\t\t\"Titel\": \"Titel der Karte\",\n\t\t\t\"Frage\": \"\",\n\t\t\t\"Antwort\": \"\"\n\t\t},\n\t\t{\n\t\t\t\"_id\": \"\",\n\t\t\t\"Nr\": 7,\n\t\t\t\"Titel\": \"Titel der Karte\",\n\t\t\t\"Frage\": \"\",\n\t\t\t\"Antwort\": \"\"\n\t\t},\n\t\t{\n\t\t\t\"_id\": \"\",\n\t\t\t\"Nr\": 8,\n\t\t\t\"Titel\": \"Titel der Karte\",\n\t\t\t\"Frage\": \"\",\n\t\t\t\"Antwort\": \"\"\n\t\t},\n\t\t{\n\t\t\t\"_id\": \"\",\n\t\t\t\"Nr\": 9,\n\t\t\t\"Titel\": \"Titel der Karte\",\n\t\t\t\"Frage\": \"\",\n\t\t\t\"Antwort\": \"\"\n\t\t}\n\t]\n}"
+								},
+								"url": {
+									"raw": "{{url}}/{{db}}",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"{{db}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Unit 2",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"id": "4d553af9-95dc-4d2f-8466-a4755d058dc5",
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"type": "text",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"_id\": \"6ea1e0c363e519c0b386b8d54c00d229\",\n\t\"Autor\": \"Unknown\",\n\t\"Kategorie\": \"{{kategorie}}\",\n\t\"Unterkategorie\": \"Englisch\",\n\t\"name\": \"Unit 2\",\n\t\"Beschreibung\": \"Lorem ipsum dolor sit amet, consectetur adipiscing elit. <strong> Pellentesque risus mi </strong>, tempus quis placerat ut, porta nec nulla.Vestibulum rhoncus ac ex sit amet fringilla. Nullam gravida purus diam, et dictum <a> felis venenatis </a> efficitur. Aenean ac <em>eleifend lacus </em>, in mollis lectus. Donec sodales, arcu et sollicitudin porttitor, tortor urna tempor ligula, id porttitor mi magna a neque.Donec dui urna, vehicula et sem eget, facilisis sodales sem.\",\n\t\"Sichtbarkeit\": \"Öffentlich\",\n\t\"Karten\": [\n\t\t{\n\t\t\t\"_id\": \"\",\n\t\t\t\"Nr\":1,\n\t\t\t\"Titel\": \"Titel der Karte\",\n\t\t\t\"Frage\": \"\",\n\t\t\t\"Antwort\": \"\"\n\t\t},\n\t\t{\n\t\t\t\"_id\": \"\",\n\t\t\t\"Nr\": 2,\n\t\t\t\"Titel\": \"Titel der Karte\",\n\t\t\t\"Frage\": \"\",\n\t\t\t\"Antwort\": \"\"\n\t\t},\n\t\t{\n\t\t\t\"_id\": \"\",\n\t\t\t\"Nr\": 3,\n\t\t\t\"Titel\": \"Titel der Karte\",\n\t\t\t\"Frage\": \"\",\n\t\t\t\"Antwort\": \"\"\n\t\t},\n\t\t{\n\t\t\t\"_id\": \"\",\n\t\t\t\"Nr\": 4,\n\t\t\t\"Titel\": \"Titel der Karte\",\n\t\t\t\"Frage\": \"\",\n\t\t\t\"Antwort\": \"\"\n\t\t},\n\t\t{\n\t\t\t\"_id\": \"\",\n\t\t\t\"Nr\": 5,\n\t\t\t\"Titel\": \"Titel der Karte\",\n\t\t\t\"Frage\": \"\",\n\t\t\t\"Antwort\": \"\"\n\t\t},\n\t\t{\n\t\t\t\"_id\": \"\",\n\t\t\t\"Nr\": 6,\n\t\t\t\"Titel\": \"Titel der Karte\",\n\t\t\t\"Frage\": \"\",\n\t\t\t\"Antwort\": \"\"\n\t\t},\n\t\t{\n\t\t\t\"_id\": \"\",\n\t\t\t\"Nr\": 7,\n\t\t\t\"Titel\": \"Titel der Karte\",\n\t\t\t\"Frage\": \"\",\n\t\t\t\"Antwort\": \"\"\n\t\t},\n\t\t{\n\t\t\t\"_id\": \"\",\n\t\t\t\"Nr\": 8,\n\t\t\t\"Titel\": \"Titel der Karte\",\n\t\t\t\"Frage\": \"\",\n\t\t\t\"Antwort\": \"\"\n\t\t},\n\t\t{\n\t\t\t\"_id\": \"\",\n\t\t\t\"Nr\": 9,\n\t\t\t\"Titel\": \"Titel der Karte\",\n\t\t\t\"Frage\": \"\",\n\t\t\t\"Antwort\": \"\"\n\t\t},\n\t\t{\n\t\t\t\"_id\": \"\",\n\t\t\t\"Nr\": 10,\n\t\t\t\"Titel\": \"Titel der Karte\",\n\t\t\t\"Frage\": \"\",\n\t\t\t\"Antwort\": \"\"\n\t\t},\n\t\t{\n\t\t\t\"_id\": \"\",\n\t\t\t\"Nr\": 11,\n\t\t\t\"Titel\": \"Titel der Karte\",\n\t\t\t\"Frage\": \"\",\n\t\t\t\"Antwort\": \"\"\n\t\t}\n\t]\n}"
+								},
+								"url": {
+									"raw": "{{url}}/{{db}}",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"{{db}}"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "584ae583-e2f4-4d8e-8f46-39a7e7971559",
+								"type": "text/javascript",
+								"exec": [
+									"postman.setEnvironmentVariable(\"kategorie\", \"Sprachen\");"
+								]
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"id": "cada3ba5-69c1-4e90-8bbc-7ae21f223a40",
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						}
+					],
+					"_postman_isSubFolder": true
+				}
+			],
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "07c25d91-ceb7-4c12-ad8d-06bcc21eddd6",
+						"type": "text/javascript",
+						"exec": [
+							"postman.setEnvironmentVariable(\"db\", \"karteikaesten\");"
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "5128579d-9e7e-41e4-b24a-0fcb11c2def8",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "DB kategorien",
+			"item": [
+				{
+					"name": "create DB",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{url}}/{{db}}",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"{{db}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Geisteswissenschaften",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "4d553af9-95dc-4d2f-8466-a4755d058dc5",
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"_id\": \"Geisteswissenschaften\",\n    \"unterkategorie\": [\n        \"Kriminologie\",\n        \"Philosophie\",\n        \"Psychologie\",\n        \"Pädagogik\",\n        \"Theologie\",\n        \"Sonstige\"\n    ]\n}"
+						},
+						"url": {
+							"raw": "{{url}}/{{db}}",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"{{db}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Gesellschaft",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "4d553af9-95dc-4d2f-8466-a4755d058dc5",
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"_id\": \"Gesellschaft\",\n    \"unterkategorie\": [\n        \"Ethik\",\n        \"Geschichte\",\n        \"Literatur\",\n        \"Musik\",\n        \"Politik\",\n        \"Recht\",\n        \"Soziales\",\n        \"Sport\",\n        \"Verkehrskunde\",\n        \"Sonstige\"\n    ]\n}"
+						},
+						"url": {
+							"raw": "{{url}}/{{db}}",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"{{db}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Naturwissenschaften",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "4d553af9-95dc-4d2f-8466-a4755d058dc5",
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"_id\": \"Naturwissenschaften\",\n    \"unterkategorie\": [\n        \"Biologie\",\n        \"Chemie\",\n        \"Elektrotechnik\",\n        \"Informatik\",\n        \"Mathematik\",\n        \"Medizin\",\n        \"Naturkunde\",\n        \"Physik\",\n        \"Sonstige\"\n    ]\n}"
+						},
+						"url": {
+							"raw": "{{url}}/{{db}}",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"{{db}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Sprachen",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "4d553af9-95dc-4d2f-8466-a4755d058dc5",
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"_id\": \"Sprachen\",\n    \"unterkategorie\": [\n        \"Chinesisch\",\n        \"Deutsch\",\n        \"Englisch\",\n        \"Französisch\",\n        \"Griechisch\",\n        \"Italienisch\",\n        \"Latein\",\n        \"Russisch\",\n        \"Sonstige\"\n    ]\n}"
+						},
+						"url": {
+							"raw": "{{url}}/{{db}}",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"{{db}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Wirtschaft",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "4d553af9-95dc-4d2f-8466-a4755d058dc5",
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"_id\": \"Wirtschaft\",\n    \"unterkategorie\": [\n        \"BWL\",\n        \"Finanzen\",\n        \"Landwirtschaft\",\n        \"Marketing\",\n        \"VWL\",\n        \"Sonstige\"\n    ]\n}"
+						},
+						"url": {
+							"raw": "{{url}}/{{db}}",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"{{db}}"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "07c25d91-ceb7-4c12-ad8d-06bcc21eddd6",
+						"type": "text/javascript",
+						"exec": [
+							"postman.setEnvironmentVariable(\"db\", \"kategorien\");"
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "5128579d-9e7e-41e4-b24a-0fcb11c2def8",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "DB user",
+			"item": [
+				{
+					"name": "create DB",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{url}}/{{db}}",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"{{db}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Max Mustermann",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "4d553af9-95dc-4d2f-8466-a4755d058dc5",
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"_id\": \"Max Mustermann\",\n\t\"password\": \"ba3253876aed6bc22d4a6ff53d8406c6ad864195ed144ab5c87621b6c233b548baeae6956df346ec8c17f5ea10f35ee3cbc514797ed7ddd3145464e2a0bab413\",\n\t\"email\": \"mustermann@example.com\",\n\t\"seit\": \"1545606000000\"\n}"
+						},
+						"url": {
+							"raw": "{{url}}/{{db}}",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"{{db}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Unknown",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "4d553af9-95dc-4d2f-8466-a4755d058dc5",
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"_id\": \"Unknown\",\n\t\"password\": \"disabled\"\n}"
+						},
+						"url": {
+							"raw": "{{url}}/{{db}}",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"{{db}}"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "07c25d91-ceb7-4c12-ad8d-06bcc21eddd6",
+						"type": "text/javascript",
+						"exec": [
+							"postman.setEnvironmentVariable(\"db\", \"users\");"
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "5128579d-9e7e-41e4-b24a-0fcb11c2def8",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "DB lernen",
+			"item": [
+				{
+					"name": "create DB",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{url}}/{{db}}",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"{{db}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Geometrische Formen und Körper",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "4d553af9-95dc-4d2f-8466-a4755d058dc5",
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"_id\": \"6ea1e0c363e519c0b386b8d54c014012\",\n    \"user\": \"Max Mustermann\",\n    \"kasten\": \"6ea1e0c363e519c0b386b8d54c009d7d\",\n    \"karten\": {\n    \t\"1\": 4,\n    \t\"2\": 4,\n    \t\"3\": 3,\n    \t\"4\": 4,\n    \t\"5\": 4,\n    \t\"6\": 2,\n    \t\"7\": 2,\n    \t\"8\": 1,\n    \t\"9\": 1\n    }\n}"
+						},
+						"url": {
+							"raw": "{{url}}/{{db}}",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"{{db}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Lorem Impus",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "4d553af9-95dc-4d2f-8466-a4755d058dc5",
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"_id\": \"6ea1e0c363e519c0b386b8d54c014ecc\",\n    \"user\": \"Max Mustermann\",\n    \"kasten\": \"6ea1e0c363e519c0b386b8d54c00bbfa\",\n    \"karten\": {\n    \t\"1\": 0,\n    \t\"2\": 2,\n    \t\"3\": 0,\n    \t\"4\": 0,\n    \t\"5\": 1,\n    \t\"6\": 1,\n    \t\"7\": 0,\n    \t\"8\": 1,\n    \t\"9\": 1\n    }\n}"
+						},
+						"url": {
+							"raw": "{{url}}/{{db}}",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"{{db}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Geometrie",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "4d553af9-95dc-4d2f-8466-a4755d058dc5",
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"_id\": \"6ea1e0c363e519c0b386b8d54c015b6f\",\n    \"user\": \"Max Mustermann\",\n    \"kasten\": \"6ea1e0c363e519c0b386b8d54c00c942\",\n    \"karten\": {\n    \t\"6ea1e0c363e519c0b386b8d54c00d677\": 1,\n    \t\"6ea1e0c363e519c0b386b8d54c00e0dd\": 0,\n    \t\"6ea1e0c363e519c0b386b8d54c00e3e4\": 0,\n    \t\"6ea1e0c363e519c0b386b8d54c00eb44\": 0,\n    \t\"6ea1e0c363e519c0b386b8d54c00f837\": 0,\n    \t\"6ea1e0c363e519c0b386b8d54c00ffed\": 0,\n    \t\"6ea1e0c363e519c0b386b8d54c0100c1\": 0,\n    \t\"6ea1e0c363e519c0b386b8d54c010ccc\": 0,\n    \t\"6ea1e0c363e519c0b386b8d54c011a0a\": 0,\n    \t\"6ea1e0c363e519c0b386b8d54c0125c4\": 0\n    }\n}"
+						},
+						"url": {
+							"raw": "{{url}}/{{db}}",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"{{db}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Theoriefragen Fahrprüfung",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "4d553af9-95dc-4d2f-8466-a4755d058dc5",
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"_id\": \"6ea1e0c363e519c0b386b8d54c015ef3\",\n    \"user\": \"Max Mustermann\",\n    \"kasten\": \"6ea1e0c363e519c0b386b8d54c00c942\",\n    \"karten\": {\n    \t\"1\": 0,\n    \t\"2\": 0,\n    \t\"3\": 0\n    }\n}"
+						},
+						"url": {
+							"raw": "{{url}}/{{db}}",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"{{db}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Vokabel Lektion 1",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "4d553af9-95dc-4d2f-8466-a4755d058dc5",
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"_id\": \"6ea1e0c363e519c0b386b8d54c016992\",\n    \"user\": \"Max Mustermann\",\n    \"kasten\": \"6ea1e0c363e519c0b386b8d54c00d102\",\n    \"karten\": {\n    \t\"1\": 0,\n    \t\"2\": 2,\n    \t\"3\": 0,\n    \t\"4\": 0,\n    \t\"5\": 1,\n    \t\"6\": 1,\n    \t\"7\": 0,\n    \t\"8\": 1,\n    \t\"9\": 1\n    }\n}"
+						},
+						"url": {
+							"raw": "{{url}}/{{db}}",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"{{db}}"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "07c25d91-ceb7-4c12-ad8d-06bcc21eddd6",
+						"type": "text/javascript",
+						"exec": [
+							"postman.setEnvironmentVariable(\"db\", \"lernen\");"
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "5128579d-9e7e-41e4-b24a-0fcb11c2def8",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		}
+	],
+	"auth": {
+		"type": "basic",
+		"basic": [
+			{
+				"key": "username",
+				"value": "{{username}}",
+				"type": "string"
+			},
+			{
+				"key": "password",
+				"value": "{{password}}",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "3308b7ab-2519-46b4-a132-6671691d953a",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "26091bf9-274d-4091-b483-9de2aa7f2b08",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"id": "0e334c87-d455-4d1d-81b3-f2761af885ce",
+			"key": "ip",
+			"value": "localhost",
+			"type": "string"
+		},
+		{
+			"id": "f8ad7754-9180-41b3-84cb-c603226c13ab",
+			"key": "port",
+			"value": "5984",
+			"type": "string"
+		},
+		{
+			"id": "7ded24fc-0ef0-4247-a52d-b1f7d1e5053c",
+			"key": "url",
+			"value": "{{ip}}:{{port}}",
+			"type": "string"
+		},
+		{
+			"id": "d31c7a0e-2e7c-4ff6-9856-c6294995fb32",
+			"key": "username",
+			"value": "admin",
+			"type": "string"
+		},
+		{
+			"id": "b6ed1b8b-a3db-4f40-a0ce-c616dbc6047d",
+			"key": "db",
+			"value": "",
+			"type": "string"
+		}
+	]
+}
