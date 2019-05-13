@@ -129,7 +129,10 @@
                             </div>
                             <div class="message-body background-withe">
                                 <div class="is-flex message-body-title" style="margin-top: 1rem;">
-                                    <strong class="subtitle">{{ .Titel }}</strong>
+
+                                    <a class="subtitle" href="/karteikasten/view/{{ .ID }}" style="text-decoration: none;">
+                                        <strong>{{ .Titel }}</strong>
+                                    </a>
 
                                     <div class="hexagon">
                                         <div class="count">
@@ -137,6 +140,7 @@
                                             <span>Karten</span>
                                         </div>
                                     </div>
+
                                 </div>
 
                                 <p class="message-body-text">{{ .Beschreibung }}</p>
@@ -147,9 +151,11 @@
                                     <span class="fortschritt-label">Fortschritt:</span>
                                     <strong class="fortschritt-text">{{ .Fortschritt }} %</strong>
 
-                                    <button class="button background-yellow-dark text-light button-lernen">
-                                        <strong>Lernen</strong>
-                                    </button>
+                                    <form action="/karteikasten/lern/{{ .ID }}" class="button-lernen is-inline-grid">
+                                        <button class="button background-yellow-dark text-light" type="submit">
+                                            <strong>Lernen</strong>
+                                        </button>
+                                    </form>
                                     <button class="button background-green-light text-light button-bearbeiten">
                                         <strong>Bearbeiten</strong>
                                     </button>
@@ -182,7 +188,10 @@
                             </div>
                             <div class="message-body background-withe">
                                 <div class="is-flex message-body-title" style="margin-top: 1rem;">
-                                    <strong class="subtitle">{{ .Titel }}</strong>
+
+                                    <a class="subtitle" href="/karteikasten/view/{{ .ID }}" style="text-decoration: none;">
+                                        <strong>{{ .Titel }}</strong>
+                                    </a>
 
                                     <div class="hexagon">
                                         <div class="count">
@@ -200,9 +209,11 @@
                                     <span class="fortschritt-label">Fortschritt:</span>
                                     <strong class="fortschritt-text">{{ .Fortschritt }} %</strong>
 
-                                    <button class="button background-yellow-dark text-light button-lernen">
-                                        <strong>Lernen</strong>
-                                    </button>
+                                    <form action="/karteikasten/lern/{{ .ID }}" class="button-lernen is-inline-grid">
+                                        <button class="button background-yellow-dark text-light" type="submit">
+                                            <strong>Lernen</strong>
+                                        </button>
+                                    </form>
                                     <button class="button background-red-light text-light button-loeschen">
                                         <span class="icon is-small text-light">
                                             <i class="fas fa-trash-alt"></i>

@@ -1,6 +1,12 @@
+github.com/Momper14/weblib v0.2.2 h1:HVbTdNzcQKTVVgN4+Sk7Q126Q+WmkGMXFWDVO1jDzc0=
+github.com/Momper14/weblib v0.2.2/go.mod h1:y/IkW+uxQ73Gkxd8XiJ+GjgM/d5secq212AdC2hCXl0=
+github.com/Momper14/weblib v0.3.0 h1:moY1LO/UW2l7iz+Sf0BENbFlW3Tl1flHfpH+lK4SLL0=
+github.com/Momper14/weblib v0.3.0/go.mod h1:y/IkW+uxQ73Gkxd8XiJ+GjgM/d5secq212AdC2hCXl0=
 github.com/fatih/structs v1.1.0 h1:Q7juDM0QtcnhCpeyLGQKyg4TOIghuNXrkL32pHAUMxo=
 github.com/fatih/structs v1.1.0/go.mod h1:9NiDSp5zOcgEDl+j00MP/WkGVPOlPRLejGD8Ga6PJ7M=
 github.com/gorilla/mux v1.7.1 h1:Dw4jY2nghMMRsh1ol8dv1axHkDwMQK2DHerMNJsIpJU=
 github.com/gorilla/mux v1.7.1/go.mod h1:1lud6UwP+6orDFRuTfBEV8e9/aOM/c4fVVCaMa2zaAs=
 github.com/urfave/negroni v1.0.0 h1:kIimOitoypq34K7TG7DUaJ9kq/N4Ofuwi1sjz0KipXc=
 github.com/urfave/negroni v1.0.0/go.mod h1:Meg73S6kFm/4PpbYdq35yYWoCZ9mS/YSx+lKnmiohz4=
+golang.org/x/net v0.0.0-20181220203305-927f97764cc3/go.mod h1:mL1N/T3taQHkDXs73rZJwtUhF3w3ftmwwsq0BUmARs4=
+gopkg.in/resty.v1 v1.12.0/go.mod h1:mDo4pnntr5jdWRML875a/NmxYqAlA73dVijT2AXvQQo=

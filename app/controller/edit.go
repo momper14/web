@@ -2,38 +2,44 @@ package controller
 
 import (
 	"net/http"
-	templates "web/template"
+
+	"github.com/Momper14/web/templates"
+	"github.com/Momper14/weblib/client/kategorien"
 )
 
+// EditController controller 1 for edit
 func EditController(w http.ResponseWriter, r *http.Request) {
+	defer recoverInternalError()
 
 	type Kategorie struct {
 		Name string
 		Sub  []string
 	}
 
-	type Kategorien []Kategorie
-
 	type Edit struct {
-		Kategorien Kategorien
+		Kategorien []Kategorie
 	}
 
-	edit := Edit{
-		Kategorien: Kategorien{
-			Kategorie{
-				Name: "Naturwissenschaften",
-				Sub:  []string{"Biologie", "Chemie", "Elektrotechnik", "Informatik", "Mathematik", "Medizin", "Naturkunde", "Physik", "Sonstiges"},
-			},
-			Kategorie{
-				Name: "Sprachen",
-				Sub:  []string{"Chinesisch", "Deutsch", "Englisch", "Französisch", "Griechisch", "Italienisch", "Latein", "Russisch", "Sonstiges"},
-			},
-		},
+	data := Edit{}
+
+	kats, err := kategorien.New().AlleKategorien()
+	if err != nil {
+		internalError(err, w, r)
 	}
 
-	customExecuteTemplate(w, r, templates.Edit, edit)
+	for _, kat := range kats {
+		kat := Kategorie{
+			Name: kat.ID,
+			Sub:  kat.Unterkategorie,
+		}
+
+		data.Kategorien = append(data.Kategorien, kat)
+	}
+
+	customExecuteTemplate(w, r, templates.Edit, data)
 }
 
+// Edit2Controller controller 2 for edit
 func Edit2Controller(w http.ResponseWriter, r *http.Request) {
 
 	type Karte struct {

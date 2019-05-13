@@ -2,9 +2,9 @@ package router
 
 import (
 	"net/http"
-	"web/app/controller"
-	"web/app/url"
 
+	"github.com/Momper14/web/app/controller"
+	"github.com/Momper14/web/app/url"
 	"github.com/gorilla/mux"
 )
 

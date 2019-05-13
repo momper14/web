@@ -3,16 +3,22 @@ package controller
 import (
 	"html/template"
 	"net/http"
-	templates "web/template"
+
+	"github.com/Momper14/web/templates"
+	"github.com/Momper14/weblib/client/karteikaesten"
+	"github.com/Momper14/weblib/client/kategorien"
 )
 
+// KarteikastenController controller for karteikasten
 func KarteikastenController(w http.ResponseWriter, r *http.Request) {
+	defer recoverInternalError()
 
 	type Kasten struct {
 		SubKat       string
 		Titel        string
 		Anzahl       int
 		Beschreibung template.HTML
+		ID           string
 	}
 
 	type Kategorie struct {
@@ -24,56 +30,40 @@ func KarteikastenController(w http.ResponseWriter, r *http.Request) {
 		Kategorien []Kategorie
 	}
 
-	const BESCHREIBUNG = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. <strong> Pellentesque risus mi </strong>, tempus quis placerat ut, porta nec nulla.Vestibulum rhoncus ac ex sit amet fringilla. Nullam gravida purus diam, et dictum <a> felis venenatis </a> efficitur. Aenean ac <em>eleifend lacus </em>, in mollis lectus. Donec sodales, arcu et sollicitudin porttitor, tortor urna tempor ligula, id porttitor mi magna a neque.Donec dui urna, vehicula et sem eget, facilisis sodales sem."
+	var (
+		data      Data
+		kategorie Kategorie
+		kasten    Kasten
+		err       error
+	)
 
-	data := Data{
-		Kategorien: []Kategorie{
-			Kategorie{
-				Name: "Naturwissenschaften",
-				Kasten: []Kasten{
-					Kasten{
-						SubKat:       "Mathematik",
-						Titel:        "Geometrische Formen und Körper",
-						Anzahl:       23,
-						Beschreibung: template.HTML(BESCHREIBUNG),
-					},
-					Kasten{
-						SubKat:       "Chemie",
-						Titel:        "Atome A-Z",
-						Anzahl:       23,
-						Beschreibung: template.HTML(BESCHREIBUNG),
-					},
-					Kasten{
-						SubKat:       "Physik",
-						Titel:        "Licht in Wellen und Teilchen - Modelle und Versuche",
-						Anzahl:       23,
-						Beschreibung: template.HTML(BESCHREIBUNG),
-					},
-					Kasten{
-						SubKat:       "Mathematik",
-						Titel:        "Das kleine 1x1",
-						Anzahl:       23,
-						Beschreibung: template.HTML(BESCHREIBUNG),
-					},
-				},
-			}, Kategorie{
-				Name: "Sprachen",
-				Kasten: []Kasten{
-					Kasten{
-						SubKat:       "Latein",
-						Titel:        "Vokabel Lektion 1",
-						Anzahl:       23,
-						Beschreibung: template.HTML(BESCHREIBUNG),
-					},
-					Kasten{
-						SubKat:       "Englisch",
-						Titel:        "Unit 2",
-						Anzahl:       23,
-						Beschreibung: template.HTML(BESCHREIBUNG),
-					},
-				},
-			},
-		},
+	kategorien, err := kategorien.New().AlleKategorien()
+	if err != nil {
+		internalError(err, w, r)
+	}
+
+	for _, kat := range kategorien {
+		kaesten, err := karteikaesten.New().OeffentlicheKaestenByKategorie(kat.ID)
+		if err != nil {
+			internalError(err, w, r)
+		}
+
+		if len(kaesten) > 0 {
+			kategorie = Kategorie{
+				Name: kat.ID,
+			}
+			for _, kas := range kaesten {
+				kasten = Kasten{
+					SubKat:       kas.Unterkategorie,
+					Titel:        kas.Name,
+					Anzahl:       kas.AnzahlKarten(),
+					Beschreibung: template.HTML(kas.Beschreibung),
+					ID:           kas.ID,
+				}
+				kategorie.Kasten = append(kategorie.Kasten, kasten)
+			}
+			data.Kategorien = append(data.Kategorien, kategorie)
+		}
 	}
 
 	customExecuteTemplate(w, r, templates.Karteikasten, data)

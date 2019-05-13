@@ -2,19 +2,33 @@ package controller
 
 import (
 	"net/http"
-	templates "web/template"
+
+	"github.com/Momper14/web/templates"
+	"github.com/Momper14/weblib/client/karteikaesten"
+	"github.com/Momper14/weblib/client/users"
 )
 
+// IndexController controller for index-page
 func IndexController(w http.ResponseWriter, r *http.Request) {
+	defer recoverInternalError()
 
 	type Index struct {
 		Nutzer, Karten, Karteien int
 	}
 
-	data := Index{
-		Nutzer:   32,
-		Karten:   124,
-		Karteien: 22,
+	var (
+		data Index
+		err  error
+	)
+
+	if data.Karteien, err = karteikaesten.New().AnzahlOeffentlicherKaesten(); err != nil {
+		internalError(err, w, r)
+	}
+	if data.Karten, err = karteikaesten.New().AnzahlOeffentlicherKarten(); err != nil {
+		internalError(err, w, r)
+	}
+	if data.Nutzer, err = users.New().AnzahlUsers(); err != nil {
+		internalError(err, w, r)
 	}
 
 	customExecuteTemplate(w, r, templates.Index, data)

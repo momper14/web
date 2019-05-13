@@ -3,11 +3,16 @@ package controller
 import (
 	"html/template"
 	"net/http"
-	templates "web/template"
+
+	"github.com/Momper14/web/templates"
+	"github.com/Momper14/weblib/client"
+	"github.com/Momper14/weblib/client/karteikaesten"
+	"github.com/gorilla/mux"
 )
 
+// ViewController controller vor view
 func ViewController(w http.ResponseWriter, r *http.Request) {
-	const BESCHREIBUNG = "<html>Lorem ipsum dolor sit amet, consectetur adipiscing elit. <strong> Pellentesque risus mi </strong>, tempus quis placerat ut, porta nec nulla.Vestibulum rhoncus ac ex sit amet fringilla. Nullam gravida purus diam, et dictum <a> felis venenatis </a> efficitur. Aenean ac <em>eleifend lacus </em>, in mollis lectus. Donec sodales, arcu et sollicitudin porttitor, tortor urna tempor ligula, id porttitor mi magna a neque.Donec dui urna, vehicula et sem eget, facilisis sodales sem.</html>"
+	defer recoverInternalError()
 
 	type Headline struct {
 		Name        string
@@ -33,51 +38,80 @@ func ViewController(w http.ResponseWriter, r *http.Request) {
 		Karten             []Karte
 	}
 
-	edit := Data{
+	var (
+		err      error
+		data     Data
+		karte    Karte
+		kastenid = mux.Vars(r)["kastenid"]
+		userid   = GetUser()
+	)
+
+	kasten, err := karteikaesten.New().KastenByID(kastenid)
+	if err != nil {
+		internalError(err, w, r)
+	}
+
+	data = Data{
 		Headline: Headline{
-			Name:        "Geometrie",
-			Kategorie:   "Naturwissenschaften",
-			SubKat:      "Mathematik",
-			Ersteller:   "Max Mustermann",
-			Fortschritt: 0,
-			Anzahl:      23,
-		},
-		Titel:   "Titel der Karte",
-		F0:      false,
-		F1:      true,
-		F2:      false,
-		F3:      false,
-		F4:      false,
-		Frage:   template.HTML(BESCHREIBUNG),
-		Antwort: template.HTML(BESCHREIBUNG),
-		Karten: []Karte{
-			Karte{
-				Nr:    1,
-				Titel: "Titel der Karte",
-				Aktiv: true,
-			}, Karte{
-				Nr:    2,
-				Titel: "Titel der Karte",
-				Aktiv: false,
-			}, Karte{
-				Nr:    3,
-				Titel: "Titel der Karte",
-				Aktiv: false,
-			}, Karte{
-				Nr:    4,
-				Titel: "Titel der Karte",
-				Aktiv: false,
-			}, Karte{
-				Nr:    5,
-				Titel: "Titel der Karte",
-				Aktiv: false,
-			}, Karte{
-				Nr:    6,
-				Titel: "Titel der Karte",
-				Aktiv: false,
-			},
+			Name:      kasten.Name,
+			Kategorie: kasten.Kategorie,
+			SubKat:    kasten.Unterkategorie,
+			Ersteller: kasten.Autor,
+			Anzahl:    kasten.AnzahlKarten(),
 		},
 	}
 
-	customExecuteTemplate(w, r, templates.View, edit)
+	if data.Headline.Fortschritt, err = kasten.Fortschritt(userid); err != nil {
+		if _, ok := err.(client.NotFoundError); ok {
+			data.Headline.Fortschritt = 0
+		} else {
+			internalError(err, w, r)
+		}
+	}
+
+	if kasten.AnzahlKarten() > 0 {
+
+		data.Titel = kasten.Karten[0].Titel
+		data.Frage = template.HTML(kasten.Karten[0].Frage)
+		data.Antwort = template.HTML(kasten.Karten[0].Antwort)
+
+		fach, err := kasten.FachVonKarte(userid, 0)
+		if err != nil {
+			if _, ok := err.(client.NotFoundError); ok {
+				fach = 0
+			} else {
+				internalError(err, w, r)
+			}
+		}
+
+		switch fach {
+		case 0:
+			data.F0 = true
+			break
+		case 1:
+			data.F1 = true
+			break
+		case 2:
+			data.F2 = true
+			break
+		case 3:
+			data.F3 = true
+			break
+		case 4:
+			data.F4 = true
+			break
+		}
+
+		for i, v := range kasten.Karten {
+			karte = Karte{
+				Nr:    i + 1,
+				Titel: v.Titel,
+			}
+			data.Karten = append(data.Karten, karte)
+		}
+
+		data.Karten[0].Aktiv = true
+	}
+
+	customExecuteTemplate(w, r, templates.View, data)
 }

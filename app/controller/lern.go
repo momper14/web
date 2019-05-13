@@ -3,12 +3,16 @@ package controller
 import (
 	"html/template"
 	"net/http"
-	templates "web/template"
+
+	"github.com/gorilla/mux"
+
+	"github.com/Momper14/web/templates"
+	"github.com/Momper14/weblib/client/karteikaesten"
 )
 
+// LernController controller for lern
 func LernController(w http.ResponseWriter, r *http.Request) {
-
-	const BESCHREIBUNG = "<html>Lorem ipsum dolor sit amet, consectetur adipiscing elit. <strong> Pellentesque risus mi </strong>, tempus quis placerat ut, porta nec nulla.Vestibulum rhoncus ac ex sit amet fringilla. Nullam gravida purus diam, et dictum <a> felis venenatis </a> efficitur. Aenean ac <em>eleifend lacus </em>, in mollis lectus. Donec sodales, arcu et sollicitudin porttitor, tortor urna tempor ligula, id porttitor mi magna a neque.Donec dui urna, vehicula et sem eget, facilisis sodales sem.</html>"
+	defer recoverInternalError()
 
 	type Headline struct {
 		Name               string
@@ -26,27 +30,71 @@ func LernController(w http.ResponseWriter, r *http.Request) {
 		Frage, Antwort     template.HTML
 	}
 
-	data := Data{
+	var (
+		err      error
+		data     Data
+		userid   = GetUser()
+		kastenid = mux.Vars(r)["kastenid"]
+	)
+
+	kasten, err := karteikaesten.New().KastenByID(kastenid)
+	if err != nil {
+		internalError(err, w, r)
+	}
+
+	index, karte, err := kasten.Zufallskarte(userid)
+	if err != nil {
+		internalError(err, w, r)
+	}
+
+	data = Data{
 		Headline: Headline{
-			Name:        "Geometrie",
-			Kategorie:   "Naturwissenschaften",
-			SubKat:      "Mathematik",
-			Fortschritt: 0,
-			A0:          5,
-			A1:          6,
-			A2:          2,
-			A3:          1,
-			A4:          0,
-			Anzahl:      23,
+			Name:      kasten.Name,
+			Kategorie: kasten.Kategorie,
+			SubKat:    kasten.Unterkategorie,
+			Anzahl:    kasten.AnzahlKarten(),
 		},
-		Titel:   "Titel der Karte",
-		F0:      false,
-		F1:      true,
-		F2:      false,
-		F3:      false,
-		F4:      false,
-		Frage:   template.HTML(BESCHREIBUNG),
-		Antwort: template.HTML(BESCHREIBUNG),
+		Titel:   karte.Titel,
+		Frage:   template.HTML(karte.Frage),
+		Antwort: template.HTML(karte.Antwort),
+	}
+
+	if data.Headline.Fortschritt, err = kasten.Fortschritt(userid); err != nil {
+		internalError(err, w, r)
+	}
+
+	faecher, err := kasten.KartenProFach(userid)
+	if err != nil {
+		internalError(err, w, r)
+	}
+
+	data.Headline.A0 = faecher[0]
+	data.Headline.A1 = faecher[1]
+	data.Headline.A2 = faecher[2]
+	data.Headline.A3 = faecher[3]
+	data.Headline.A4 = faecher[4]
+
+	fach, err := kasten.FachVonKarte(userid, index)
+	if err != nil {
+		internalError(err, w, r)
+	}
+
+	switch fach {
+	case 0:
+		data.F0 = true
+		break
+	case 1:
+		data.F1 = true
+		break
+	case 2:
+		data.F2 = true
+		break
+	case 3:
+		data.F3 = true
+		break
+	case 4:
+		data.F4 = true
+		break
 	}
 
 	customExecuteTemplate(w, r, templates.Lern, data)
