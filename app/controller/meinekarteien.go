@@ -33,18 +33,25 @@ func MeineKarteienController(w http.ResponseWriter, r *http.Request) {
 		data   Data
 		kasten Kasten
 		err    error
+		user   string
 	)
-	user := GetUser()
+
+	if !IstEingeloggt(w, r) {
+		forbidden(w)
+		return
+	}
+
+	user = GetUser(w, r)
 
 	lernen, err := lernen.New().GelerntVonUser(user)
 	if err != nil {
-		internalError(err, w, r)
+		internalError(err, w)
 	}
 
 	for _, lerne := range lernen {
 		kas, err := karteikaesten.New().KastenByID(lerne.Kasten)
 		if err != nil {
-			internalError(err, w, r)
+			internalError(err, w)
 		}
 		kasten = Kasten{
 			Kategorie:    kas.Kategorie,
@@ -55,7 +62,7 @@ func MeineKarteienController(w http.ResponseWriter, r *http.Request) {
 			ID:           kas.ID,
 		}
 		if kasten.Fortschritt, err = kas.Fortschritt(user); err != nil {
-			internalError(err, w, r)
+			internalError(err, w)
 		}
 
 		if kas.Public {

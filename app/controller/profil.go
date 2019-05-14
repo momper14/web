@@ -27,12 +27,19 @@ func ProfilController(w http.ResponseWriter, r *http.Request) {
 	var (
 		err    error
 		data   Data
-		userid = GetUser()
+		userid string
 	)
+
+	if !IstEingeloggt(w, r) {
+		forbidden(w)
+		return
+	}
+
+	userid = GetUser(w, r)
 
 	user, err := users.New().UserByID(userid)
 	if err != nil {
-		internalError(err, w, r)
+		internalError(err, w)
 	}
 
 	data = Data{
@@ -43,11 +50,11 @@ func ProfilController(w http.ResponseWriter, r *http.Request) {
 	}
 
 	if data.Karteien, err = karteikaesten.New().AnzahlKaestenUser(userid); err != nil {
-		internalError(err, w, r)
+		internalError(err, w)
 	}
 
 	if data.Karten, err = karteikaesten.New().AnzahlKartenUser(userid); err != nil {
-		internalError(err, w, r)
+		internalError(err, w)
 	}
 
 	customExecuteTemplate(w, r, templates.Profil, data)

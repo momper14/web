@@ -21,4 +21,8 @@ const (
 	RegisterPath = "/register"
 	// ViewPath URL path to view site
 	ViewPath = "/karteikasten/view/{kastenid}"
+	// LoginPath URL path to login
+	LoginPath = "/login"
+	// LogoutPath URL path to logout
+	LogoutPath = "/logout"
 )

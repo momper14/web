@@ -2,15 +2,38 @@ $(document).ready(function () {
     $('.dropdown').click(function () {
         $(this).toggleClass("is-active");
     });
+    $('#button-logout').click(logout);
+    $('#form-login').submit(login);
 })
 
-function loadTemplate(path, todo, async = true) {
+function login() {
+    elements = document.forms["login"].elements;
+    var data = {
+        "User": elements["User"].value,
+        "Passwort": elements["Passwort"].value
+    }
+
     $.ajax({
-        url: path,
-        success: function (data) {
-            todo(data);
+        type: "POST",
+        url: "/login",
+        data: JSON.stringify(data),
+        success: function () {
+            window.location.href = "/meinekarteien";
         },
-        async: false,
-        dataType: 'html'
+        error: function () {
+            alert("Username oder Passwort ungültig");
+        },
+        contentType: "application/json"
+    });
+
+    return false;
+}
+
+function logout() {
+    $.ajax({
+        type: "POST",
+        url: "/logout",
+    }).done(function(){
+        window.location.href = "/";
     });
 }

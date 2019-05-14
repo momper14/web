@@ -5,7 +5,6 @@ import (
 	"net/http"
 
 	"github.com/Momper14/web/templates"
-	"github.com/Momper14/weblib/client"
 	"github.com/Momper14/weblib/client/karteikaesten"
 	"github.com/gorilla/mux"
 )
@@ -43,12 +42,16 @@ func ViewController(w http.ResponseWriter, r *http.Request) {
 		data     Data
 		karte    Karte
 		kastenid = mux.Vars(r)["kastenid"]
-		userid   = GetUser()
+		userid   string
 	)
+
+	if IstEingeloggt(w, r) {
+		userid = GetUser(w, r)
+	}
 
 	kasten, err := karteikaesten.New().KastenByID(kastenid)
 	if err != nil {
-		internalError(err, w, r)
+		internalError(err, w)
 	}
 
 	data = Data{
@@ -61,11 +64,11 @@ func ViewController(w http.ResponseWriter, r *http.Request) {
 		},
 	}
 
-	if data.Headline.Fortschritt, err = kasten.Fortschritt(userid); err != nil {
-		if _, ok := err.(client.NotFoundError); ok {
-			data.Headline.Fortschritt = 0
-		} else {
-			internalError(err, w, r)
+	if userid == "" {
+		data.Headline.Fortschritt = 0
+	} else {
+		if data.Headline.Fortschritt, err = kasten.Fortschritt(userid); err != nil {
+			internalError(err, w)
 		}
 	}
 
@@ -75,12 +78,13 @@ func ViewController(w http.ResponseWriter, r *http.Request) {
 		data.Frage = template.HTML(kasten.Karten[0].Frage)
 		data.Antwort = template.HTML(kasten.Karten[0].Antwort)
 
-		fach, err := kasten.FachVonKarte(userid, 0)
-		if err != nil {
-			if _, ok := err.(client.NotFoundError); ok {
-				fach = 0
-			} else {
-				internalError(err, w, r)
+		var fach int
+		if userid == "" {
+			fach = 0
+		} else {
+			fach, err = kasten.FachVonKarte(userid, 0)
+			if err != nil {
+				internalError(err, w)
 			}
 		}
 

@@ -22,13 +22,13 @@ func IndexController(w http.ResponseWriter, r *http.Request) {
 	)
 
 	if data.Karteien, err = karteikaesten.New().AnzahlOeffentlicherKaesten(); err != nil {
-		internalError(err, w, r)
+		internalError(err, w)
 	}
 	if data.Karten, err = karteikaesten.New().AnzahlOeffentlicherKarten(); err != nil {
-		internalError(err, w, r)
+		internalError(err, w)
 	}
 	if data.Nutzer, err = users.New().AnzahlUsers(); err != nil {
-		internalError(err, w, r)
+		internalError(err, w)
 	}
 
 	customExecuteTemplate(w, r, templates.Index, data)

@@ -39,13 +39,13 @@ func KarteikastenController(w http.ResponseWriter, r *http.Request) {
 
 	kategorien, err := kategorien.New().AlleKategorien()
 	if err != nil {
-		internalError(err, w, r)
+		internalError(err, w)
 	}
 
 	for _, kat := range kategorien {
 		kaesten, err := karteikaesten.New().OeffentlicheKaestenByKategorie(kat.ID)
 		if err != nil {
-			internalError(err, w, r)
+			internalError(err, w)
 		}
 
 		if len(kaesten) > 0 {

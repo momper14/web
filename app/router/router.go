@@ -14,6 +14,10 @@ func GetRouter() *mux.Router {
 	router.PathPrefix(url.StaticPath).Handler(
 		http.StripPrefix(url.StaticPath, http.FileServer(http.Dir("static"))))
 
+	router.HandleFunc(url.LoginPath, controller.LoginController).Methods("POST")
+
+	router.HandleFunc(url.LogoutPath, controller.LogoutController).Methods("POST")
+
 	router.HandleFunc(url.ViewPath, controller.ViewController).Methods("GET")
 
 	router.HandleFunc(url.ProfilPath, controller.ProfilController).Methods("GET")

@@ -27,17 +27,17 @@
     </div>
 
     <div class="navbar-end">
-        <form id="form-login" class="navbar-item is-paddingless">
+        <form id="form-login" class="navbar-item is-paddingless" name="login" accept="/meinekarteien">
             <div class="navbar-item control">
                 <input id="input-username" class="input is-small background-green-light text-light placeholder-is-light"
-                    type="text" placeholder="Nutzername" required="required" />
+                    type="text" placeholder="Nutzername" required="required" name="User" value="" />
             </div>
             <div class="navbar-item control">
                 <input id="input-password" class="input is-small background-green-light text-light placeholder-is-light"
-                    type="password" placeholder="Password" required="required" />
+                    type="password" placeholder="Password" required="required" name="Passwort" value="" />
             </div>
             <div class="navbar-item">
-                <button id="button-login" class="button is-small background-yellow-dark no-border text-light" type="submit">
+                <button id="button-login" class="button is-small background-yellow-dark no-border text-light">
                     <strong>Login</strong>
                 </button>
             </div>

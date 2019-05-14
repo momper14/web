@@ -11,20 +11,30 @@ import (
 func EditController(w http.ResponseWriter, r *http.Request) {
 	defer recoverInternalError()
 
-	type Kategorie struct {
-		Name string
-		Sub  []string
-	}
+	type (
+		Kategorie struct {
+			Name string
+			Sub  []string
+		}
 
-	type Edit struct {
-		Kategorien []Kategorie
-	}
+		Edit struct {
+			Kategorien []Kategorie
+		}
+	)
 
-	data := Edit{}
+	var (
+		data Edit
+		err  error
+	)
+
+	if !IstEingeloggt(w, r) {
+		forbidden(w)
+		return
+	}
 
 	kats, err := kategorien.New().AlleKategorien()
 	if err != nil {
-		internalError(err, w, r)
+		internalError(err, w)
 	}
 
 	for _, kat := range kats {
@@ -42,18 +52,25 @@ func EditController(w http.ResponseWriter, r *http.Request) {
 // Edit2Controller controller 2 for edit
 func Edit2Controller(w http.ResponseWriter, r *http.Request) {
 
-	type Karte struct {
-		Nr    int
-		Titel string
-	}
+	type (
+		Karte struct {
+			Nr    int
+			Titel string
+		}
 
-	type Edit2 struct {
-		Name        string
-		Kategorie   string
-		SubKat      string
-		Fortschritt int
-		Anzahl      int
-		Karten      []Karte
+		Edit2 struct {
+			Name        string
+			Kategorie   string
+			SubKat      string
+			Fortschritt int
+			Anzahl      int
+			Karten      []Karte
+		}
+	)
+
+	if !IstEingeloggt(w, r) {
+		forbidden(w)
+		return
 	}
 
 	data := Edit2{
