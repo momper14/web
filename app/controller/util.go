@@ -72,7 +72,7 @@ func customExecuteTemplate(w http.ResponseWriter, r *http.Request, templateName 
 
 	t, err := template.ParseFiles(templateName, navbar, sidemenu)
 	if err != nil {
-		fmt.Print(err)
+		internalError(err, w)
 	}
 	if err = t.Execute(w, dataTmp); err != nil {
 		internalError(err, w)

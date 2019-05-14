@@ -10,7 +10,7 @@ function login() {
     elements = document.forms["login"].elements;
     var data = {
         "User": elements["User"].value,
-        "Passwort": elements["Passwort"].value
+        "Passwort": sha512(elements["Passwort"].value)
     }
 
     $.ajax({

@@ -56,7 +56,6 @@ func LoginController(w http.ResponseWriter, r *http.Request) {
 
 		session.Values["authenticated"] = true
 		session.Values["user"] = login.User
-		fmt.Printf("%+v\n", session)
 		session.Save(r, w)
 		w.WriteHeader(http.StatusOK)
 		fmt.Fprintln(w, "Logged in")
