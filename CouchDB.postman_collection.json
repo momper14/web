@@ -1019,7 +1019,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n\t\"_id\": \"Max Mustermann\",\n\t\"Password\": \"ba3253876aed6bc22d4a6ff53d8406c6ad864195ed144ab5c87621b6c233b548baeae6956df346ec8c17f5ea10f35ee3cbc514797ed7ddd3145464e2a0bab413\",\n\t\"Email\": \"mustermann@example.com\",\n\t\"Seit\": \"1545606000000\"\n}"
+							"raw": "{\n\t\"_id\": \"Max Mustermann\",\n\t\"Password\": \"ba3253876aed6bc22d4a6ff53d8406c6ad864195ed144ab5c87621b6c233b548baeae6956df346ec8c17f5ea10f35ee3cbc514797ed7ddd3145464e2a0bab413\",\n\t\"Email\": \"mustermann@example.com\",\n\t\"Seit\": 1545606000000,\n\t\"Bild\": \"/static/res/Icons/Mein-Profil.svg\"\n}"
 						},
 						"url": {
 							"raw": "{{url}}/{{db}}",
@@ -1059,7 +1059,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"_id\": \"Unknown\",\n    \"Password\": \"disabled\",\n    \"Email\": \"\",\n    \"Seit\": \"\"\n}"
+							"raw": "{\n    \"_id\": \"Unknown\",\n    \"Password\": \"disabled\",\n    \"Email\": \"\",\n    \"Seit\": 0,\n\t\"Bild\": \"/static/res/Icons/Mein-Profil.svg\"\n}"
 						},
 						"url": {
 							"raw": "{{url}}/{{db}}",
@@ -1557,31 +1557,31 @@
 	],
 	"variable": [
 		{
-			"id": "1a47e0ce-e20d-49d7-b266-38fd5b52be76",
+			"id": "7b6494bb-7644-4f79-a834-1edba85e68a4",
 			"key": "ip",
 			"value": "localhost",
 			"type": "string"
 		},
 		{
-			"id": "27dbda0e-7f9c-476f-8b71-70a27c6f2ac9",
+			"id": "bb9f28be-af9a-42f3-9c6a-89cecfd8149b",
 			"key": "port",
 			"value": "5984",
 			"type": "string"
 		},
 		{
-			"id": "249817fb-ca52-4a26-aef9-e2a08d69dc4e",
+			"id": "14cbcfba-a5ec-4d50-b12f-e219e95a803a",
 			"key": "url",
 			"value": "{{ip}}:{{port}}",
 			"type": "string"
 		},
 		{
-			"id": "7b066509-e5bb-4526-b515-bcd0888232c9",
+			"id": "aba72af8-f3e3-48db-a81b-b8026f8d07f5",
 			"key": "username",
 			"value": "admin",
 			"type": "string"
 		},
 		{
-			"id": "cf6baa4a-7a9e-4c92-ab6e-9dd63b5920f3",
+			"id": "180ac86b-930b-4a1b-b5c0-8bbe49900534",
 			"key": "db",
 			"value": "",
 			"type": "string"
