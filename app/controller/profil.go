@@ -44,7 +44,7 @@ func ProfilController(w http.ResponseWriter, r *http.Request) {
 
 	data = Data{
 		Bild:  user.Bild,
-		Name:  user.ID,
+		Name:  user.Name,
 		Email: user.Email,
 		Seit:  time.Unix(user.Seit, 0).Format(layout),
 	}

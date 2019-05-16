@@ -20,8 +20,12 @@ function login() {
         success: function () {
             window.location.href = "/meinekarteien";
         },
-        error: function () {
-            alert("Username oder Passwort ungültig");
+        error: function (event, jqXHR, msg) {
+            if (event.status == 403) {
+                alert("Username oder Passwort ungültig");
+            } else {
+                alert(msg);
+            }
         },
         contentType: "application/json"
     });
@@ -33,7 +37,7 @@ function logout() {
     $.ajax({
         type: "POST",
         url: "/logout",
-    }).done(function(){
+    }).done(function () {
         window.location.href = "/";
     });
 }

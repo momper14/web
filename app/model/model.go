@@ -6,4 +6,12 @@ type (
 		User     string `json:"User"`
 		Passwort string `json:"Passwort"`
 	}
+
+	// Registrierung body of register post
+	Registrierung struct {
+		Name       string `json:"Name"`
+		EMail      string `json:"EMail"`
+		Passwort   string `json:"Passwort"`
+		Akzeptiert bool   `json:"Akzeptiert"`
+	}
 )

@@ -1,5 +1,5 @@
-github.com/Momper14/weblib v0.3.0 h1:moY1LO/UW2l7iz+Sf0BENbFlW3Tl1flHfpH+lK4SLL0=
-github.com/Momper14/weblib v0.3.0/go.mod h1:y/IkW+uxQ73Gkxd8XiJ+GjgM/d5secq212AdC2hCXl0=
+github.com/Momper14/weblib v0.4.2 h1:/FdFnjoEjjncId/B5z/k5oCJpVOlRClqprEr/0LUUpA=
+github.com/Momper14/weblib v0.4.2/go.mod h1:y/IkW+uxQ73Gkxd8XiJ+GjgM/d5secq212AdC2hCXl0=
 github.com/fatih/structs v1.1.0 h1:Q7juDM0QtcnhCpeyLGQKyg4TOIghuNXrkL32pHAUMxo=
 github.com/fatih/structs v1.1.0/go.mod h1:9NiDSp5zOcgEDl+j00MP/WkGVPOlPRLejGD8Ga6PJ7M=
 github.com/gorilla/context v1.1.1 h1:AWwleXJkX/nhcU9bZSnZoi3h/qGYqQAGhq6zZe/aQW8=

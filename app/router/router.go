@@ -1,6 +1,7 @@
 package router
 
 import (
+	"fmt"
 	"net/http"
 
 	"github.com/Momper14/web/app/controller"
@@ -22,6 +23,9 @@ func GetRouter() *mux.Router {
 
 	router.HandleFunc(url.ProfilPath, controller.ProfilController).Methods("GET")
 
+	router.HandleFunc(fmt.Sprintf("%s/name/{name}", url.RegisterPath), controller.RegisterControllerCheckName).Methods("POST")
+	router.HandleFunc(fmt.Sprintf("%s/email/{email}", url.RegisterPath), controller.RegisterControllerCheckEMail).Methods("POST")
+	router.HandleFunc(url.RegisterPath, controller.RegisterControllerPost).Methods("POST")
 	router.HandleFunc(url.RegisterPath, controller.RegisterController).Methods("GET")
 
 	router.HandleFunc(url.MeineKarteienPath, controller.MeineKarteienController).Methods("GET")

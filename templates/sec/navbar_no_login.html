@@ -27,7 +27,7 @@
     </div>
 
     <div class="navbar-end">
-        <form id="form-login" class="navbar-item is-paddingless" name="login" accept="/meinekarteien">
+        <form id="form-login" class="navbar-item is-paddingless" name="login">
             <div class="navbar-item control">
                 <input id="input-username" class="input is-small background-green-light text-light placeholder-is-light"
                     type="text" placeholder="Nutzername" required="required" name="User" value="" />
@@ -42,9 +42,11 @@
                 </button>
             </div>
         </form>
-        <div class="navbar-item">
-            <button class="button is-small background-green-light no-border text-light">Registrieren</button>
-        </div>
+        <form action="/register" class="navbar-item is-paddingless" method="GET">
+            <div class="navbar-item">
+                <button class="button is-small background-green-light no-border text-light" type="submit">Registrieren</button>
+            </div>
+        </form>
     </div>
 </div>
 

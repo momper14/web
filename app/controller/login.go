@@ -6,6 +6,7 @@ import (
 	"net/http"
 
 	"github.com/Momper14/web/app/model"
+	"github.com/Momper14/weblib/client"
 	"github.com/Momper14/weblib/client/users"
 	"github.com/gorilla/sessions"
 )
@@ -45,6 +46,11 @@ func LoginController(w http.ResponseWriter, r *http.Request) {
 
 		user, err := users.New().UserByID(login.User)
 		if err != nil {
+			if _, ok := err.(client.NotFoundError); ok {
+				w.WriteHeader(http.StatusForbidden)
+				fmt.Fprintln(w, "User oder Password falsch")
+				return
+			}
 			internalError(err, w)
 		}
 

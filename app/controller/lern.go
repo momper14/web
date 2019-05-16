@@ -7,6 +7,7 @@ import (
 	"github.com/gorilla/mux"
 
 	"github.com/Momper14/web/templates"
+	"github.com/Momper14/weblib/client"
 	"github.com/Momper14/weblib/client/karteikaesten"
 )
 
@@ -48,6 +49,10 @@ func LernController(w http.ResponseWriter, r *http.Request) {
 
 	kasten, err := karteikaesten.New().KastenByID(kastenid)
 	if err != nil {
+		if _, ok := err.(client.NotFoundError); ok {
+			http.Error(w, http.StatusText(http.StatusNotFound), http.StatusNotFound)
+			return
+		}
 		internalError(err, w)
 	}
 
