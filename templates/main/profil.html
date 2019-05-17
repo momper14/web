@@ -51,17 +51,7 @@
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
     <script type="text/javascript" src="/static/scripts/sha512.min.js"></script>
     <script type="text/javascript" src="/static/scripts/script.js"></script>
-
-    <script>
-        $(document).ready(function () {
-            $('#profil-button-delete').click(function () {
-                $('#modal').toggleClass("is-active", true);
-            });
-            $('#profil-modal-button-keep').click(function () {
-                $('#modal').toggleClass("is-active", false);
-            });
-        })
-    </script>
+    <script type="text/javascript" src="/static/scripts/profil.js"></script>
 
 </head>
 
@@ -119,42 +109,55 @@
                     <div id="form" style="margin: 1.5rem">
                         <p id="edit-title" class="subtitle"><strong>Update der Profildaten</strong></p>
                         <p id="edit-mail-label" class="front">Neue E-Mail</p>
-                        <p id="edit-mail-input" class="control"> <input class="input" type="email" /> </p>
-                        <p id="edit-mail-help" class="help">Diese Mail ist bereits vergeben!</p>
+                        <p id="edit-mail-input" class="control is-expanded has-icons-right">
+                            <input id="profil-input-email" class="input" type="email" />
+                            <span id="profil-input-email-icon-right"
+                                class="icon is-small is-right is-hidden text-green-light">
+                                <i class="fas fa-check"></i>
+                            </span>
+                        </p>
+                        <p id="edit-mail-help" class="help is-invisible">
+                            Diese EMail ist bereits vergeben!
+                        </p>
                         <p id="edit-oldpw-label" class="front">Altes Password</p>
-                        <p id="edit-oldpw-input" class="control"> <input class="input" type="password" /> </p>
+                        <p id="edit-oldpw-input" class="control is-expanded has-icons-right">
+                            <input id="profil-input-passwort" class="input" type="password" />
+                            <span id="profil-input-passwort-icon-right"
+                                class="icon is-small is-right is-hidden text-green-light">
+                                <i class="fas fa-check"></i>
+                            </span>
+                        </p>
+                        <p id="edit-oldpw-help" class="help is-invisible">
+                            Passwort falsch!
+                        </p>
                         <p id="edit-newpw-label" class="front">Neues Password</p>
-                        <p id="edit-newpw-input" class="control"> <input class="input" type="password" /> </p>
-                        <p id="edit-newpw-help" class="help" style="align-self: center;">
-                            Altes Password darf nicht mit neuem übereinstimmen!
+                        <p id="edit-newpw-input" class="control is-expanded has-icons-right">
+                            <input id="profil-input-neu" class="input" type="password" />
+                            <span id="profil-input-neu-icon-right"
+                                class="icon is-small is-right is-hidden text-green-light">
+                                <i class="fas fa-check"></i>
+                            </span>
+                        </p>
+                        <p id="edit-newpw-help" class="help is-invisible" style="align-self: center;">
+                            Darf nicht mit altem übereinstimmen!
                         </p>
                         <p id="edit-reppw-label" class="front">Password Wiederholen</p>
-                        <p id="edit-reppw-input" class="control"> <input class="input" type="password" /> </p>
+                        <p id="edit-reppw-input" class="control is-expanded has-icons-right">
+                            <input id="profil-input-wiederholen" class="input" type="password" />
+                            <span id="profil-input-wiederholen-icon-right"
+                                class="icon is-small is-right is-hidden text-green-light">
+                                <i class="fas fa-check"></i>
+                            </span>
+                        </p>
+                        <p id="edit-reppw-help" class="help is-invisible" style="align-self: center;">
+                                Die Passwörter stimmen nicht überein!
+                        </p>
                         <div id="edit-button-save" class="buttons center">
                             <button class="button is-large background-yellow-dark text-light button-lernen">
                                 <strong>Speichern</strong>
                             </button>
                         </div>
                         <div id="edit-button-delete" class="buttons center" style="justify-content: flex-end;">
-
-                            <div id="modal" class="modal is-clipped">
-                                <div class="modal-background"></div>
-                                <div class="modal-content background-withe">
-                                    <div style="margin: 1rem;">
-                                        <p class="subtitle"><strong>Löschen</strong></p>
-                                        <p>Bist du dir sicher, dass du dein Profil löschen möchtest?</p>
-                                        <div class="buttons center" style="margin-top: 2rem;">
-                                            <button id="profil-modal-button-keep"
-                                                class="button background-green-light text-light button-bearbeiten">
-                                                <strong>Profil behalten</strong>
-                                            </button>
-                                            <button class="button background-red-light text-light">
-                                                <strong>Profil löschen</strong>
-                                            </button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
 
                             <button id="profil-button-delete" class="button background-red-light text-light">
                                 <span class="icon is-small text-light">
@@ -170,6 +173,26 @@
 
         </main>
 
+    </div>
+
+
+    <div id="modal" class="modal is-clipped">
+        <div class="modal-background"></div>
+        <div class="modal-content background-withe">
+            <div style="margin: 1rem;">
+                <p class="subtitle"><strong>Löschen</strong></p>
+                <p>Bist du dir sicher, dass du dein Profil löschen möchtest?</p>
+                <div class="buttons center" style="margin-top: 2rem;">
+                    <button id="profil-modal-button-keep"
+                        class="button background-green-light text-light button-bearbeiten">
+                        <strong>Profil behalten</strong>
+                    </button>
+                    <button id="profil-modal-button-delete" class="button background-red-light text-light">
+                        <strong>Profil löschen</strong>
+                    </button>
+                </div>
+            </div>
+        </div>
     </div>
 
 </body>

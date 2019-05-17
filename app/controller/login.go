@@ -78,7 +78,8 @@ func LogoutController(w http.ResponseWriter, r *http.Request) {
 		internalError(err, w)
 	}
 	if auth, ok := session.Values["authenticated"].(bool); ok && auth {
-		session.Values["authenticated"] = false
+		delete(session.Values, "authenticated")
+		delete(session.Values, "user")
 		session.Save(r, w)
 		w.WriteHeader(http.StatusOK)
 		fmt.Fprintln(w, "Logged out")

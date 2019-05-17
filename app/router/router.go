@@ -21,6 +21,10 @@ func GetRouter() *mux.Router {
 
 	router.HandleFunc(url.ViewPath, controller.ViewController).Methods("GET")
 
+	router.HandleFunc(fmt.Sprintf("%s/email/{email}", url.ProfilPath), controller.ProfilControllerCheckEMail).Methods("POST")
+	router.HandleFunc(fmt.Sprintf("%s/passwort/{passwort}", url.ProfilPath), controller.ProfilControllerCheckPasswort).Methods("POST")
+	router.HandleFunc(url.ProfilPath, controller.ProfilControllerPut).Methods("PUT")
+	router.HandleFunc(url.ProfilPath, controller.ProfilControllerDelete).Methods("DELETE")
 	router.HandleFunc(url.ProfilPath, controller.ProfilController).Methods("GET")
 
 	router.HandleFunc(fmt.Sprintf("%s/name/{name}", url.RegisterPath), controller.RegisterControllerCheckName).Methods("POST")

@@ -14,4 +14,11 @@ type (
 		Passwort   string `json:"Passwort"`
 		Akzeptiert bool   `json:"Akzeptiert"`
 	}
+
+	// UpdateProfil body of profil put
+	UpdateProfil struct {
+		EMail    string `json:"EMail"`
+		Passwort string `json:"Passwort"`
+		Neu      string `json:"Neu"`
+	}
 )

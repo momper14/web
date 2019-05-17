@@ -58,6 +58,10 @@
     grid-area: eoi;
 }
 
+#edit-oldpw-help {
+    grid-area: eoh;
+}
+
 #edit-newpw-label {
     grid-area: enl;
 }
@@ -76,6 +80,10 @@
 
 #edit-reppw-input {
     grid-area: eri;
+}
+
+#edit-reppw-help {
+    grid-area: erh;
 }
 
 #edit-button-save {
@@ -97,9 +105,9 @@
         " .   .   . "
         "eml emi emh"
         " .   .   . "
-        "eol eoi enh"
+        "eol eoi eoh"
         "enl eni enh"
-        "erl eri enh"
+        "erl eri erh"
         " .   .   . "
         " .  ebs ebd";
 }
