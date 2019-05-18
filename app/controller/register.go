@@ -32,7 +32,7 @@ func RegisterControllerPost(w http.ResponseWriter, r *http.Request) {
 		decoder       = json.NewDecoder(r.Body)
 	)
 
-	if err := decoder.Decode(&registrierung); err != nil {
+	if err = decoder.Decode(&registrierung); err != nil {
 		http.Error(w, http.StatusText(http.StatusBadRequest), http.StatusBadRequest)
 		panic(err)
 	}

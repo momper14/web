@@ -174,7 +174,7 @@ function deleteProfile() {
         success: function () {
             window.location.href = "/";
         },
-        error: function (event, _, msg) {
+        error: function (_, _, msg) {
             alert(msg);
             window.location.href = "/profil";
         },

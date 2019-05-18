@@ -28,6 +28,7 @@ func KarteikastenController(w http.ResponseWriter, r *http.Request) {
 
 	type Data struct {
 		Kategorien []Kategorie
+		Eingeloggt bool
 	}
 
 	var (
@@ -36,6 +37,8 @@ func KarteikastenController(w http.ResponseWriter, r *http.Request) {
 		kasten    Kasten
 		err       error
 	)
+
+	data.Eingeloggt = IstEingeloggt(w, r)
 
 	kategorien, err := kategorien.New().AlleKategorien()
 	if err != nil {

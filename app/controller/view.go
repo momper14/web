@@ -1,8 +1,10 @@
 package controller
 
 import (
+	"fmt"
 	"html/template"
 	"net/http"
+	"strconv"
 
 	"github.com/Momper14/web/templates"
 	"github.com/Momper14/weblib/client"
@@ -41,9 +43,9 @@ func ViewController(w http.ResponseWriter, r *http.Request) {
 	var (
 		err      error
 		data     Data
-		karte    Karte
 		kastenid = mux.Vars(r)["kastenid"]
 		userid   string
+		index    int
 	)
 
 	if IstEingeloggt(w, r) {
@@ -58,6 +60,20 @@ func ViewController(w http.ResponseWriter, r *http.Request) {
 		}
 		internalError(err, w)
 	}
+
+	if tmp, ok := mux.Vars(r)["karte"]; ok {
+		if index, err = strconv.Atoi(tmp); err != nil {
+			http.Error(w, http.StatusText(http.StatusBadRequest), http.StatusBadRequest)
+			return
+		}
+		if index < 0 || index >= kasten.AnzahlKarten() {
+			http.Error(w, http.StatusText(http.StatusBadRequest), http.StatusBadRequest)
+			return
+		}
+	} else {
+		index = 0
+	}
+	fmt.Println(index)
 
 	data = Data{
 		Headline: Headline{
@@ -79,15 +95,16 @@ func ViewController(w http.ResponseWriter, r *http.Request) {
 
 	if kasten.AnzahlKarten() > 0 {
 
-		data.Titel = kasten.Karten[0].Titel
-		data.Frage = template.HTML(kasten.Karten[0].Frage)
-		data.Antwort = template.HTML(kasten.Karten[0].Antwort)
+		karte := kasten.Karten[index]
+		data.Titel = karte.Titel
+		data.Frage = template.HTML(karte.Frage)
+		data.Antwort = template.HTML(karte.Antwort)
 
 		var fach int
 		if userid == "" {
 			fach = 0
 		} else {
-			fach, err = kasten.FachVonKarte(userid, 0)
+			fach, err = kasten.FachVonKarte(userid, index)
 			if err != nil {
 				internalError(err, w)
 			}
@@ -112,14 +129,14 @@ func ViewController(w http.ResponseWriter, r *http.Request) {
 		}
 
 		for i, v := range kasten.Karten {
-			karte = Karte{
+			karte := Karte{
 				Nr:    i + 1,
 				Titel: v.Titel,
 			}
 			data.Karten = append(data.Karten, karte)
 		}
 
-		data.Karten[0].Aktiv = true
+		data.Karten[index].Aktiv = true
 	}
 
 	customExecuteTemplate(w, r, templates.View, data)

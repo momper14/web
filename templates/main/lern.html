@@ -55,14 +55,6 @@
     <script type="text/javascript" src="/static/scripts/script.js"></script>
     <script type="text/javascript" src="/static/scripts/lernen.js"></script>
 
-    <script>
-        $(document).ready(function () {
-            $('#lern-button-aufdecken').click(function () {
-                aufdecken();
-            });
-        })
-    </script>
-
 </head>
 
 <body>
@@ -233,8 +225,8 @@
                                     <div class="field">
                                         <div id="edit-button-next" class="control">
                                             <div class="buttons">
-                                                <button class="button background-yellow-dark text-light flex-right"
-                                                    type="submit">
+                                                <button id="lern-button-skip"
+                                                    class="button background-yellow-dark text-light flex-right">
                                                     <strong>Überspringen</strong>
                                                 </button>
                                             </div>
@@ -249,13 +241,13 @@
                             <div class="field-body">
                                 <div class="field">
                                     <div id="edit-button-next" class="control center">
-                                        <div class="buttons">
-                                            <button class="button button-size background-green-light text-light"
-                                                type="submit">
+                                        <div id="card-info" class="buttons" index="{{ .Index }}">
+                                            <button id="lern-button-richtig"
+                                                class="button button-size background-green-light text-light">
                                                 <strong>Richtig</strong>
                                             </button>
-                                            <button class="button button-size background-red-light text-light"
-                                                type="submit">
+                                            <button id="lern-button-falsch"
+                                                class="button button-size background-red-light text-light">
                                                 <strong>Falsch</strong>
                                             </button>
                                         </div>

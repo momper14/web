@@ -113,21 +113,27 @@
 
                 <div id="cards" class="has-overflow-y">
 
-                    {{ range .Karten }}
-                    <div class="notification background-withe top-border-green-light {{ if .Aktiv }} is-active {{ end }}">
-                        <p># {{ .Nr }}</p>
-                        <strong>{{ .Titel }}</strong>
-                        <div class="buttons is-invisible">
-                            <button class="button flex-right background-green-light text-light">
-                                <strong>Bearbeiten</strong>
-                            </button>
-                            <button class="button background-red-light">
-                                <span class="icon is-small text-light">
-                                    <i class="fas fa-trash-alt"></i>
-                                </span>
-                            </button>
+                    {{ range $i, $v := .Karten }}
+                    <a href="/karteikasten/view/6ea1e0c363e519c0b386b8d54c00cb0a?karte={{ $i }}"
+                        style="text-decoration: none; color: black;">
+                        <div
+                            class="notification background-withe top-border-green-light {{ if .Aktiv }} is-active {{ end }}">
+                            <p>
+                                # {{ $v.Nr }}
+                            </p>
+                            <strong>{{ $v.Titel }}</strong>
+                            <div class="buttons is-invisible">
+                                <button class="button flex-right background-green-light text-light">
+                                    <strong>Bearbeiten</strong>
+                                </button>
+                                <button class="button background-red-light">
+                                    <span class="icon is-small text-light">
+                                        <i class="fas fa-trash-alt"></i>
+                                    </span>
+                                </button>
+                            </div>
                         </div>
-                    </div>
+                    </a>
                     {{ end }}
 
                 </div>

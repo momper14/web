@@ -21,4 +21,10 @@ type (
 		Passwort string `json:"Passwort"`
 		Neu      string `json:"Neu"`
 	}
+
+	// LernenErgebnis body of lern post
+	LernenErgebnis struct {
+		Index    int  `json:"Index"`
+		Ergebnis bool `json:"Ergebnis"`
+	}
 )

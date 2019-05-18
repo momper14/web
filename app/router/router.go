@@ -19,6 +19,7 @@ func GetRouter() *mux.Router {
 
 	router.HandleFunc(url.LogoutPath, controller.LogoutController).Methods("POST")
 
+	router.HandleFunc(url.ViewPath, controller.ViewController).Methods("GET").Queries("karte", "{karte}")
 	router.HandleFunc(url.ViewPath, controller.ViewController).Methods("GET")
 
 	router.HandleFunc(fmt.Sprintf("%s/email/{email}", url.ProfilPath), controller.ProfilControllerCheckEMail).Methods("POST")
@@ -34,6 +35,7 @@ func GetRouter() *mux.Router {
 
 	router.HandleFunc(url.MeineKarteienPath, controller.MeineKarteienController).Methods("GET")
 
+	router.HandleFunc(url.LernPath, controller.LernControllerPost).Methods("POST")
 	router.HandleFunc(url.LernPath, controller.LernController).Methods("GET")
 
 	router.HandleFunc(url.KarteikastenPath, controller.KarteikastenController).Methods("GET")

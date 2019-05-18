@@ -1,14 +1,18 @@
 package controller
 
 import (
+	"encoding/json"
+	"fmt"
 	"html/template"
 	"net/http"
 
 	"github.com/gorilla/mux"
 
+	"github.com/Momper14/web/app/model"
 	"github.com/Momper14/web/templates"
 	"github.com/Momper14/weblib/client"
 	"github.com/Momper14/weblib/client/karteikaesten"
+	"github.com/Momper14/weblib/client/lernen"
 )
 
 // LernController controller for lern
@@ -30,6 +34,7 @@ func LernController(w http.ResponseWriter, r *http.Request) {
 			Titel              string
 			F0, F1, F2, F3, F4 bool
 			Frage, Antwort     template.HTML
+			Index              int
 		}
 	)
 
@@ -58,6 +63,11 @@ func LernController(w http.ResponseWriter, r *http.Request) {
 
 	index, karte, err := kasten.Zufallskarte(userid)
 	if err != nil {
+		if _, ok := err.(client.ForbiddenError); ok {
+			http.Error(w, http.StatusText(http.StatusForbidden), http.StatusForbidden)
+			return
+		}
+
 		internalError(err, w)
 	}
 
@@ -71,6 +81,7 @@ func LernController(w http.ResponseWriter, r *http.Request) {
 		Titel:   karte.Titel,
 		Frage:   template.HTML(karte.Frage),
 		Antwort: template.HTML(karte.Antwort),
+		Index:   index,
 	}
 
 	if data.Headline.Fortschritt, err = kasten.Fortschritt(userid); err != nil {
@@ -107,4 +118,44 @@ func LernController(w http.ResponseWriter, r *http.Request) {
 	}
 
 	customExecuteTemplate(w, r, templates.Lern, data)
+}
+
+// LernControllerPost controller for lern post
+func LernControllerPost(w http.ResponseWriter, r *http.Request) {
+	defer recoverInternalError()
+
+	if !IstEingeloggt(w, r) {
+		forbidden(w)
+		return
+	}
+
+	var (
+		err      error
+		ergebnis model.LernenErgebnis
+		decoder  = json.NewDecoder(r.Body)
+		lernen   = lernen.New()
+		kastenid = mux.Vars(r)["kastenid"]
+		userid   = GetUser(w, r)
+	)
+
+	if err = decoder.Decode(&ergebnis); err != nil {
+		http.Error(w, http.StatusText(http.StatusBadRequest), http.StatusBadRequest)
+		panic(err)
+	}
+
+	err = lernen.KarteGelernt(userid, kastenid, ergebnis.Index, ergebnis.Ergebnis)
+	if err != nil {
+		if _, ok := err.(client.NotFoundError); ok {
+			http.Error(w, "Kein Lern-Status gefunden", http.StatusNotFound)
+			return
+		}
+		if _, ok := err.(client.IndexOutOfRangeError); ok {
+			http.Error(w, "Ungülitger Index", http.StatusNotFound)
+			return
+		}
+		internalError(err, w)
+	}
+
+	w.WriteHeader(http.StatusOK)
+	fmt.Fprintln(w, "Ok")
 }
