@@ -38,6 +38,7 @@ func ViewController(w http.ResponseWriter, r *http.Request) {
 		Frage              template.HTML
 		Antwort            template.HTML
 		Karten             []Karte
+		KastenID           string
 	}
 
 	var (
@@ -83,6 +84,7 @@ func ViewController(w http.ResponseWriter, r *http.Request) {
 			Ersteller: kasten.Autor,
 			Anzahl:    kasten.AnzahlKarten(),
 		},
+		KastenID: kasten.ID,
 	}
 
 	if userid == "" {

@@ -1,1 +1,1 @@
-sudo $GOBIN/gin --port 80 .
+sudo WEBPASS=$WEBPASS $GOBIN/gin -p 80 run

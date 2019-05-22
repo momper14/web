@@ -74,7 +74,7 @@
                 </div>
 
 
-                {{ block "headline" .Headline}}
+                {{ block "headline" .Headline }}
                 <div id="headline" class="top-border-green-light background-withe">
                     <div class="headline-item">
                         <p class="headline-title">Name</p>
@@ -94,7 +94,7 @@
                     </div>
                     <div class="headline-item">
                         <p class="headline-title">Erstellt von</p>
-                        <p><strong>{{ .Ersteller}}</strong></p>
+                        <p><strong>{{ .Ersteller }}</strong></p>
                     </div>
                     <div class="headline-item">
                         <p class="headline-title">Fortschritt</p>
@@ -114,7 +114,7 @@
                 <div id="cards" class="has-overflow-y">
 
                     {{ range $i, $v := .Karten }}
-                    <a href="/karteikasten/view/6ea1e0c363e519c0b386b8d54c00cb0a?karte={{ $i }}"
+                    <a href="/karteikasten/view/{{ $.KastenID }}?karte={{ $i }}"
                         style="text-decoration: none; color: black;">
                         <div
                             class="notification background-withe top-border-green-light {{ if .Aktiv }} is-active {{ end }}">

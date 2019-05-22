@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "c28d14d9-86f9-4b51-9fab-8ee9190cdf4a",
+		"_postman_id": "236effc1-8f4e-48f6-bdb6-b445efb682e3",
 		"name": "CouchDB",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -508,7 +508,7 @@
 								],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n    \"_id\": \"_design/karten\",\n    \"views\": {\n        \"oeffentlich-kastenid-kartenindex\": {\n            \"reduce\": \"_count\",\n            \"map\": \"function (doc) {\\n  if(doc.Karten && doc.Public){\\n    for(var key in doc.Karten){\\n      emit(doc._id, key);\\n    }\\n  }\\n}\"\n        }\n    },\n    \"language\": \"javascript\"\n}"
+									"raw": "{\n    \"_id\": \"_design/karten\",\n    \"views\": {\n        \"oeffentlich-kastenid-kartenindex\": {\n            \"reduce\": \"_count\",\n            \"map\": \"function (doc) {\\n  if(doc.Karten && doc.Public){\\n    for(var key in doc.Karten){\\n      emit(doc._id, key);\\n    }\\n  }\\n}\"\n        },\n        \"nach-autor\": {\n            \"map\": \"function (doc) {\\n  if(doc.Karten && doc.Autor){\\n    for(var key in doc.Karten){\\n      emit(doc.Autor, key);\\n    }\\n  }\\n}\",\n            \"reduce\": \"_count\"\n        }\n    },\n    \"language\": \"javascript\"\n}"
 								},
 								"url": {
 									"raw": "{{url}}/{{db}}",
@@ -633,6 +633,33 @@
 			"name": "DB kategorien",
 			"item": [
 				{
+					"name": "create DB",
+					"item": [
+						{
+							"name": "create DB",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "{{url}}/{{db}}",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"{{db}}"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"_postman_isSubFolder": true
+				},
+				{
 					"name": "views",
 					"item": [
 						{
@@ -677,27 +704,6 @@
 						}
 					],
 					"_postman_isSubFolder": true
-				},
-				{
-					"name": "create DB",
-					"request": {
-						"method": "PUT",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
-						"url": {
-							"raw": "{{url}}/{{db}}",
-							"host": [
-								"{{url}}"
-							],
-							"path": [
-								"{{db}}"
-							]
-						}
-					},
-					"response": []
 				},
 				{
 					"name": "Geisteswissenschaften",
@@ -927,6 +933,33 @@
 			"name": "DB user",
 			"item": [
 				{
+					"name": "create DB",
+					"item": [
+						{
+							"name": "create DB",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "{{url}}/{{db}}",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"{{db}}"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"_postman_isSubFolder": true
+				},
+				{
 					"name": "views",
 					"item": [
 						{
@@ -971,27 +1004,6 @@
 						}
 					],
 					"_postman_isSubFolder": true
-				},
-				{
-					"name": "create DB",
-					"request": {
-						"method": "PUT",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
-						"url": {
-							"raw": "{{url}}/{{db}}",
-							"host": [
-								"{{url}}"
-							],
-							"path": [
-								"{{db}}"
-							]
-						}
-					},
-					"response": []
 				},
 				{
 					"name": "Max Mustermann",
@@ -1557,31 +1569,31 @@
 	],
 	"variable": [
 		{
-			"id": "7b6494bb-7644-4f79-a834-1edba85e68a4",
+			"id": "93c6f6bd-ae36-4361-a399-345c8fdbbd34",
 			"key": "ip",
 			"value": "localhost",
 			"type": "string"
 		},
 		{
-			"id": "bb9f28be-af9a-42f3-9c6a-89cecfd8149b",
+			"id": "ced3557e-3d68-4d5f-ad42-c42f328a3677",
 			"key": "port",
 			"value": "5984",
 			"type": "string"
 		},
 		{
-			"id": "14cbcfba-a5ec-4d50-b12f-e219e95a803a",
+			"id": "192b6419-42a2-48b7-88a6-3c0f9b5cd2d5",
 			"key": "url",
 			"value": "{{ip}}:{{port}}",
 			"type": "string"
 		},
 		{
-			"id": "aba72af8-f3e3-48db-a81b-b8026f8d07f5",
+			"id": "dd7eff1c-cec0-4a38-b1e3-b246e1094fce",
 			"key": "username",
 			"value": "admin",
 			"type": "string"
 		},
 		{
-			"id": "180ac86b-930b-4a1b-b5c0-8bbe49900534",
+			"id": "83af8e30-59cd-491a-b7a6-d8059a8fd1ea",
 			"key": "db",
 			"value": "",
 			"type": "string"
