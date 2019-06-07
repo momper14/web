@@ -1,7 +1,6 @@
 package controller
 
 import (
-	"fmt"
 	"html/template"
 	"net/http"
 	"strconv"
@@ -14,6 +13,20 @@ import (
 
 // ViewController controller vor view
 func ViewController(w http.ResponseWriter, r *http.Request) {
+	ViewControllerBase(w, r, 0)
+}
+
+// ViewControllerMitKarte controller vor view with Karte
+func ViewControllerMitKarte(w http.ResponseWriter, r *http.Request) {
+	if index, err := strconv.Atoi(mux.Vars(r)["karte"]); err != nil {
+		http.Error(w, http.StatusText(http.StatusBadRequest), http.StatusBadRequest)
+	} else {
+		ViewControllerBase(w, r, index)
+	}
+}
+
+// ViewControllerBase base controller vor view
+func ViewControllerBase(w http.ResponseWriter, r *http.Request, index int) {
 	defer recoverInternalError()
 
 	type Headline struct {
@@ -46,7 +59,6 @@ func ViewController(w http.ResponseWriter, r *http.Request) {
 		data     Data
 		kastenid = mux.Vars(r)["kastenid"]
 		userid   string
-		index    int
 	)
 
 	if IstEingeloggt(w, r) {
@@ -61,20 +73,6 @@ func ViewController(w http.ResponseWriter, r *http.Request) {
 		}
 		internalError(err, w)
 	}
-
-	if tmp, ok := mux.Vars(r)["karte"]; ok {
-		if index, err = strconv.Atoi(tmp); err != nil {
-			http.Error(w, http.StatusText(http.StatusBadRequest), http.StatusBadRequest)
-			return
-		}
-		if index < 0 || index >= kasten.AnzahlKarten() {
-			http.Error(w, http.StatusText(http.StatusBadRequest), http.StatusBadRequest)
-			return
-		}
-	} else {
-		index = 0
-	}
-	fmt.Println(index)
 
 	data = Data{
 		Headline: Headline{
@@ -96,6 +94,11 @@ func ViewController(w http.ResponseWriter, r *http.Request) {
 	}
 
 	if kasten.AnzahlKarten() > 0 {
+
+		if index < 0 || index >= kasten.AnzahlKarten() {
+			http.Error(w, http.StatusText(http.StatusBadRequest), http.StatusBadRequest)
+			return
+		}
 
 		karte := kasten.Karten[index]
 		data.Titel = karte.Titel

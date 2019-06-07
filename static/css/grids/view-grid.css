@@ -21,9 +21,9 @@
     grid-template-columns: repeat(4, 1fr);
     grid-template-rows: 4rem 3.5rem auto;
     grid-template-areas:
-        "d d d d d"
-        "h h h h h"
-        "c b b b b";
+        "d d d d"
+        "h h h h"
+        "c b b b";
 }
 
 #headline {

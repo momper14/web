@@ -81,7 +81,7 @@ func ProfilControllerPut(w http.ResponseWriter, r *http.Request) {
 		update  model.UpdateProfil
 	)
 
-	if err := decoder.Decode(&update); err != nil {
+	if err = decoder.Decode(&update); err != nil {
 		http.Error(w, http.StatusText(http.StatusBadRequest), http.StatusBadRequest)
 		panic(err)
 	}

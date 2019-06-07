@@ -27,4 +27,13 @@ type (
 		Index    int  `json:"Index"`
 		Ergebnis bool `json:"Ergebnis"`
 	}
+
+	// Karteikasten body of edit post/put
+	Karteikasten struct {
+		Kategorie      string `json:"Kategorie"`
+		Unterkategorie string `json:"Unterkategorie"`
+		Titel          string `json:"Titel"`
+		Beschreibung   string `json:"Beschreibung"`
+		Public         bool   `json:"Public"`
+	}
 )

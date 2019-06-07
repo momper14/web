@@ -19,7 +19,7 @@
 
     <style>
         #edit-button-next,
-        #form {
+        #form-edit {
             margin-top: 3vh;
         }
 
@@ -34,7 +34,8 @@
 
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
     <script type="text/javascript" src="/static/scripts/sha512.min.js"></script>
-    <script type="text/javascript" src="scripts/script.js"></script>
+    <script type="text/javascript" src="/static/scripts/script.js"></script>
+    <script type="text/javascript" src="/static/scripts/edit.js"></script>
 
     <script>
         $(document).ready(function () {
@@ -67,7 +68,7 @@
 
                     <h2 class="subtitle" style="padding-left: 0.5vw;"><strong>Allgemeine Daten</strong></h2>
 
-                    <form id="form">
+                    <form id="form-edit" name="form-edit">
                         <div class="field is-horizontal">
                             <div class="field-label center-vertical">
                                 <label class="label">Titel</label>
@@ -76,7 +77,8 @@
                                 <div class="field">
                                     <p class="control is-expanded">
                                         <input id="edit-input-title" class="input placeholder-is-dark" type="text"
-                                            placeholder="Titel" required="required" />
+                                            name="Titel" placeholder="Titel" required="required" value="{{ .Titel }}" 
+                                        />
                                     </p>
                                 </div>
                             </div>
@@ -90,19 +92,33 @@
                                 <label class="label">Kategorie</label>
                             </div>
                             <div class="field-body has-trail select is-inline-grid">
-                                <select>
-                                    {{ range .Kategorien }}
-                                    <optgroup label="{{ .Name }}">
-                                        {{ range .Sub }}
-                                        <option value="{{ . }}">{{ . }}</option>
+                                <select id="edit-optgroup-kat">
+
+                                    {{ if and .IstKategorie .IstSubKategorie}}
+                                        {{ range .Kategorien }}
+                                        {{ $Kat := .Name}}
+                                        <optgroup label="{{ .Name }}">
+                                            {{ range .Sub }}
+                                            <option value="{{ . }}"
+                                                {{ if and (eq $.IstKategorie $Kat) (eq $.IstSubKategorie .) }}
+                                                selected="selected" {{ end }}>{{ . }}</option>
+                                            {{ end }}
+                                        </optgroup>
                                         {{ end }}
-                                    </optgroup>
+                                    {{ else }}
+                                        {{ range .Kategorien }}
+                                        <optgroup label="{{ .Name }}">
+                                            {{ range .Sub }}
+                                            <option value="{{ . }}">{{ . }}</option>
+                                            {{ end }}
+                                        </optgroup>
+                                        {{ end }}
                                     {{ end }}
 
                                 </select>
                             </div>
                             <p id="edit-input-kategorie-help"
-                                class="help text-red-light field-label is-trail center-vertical">
+                                class="help text-red-light field-label is-trail center-vertical is-invisible">
                             </p>
                         </div>
 
@@ -113,8 +129,9 @@
                             <div class="field-body has-trail">
                                 <div class="field">
                                     <p id="edit-input-beschreibung" class="control is-expanded">
-                                        <textarea class="textarea placeholder-is-dark" type="password"
-                                            placeholder="Beschreibung" required="required"></textarea>
+                                        <textarea class="textarea placeholder-is-dark"
+                                            placeholder="Beschreibung" name="Beschreibung"
+                                            required="required">{{ .Beschreibung }}</textarea>
                                     </p>
                                 </div>
                             </div>
@@ -130,11 +147,13 @@
                                 <div class="field" style="margin-left: 1vw;">
                                     <div class="control">
                                         <label class="radio">
-                                            <input type="radio" name="Sichtbarkeit" value="Öffentlich" />
+                                            <input type="radio" name="Sichtbarkeit" value="true" {{ if .Public }}
+                                                checked="checked" {{ end }} />
                                             Öffentlich
                                         </label>
                                         <label class="radio" style="margin-left: 2vw;">
-                                            <input type="radio" name="Sichtbarkeit" value="Privat" checked="checked" />
+                                            <input type="radio" name="Sichtbarkeit" value="false" {{ if not .Public }}
+                                                checked="checked" {{ end }} />
                                             Privat
                                         </label>
                                     </div>
@@ -150,7 +169,7 @@
                             <div class="field-body has-trail">
                                 <div class="field">
                                     <div id="edit-button-next" class="control center">
-                                        <button class="button background-yellow-dark text-light" type="submit">
+                                        <button id="edit-button-save" class="button background-yellow-dark text-light" type="submit">
                                             <strong>Speichern und weiter</strong>
                                         </button>
                                     </div>

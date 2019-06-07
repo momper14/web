@@ -106,9 +106,11 @@
                         <p><strong>{{ .Fortschritt }} %</strong></p>
                     </div>
                     <div id="bearbeiten" class="control headline-item">
-                        <button class="button background-green-light text-light" type="submit">
-                            <strong>Bearbeiten</strong>
-                        </button>
+                        <a href="/karteikasten/edit/{{ .KastenID }}">
+                            <button class="button background-green-light text-light" type="submit">
+                                <strong>Bearbeiten</strong>
+                            </button>
+                        </a>
                     </div>
                     <div class="headline-item">
                         <div id="hexagon" class="hexagon">

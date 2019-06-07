@@ -60,13 +60,14 @@
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
     <script type="text/javascript" src="/static/scripts/sha512.min.js"></script>
     <script type="text/javascript" src="/static/scripts/script.js"></script>
+    <script type="text/javascript" src="/static/scripts/meinekarteien.js"></script>
 
 </head>
 
 <body>
     <nav id="placeholder-navbar" class="navbar background-green-light">{{ template "navbar" .Navbar }}</nav>
 
-    <div class="columns is-fullheight">
+    <div class="columns is-fullheight" style="margin-bottom: 0px">
 
         <aside id="placeholder-sidemenu"
             class="menu column is-narrow is-sidebar-menu is-hidden-touch background-blue-dark no-padding">
@@ -163,14 +164,20 @@
                                             <strong>Lernen</strong>
                                         </button>
                                     </form>
-                                    <button class="button background-green-light text-light button-bearbeiten">
-                                        <strong>Bearbeiten</strong>
-                                    </button>
-                                    <button class="button background-red-light text-light button-loeschen">
-                                        <span class="icon is-small text-light">
-                                            <i class="fas fa-trash-alt"></i>
-                                        </span>
-                                    </button>
+                                    <form action="/karteikasten/edit/{{ .ID }}"
+                                        class="button-bearbeiten is-inline-grid">
+                                        <button class="button background-green-light text-light" type="submit">
+                                            <strong>Bearbeiten</strong>
+                                        </button>
+                                    </form>
+                                    <form action="/karteikasten/{{ .ID }}" class="button-loeschen is-inline-grid"
+                                        method="REMOVE">
+                                        <button class="button background-red-light text-light" type="submit">
+                                            <span class="icon is-small text-light">
+                                                <i class="fas fa-trash-alt"></i>
+                                            </span>
+                                        </button>
+                                    </form>
                                 </div>
                             </div>
                         </article>
@@ -224,11 +231,14 @@
                                             <strong>Lernen</strong>
                                         </button>
                                     </form>
-                                    <button class="button background-red-light text-light button-loeschen">
-                                        <span class="icon is-small text-light">
-                                            <i class="fas fa-trash-alt"></i>
-                                        </span>
-                                    </button>
+                                    <form action="/karteikasten/{{ .ID }}" class="button-loeschen is-inline-grid"
+                                        method="REMOVE">
+                                        <button class="button background-red-light text-light" type="submit">
+                                            <span class="icon is-small text-light">
+                                                <i class="fas fa-trash-alt"></i>
+                                            </span>
+                                        </button>
+                                    </form>
                                 </div>
                             </div>
                         </article>
@@ -241,6 +251,25 @@
             </section>
         </main>
 
+    </div>
+
+    <div id="meine-modal" class="modal is-clipped">
+        <div class="modal-background"></div>
+        <div class="modal-content background-withe">
+            <div style="margin: 1rem;">
+                <p class="subtitle"><strong>Löschen</strong></p>
+                <p>Bist du dir sicher, dass du den Karteikasten löschen möchtest?</p>
+                <div class="buttons center" style="margin-top: 2rem;">
+                    <button id="meine-modal-button-keep"
+                        class="button background-green-light text-light button-bearbeiten">
+                        <strong>Kasten behalten</strong>
+                    </button>
+                    <button id="meine-modal-button-delete" class="button background-red-light text-light">
+                        <strong>Kasten löschen</strong>
+                    </button>
+                </div>
+            </div>
+        </div>
     </div>
 
 </body>

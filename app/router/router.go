@@ -19,7 +19,7 @@ func GetRouter() *mux.Router {
 
 	router.HandleFunc(url.LogoutPath, controller.LogoutController).Methods("POST")
 
-	router.HandleFunc(url.ViewPath, controller.ViewController).Methods("GET").Queries("karte", "{karte}")
+	router.HandleFunc(url.ViewPath, controller.ViewControllerMitKarte).Methods("GET").Queries("karte", "{karte}")
 	router.HandleFunc(url.ViewPath, controller.ViewController).Methods("GET")
 
 	router.HandleFunc(fmt.Sprintf("%s/email/{email}", url.ProfilPath), controller.ProfilControllerCheckEMail).Methods("POST")
@@ -39,9 +39,14 @@ func GetRouter() *mux.Router {
 	router.HandleFunc(url.LernPath, controller.LernController).Methods("GET")
 
 	router.HandleFunc(url.KarteikastenPath, controller.KarteikastenController).Methods("GET")
+	router.HandleFunc(fmt.Sprintf("%s/%s", url.KarteikastenPath, "{kastenid}"), controller.KarteikastenControllerRemove).Methods("REMOVE")
 
 	router.HandleFunc(url.Edit2Path, controller.Edit2Controller).Methods("GET")
-	router.HandleFunc(url.EditPath, controller.EditController).Methods("GET")
+
+	router.HandleFunc(url.EditPath, controller.EditControllerPost).Methods("POST")
+	router.HandleFunc(fmt.Sprintf("%s/%s", url.EditPath, "{kastenid}"), controller.EditControllerPut).Methods("PUT")
+	router.HandleFunc(fmt.Sprintf("%s/%s", url.EditPath, "{kastenid}"), controller.EditControllerBearbeiten).Methods("GET")
+	router.HandleFunc(url.EditPath, controller.EditControllerNeu).Methods("GET")
 
 	router.HandleFunc(url.HomePath, controller.IndexController).Methods("GET")
 	return router

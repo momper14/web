@@ -8,7 +8,7 @@ const (
 	// EditPath URL path to edit site
 	EditPath = "/karteikasten/edit"
 	// Edit2Path URL path to edit-2 site (will be removed)
-	Edit2Path = "/karteikasten/edit-2"
+	Edit2Path = "/karteikasten/edit-2/{kastenid}"
 	// KarteikastenPath URL path to karteikasten site
 	KarteikastenPath = "/karteikasten"
 	// LernPath URL path to lern site

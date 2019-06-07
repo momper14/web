@@ -1,13 +1,57 @@
 package controller
 
 import (
+	"fmt"
 	"html/template"
 	"net/http"
 
 	"github.com/Momper14/web/templates"
 	"github.com/Momper14/weblib/client/karteikaesten"
 	"github.com/Momper14/weblib/client/kategorien"
+	"github.com/Momper14/weblib/client/lernen"
+	"github.com/gorilla/mux"
 )
+
+// KarteikastenControllerRemove controller for karteikasten remove
+func KarteikastenControllerRemove(w http.ResponseWriter, r *http.Request) {
+	defer recoverInternalError()
+
+	if !IstEingeloggt(w, r) {
+		forbidden(w)
+		return
+	}
+
+	var (
+		user     = GetUser(w, r)
+		kaesten  = karteikaesten.New()
+		kastenid = mux.Vars(r)["kastenid"]
+		kasten   karteikaesten.Karteikasten
+		err      error
+	)
+
+	if kasten, err = kaesten.KastenByID(kastenid); err != nil {
+		internalError(err, w)
+	}
+
+	if kasten.Autor == user {
+		if err = kaesten.KastenLoeschen(kastenid); err != nil {
+			internalError(err, w)
+		}
+	} else {
+		lernen := lernen.New()
+		lerne, err := lernen.LerneByUserAndKasten(user, kastenid)
+		if err != nil {
+			internalError(err, w)
+		}
+
+		if err := lernen.LoescheLerne(lerne.ID); err != nil {
+			internalError(err, w)
+		}
+	}
+
+	w.WriteHeader(http.StatusOK)
+	fmt.Fprintln(w, "OK")
+}
 
 // KarteikastenController controller for karteikasten
 func KarteikastenController(w http.ResponseWriter, r *http.Request) {

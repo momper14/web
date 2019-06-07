@@ -64,7 +64,12 @@ func LernController(w http.ResponseWriter, r *http.Request) {
 	index, karte, err := kasten.Zufallskarte(userid)
 	if err != nil {
 		if _, ok := err.(client.ForbiddenError); ok {
-			http.Error(w, http.StatusText(http.StatusForbidden), http.StatusForbidden)
+			forbidden(w)
+			return
+		}
+
+		if _, ok := err.(client.NotFoundError); ok {
+			http.Error(w, "Keine karte vorhanden", http.StatusNotFound)
 			return
 		}
 

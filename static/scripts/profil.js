@@ -1,4 +1,3 @@
-
 $(document).ready(function () {
     $('#profil-button-delete').click(function () {
         $('#modal').toggleClass("is-active", true);
@@ -29,8 +28,8 @@ function validateEmail() {
             $("#edit-mail-help").toggleClass("is-invisible", true);
             $("#profil-input-email-icon-right").toggleClass("is-hidden", false);
         },
-        error: function (event, _, msg) {
-            if (event.status == 409) {
+        error: function (xhr, _, msg) {
+            if (xhr.status == 409) {
                 $("#edit-mail-help").toggleClass("is-invisible", false);
                 $("#profil-input-email-icon-right").toggleClass("is-hidden", true);
             } else {
@@ -54,8 +53,8 @@ function validatePassword() {
                 $("#edit-oldpw-help").toggleClass("is-invisible", false);
                 $("#profil-input-passwort-icon-right").toggleClass("is-hidden", true);
             },
-            error: function (event, _, msg) {
-                if (event.status == 409) {
+            error: function (xhr, _, msg) {
+                if (xhr.status == 409) {
                     $("#edit-oldpw-help").toggleClass("is-invisible", true);
                     $("#profil-input-passwort-icon-right").toggleClass("is-hidden", false);
                 } else {
@@ -82,8 +81,8 @@ function validatePasswordNeu() {
                 $("#edit-newpw-help").toggleClass("is-invisible", true);
                 $("#profil-input-neu-icon-right").toggleClass("is-hidden", false);
             },
-            error: function (event, _, msg) {
-                if (event.status == 409) {
+            error: function (xhr, _, msg) {
+                if (xhr.status == 409) {
                     $("#edit-newpw-help").toggleClass("is-invisible", false);
                     $("#profil-input-neu-icon-right").toggleClass("is-hidden", true);
                 } else {
@@ -154,10 +153,10 @@ function updateProfil() {
         success: function () {
             window.location.href = "/profil";
         },
-        error: function (event, _, msg) {
-            if (event.status == 401) {
+        error: function (xhr, _, msg) {
+            if (xhr.status == 401) {
                 alert("Altes Passwort falsch!");
-            } else if (event.status == 409) {
+            } else if (xhr.status == 409) {
                 alert("Fehlerhafte Eingaben!");
             } else {
                 alert(msg);

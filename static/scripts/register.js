@@ -26,8 +26,8 @@ function validateName() {
             $("#register-input-username-help").toggleClass("is-invisible", true);
             $("#register-input-username-icon-right").toggleClass("is-hidden", false);
         },
-        error: function (event, _, msg) {
-            if (event.status == 409) {
+        error: function (xhr, _, msg) {
+            if (xhr.status == 409) {
                 $("#register-input-username-help").toggleClass("is-invisible", false);
                 $("#register-input-username-icon-right").toggleClass("is-hidden", true);
             } else {
@@ -52,8 +52,8 @@ function validateEmail() {
             $("#register-input-email-help").toggleClass("is-invisible", true);
             $("#register-input-email-icon-right").toggleClass("is-hidden", false);
         },
-        error: function (event, _, msg) {
-            if (event.status == 409) {
+        error: function (xhr, _, msg) {
+            if (xhr.status == 409) {
                 $("#register-input-email-help").toggleClass("is-invisible", false);
                 $("#register-input-email-icon-right").toggleClass("is-hidden", true);
             } else {
@@ -109,8 +109,8 @@ function register(){
         success: function () {
             window.location.href = "/meinekarteien";
         },
-        error: function (event, _, msg) {
-            if (event.status == 409) {
+        error: function (xhr, _, msg) {
+            if (xhr.status == 409) {
                 alert("Fehlerhafte Eingaben!");
             } else {
                 alert(msg);

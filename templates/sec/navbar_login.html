@@ -28,9 +28,11 @@
 
     <div class="navbar-end">
         <div class="navbar-item">
-            <button class="button is-small background-yellow-dark no-border text-light">
-                <strong>Neue Kartei</strong>
-            </button>
+            <form action="/karteikasten/edit">
+                <button class="button is-small background-yellow-dark no-border text-light" type="submit">
+                    <strong>Neue Kartei</strong>
+                </button>
+            </form>
         </div>
         <div class="navbar-item">
             <ul style="line-height: 1.1;">
@@ -40,8 +42,7 @@
             </ul>
         </div>
         <figure class="image" style="padding: 0px; display: flex; align-items: center;">
-            <img src="{{ .Bild }}" class="is-rounded background-blue-light"
-                style="height: 44px; width: 44px;" />
+            <img src="{{ .Bild }}" class="is-rounded background-blue-light" style="height: 44px; width: 44px;" />
         </figure>
     </div>
 </div>
