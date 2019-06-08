@@ -2,7 +2,6 @@ package controller
 
 import (
 	"encoding/json"
-	"fmt"
 	"html/template"
 	"net/http"
 
@@ -161,6 +160,5 @@ func LernControllerPost(w http.ResponseWriter, r *http.Request) {
 		internalError(err, w)
 	}
 
-	w.WriteHeader(http.StatusOK)
-	fmt.Fprintln(w, "Ok")
+	ok(w)
 }

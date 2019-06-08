@@ -36,4 +36,11 @@ type (
 		Beschreibung   string `json:"Beschreibung"`
 		Public         bool   `json:"Public"`
 	}
+
+	// Karteikarte body of edit2 post/put
+	Karteikarte struct {
+		Titel   string `json:"Titel"`
+		Frage   string `json:"Frage"`
+		Antwort string `json:"Antwort"`
+	}
 )

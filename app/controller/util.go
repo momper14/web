@@ -95,3 +95,8 @@ func recoverInternalError() {
 func forbidden(w http.ResponseWriter) {
 	http.Error(w, http.StatusText(http.StatusForbidden), http.StatusForbidden)
 }
+
+func ok(w http.ResponseWriter) {
+	w.WriteHeader(http.StatusOK)
+	fmt.Fprintln(w, "OK")
+}

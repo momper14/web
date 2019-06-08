@@ -80,8 +80,7 @@ func RegisterControllerPost(w http.ResponseWriter, r *http.Request) {
 	session.Values["user"] = registrierung.Name
 	session.Save(r, w)
 
-	w.WriteHeader(http.StatusOK)
-	fmt.Fprintln(w, "Logged in")
+	ok(w)
 }
 
 // RegisterControllerCheckName controller for checking Name
@@ -101,8 +100,7 @@ func RegisterControllerCheckName(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	w.WriteHeader(http.StatusOK)
-	fmt.Fprintln(w, "ok")
+	ok(w)
 }
 
 // RegisterControllerCheckEMail controller for checking Name
@@ -122,6 +120,5 @@ func RegisterControllerCheckEMail(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	w.WriteHeader(http.StatusOK)
-	fmt.Fprintln(w, "ok")
+	ok(w)
 }

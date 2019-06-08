@@ -63,8 +63,8 @@ func LoginController(w http.ResponseWriter, r *http.Request) {
 		session.Values["authenticated"] = true
 		session.Values["user"] = login.User
 		session.Save(r, w)
-		w.WriteHeader(http.StatusOK)
-		fmt.Fprintln(w, "Logged in")
+
+		ok(w)
 	} else {
 		w.WriteHeader(http.StatusAlreadyReported)
 		fmt.Fprintln(w, "already logged in")
@@ -81,6 +81,7 @@ func LogoutController(w http.ResponseWriter, r *http.Request) {
 		delete(session.Values, "authenticated")
 		delete(session.Values, "user")
 		session.Save(r, w)
+
 		w.WriteHeader(http.StatusOK)
 		fmt.Fprintln(w, "Logged out")
 		return

@@ -10,15 +10,11 @@ function loeschen() {
     let url = $(this).attr("action");
 
     function remove(url) {
-        console.log("test");
-        console.log(url);
         $.ajax({
-            type: "REMOVE",
+            type: "DELETE",
             url: url,
             success: function () { location.reload(); },
-            error: function (xhr, _, msg) {
-                alert(xhr.status + "\n\n" + msg);
-            }
+            error: defaultErrorHandling
         });
     }
 

@@ -62,6 +62,10 @@ func EditControllerPut(w http.ResponseWriter, r *http.Request) {
 	}
 
 	if kasten, err = kaesten.KastenByID(kastenid); err != nil {
+		if _, ok := err.(client.NotFoundError); ok {
+			http.Error(w, http.StatusText(http.StatusNotFound), http.StatusNotFound)
+			return
+		}
 		internalError(err, w)
 	}
 
@@ -85,8 +89,7 @@ func EditControllerPut(w http.ResponseWriter, r *http.Request) {
 		}
 	}
 
-	w.WriteHeader(http.StatusOK)
-	fmt.Fprintln(w, "OK")
+	ok(w)
 }
 
 // EditControllerPost controller 1 for edit post
@@ -154,6 +157,10 @@ func EditControllerBearbeiten(w http.ResponseWriter, r *http.Request) {
 
 	kasten, err := karteikaesten.New().KastenByID(kastenid)
 	if err != nil {
+		if _, ok := err.(client.NotFoundError); ok {
+			http.Error(w, http.StatusText(http.StatusNotFound), http.StatusNotFound)
+			return
+		}
 		internalError(err, w)
 	}
 
@@ -204,65 +211,4 @@ func EditControllerBase(w http.ResponseWriter, r *http.Request, data Edit) {
 	}
 
 	customExecuteTemplate(w, r, templates.Edit, data)
-}
-
-// Edit2Controller controller 2 for edit
-func Edit2Controller(w http.ResponseWriter, r *http.Request) {
-	defer recoverInternalError()
-
-	type (
-		Karte struct {
-			Nr    int
-			Titel string
-		}
-
-		Edit2 struct {
-			Name        string
-			Kategorie   string
-			SubKat      string
-			Fortschritt int
-			Anzahl      int
-			Karten      []Karte
-			KastenID    string
-		}
-	)
-
-	if !IstEingeloggt(w, r) {
-		forbidden(w)
-		return
-	}
-
-	var (
-		err      error
-		user     = GetUser(w, r)
-		kastenid = mux.Vars(r)["kastenid"]
-		data     Edit2
-	)
-
-	kasten, err := karteikaesten.New().KastenByID(kastenid)
-	if err != nil {
-		internalError(err, w)
-	}
-
-	data = Edit2{
-		Name:      kasten.Name,
-		Kategorie: kasten.Kategorie,
-		SubKat:    kasten.Unterkategorie,
-		Anzahl:    kasten.AnzahlKarten(),
-		Karten:    []Karte{},
-		KastenID:  kastenid,
-	}
-
-	if data.Fortschritt, err = kasten.Fortschritt(user); err != nil {
-		internalError(err, w)
-	}
-
-	for nr, karte := range kasten.Karten {
-		data.Karten = append(data.Karten, Karte{
-			Nr:    nr + 1,
-			Titel: karte.Titel,
-		})
-	}
-
-	customExecuteTemplate(w, r, templates.Edit2, data)
 }

@@ -159,7 +159,7 @@ function updateProfil() {
             } else if (xhr.status == 409) {
                 alert("Fehlerhafte Eingaben!");
             } else {
-                alert(msg);
+                defaultErrorHandling(xhr, _, msg);
             }
         },
         contentType: "application/json"
@@ -173,8 +173,8 @@ function deleteProfile() {
         success: function () {
             window.location.href = "/";
         },
-        error: function (_, _, msg) {
-            alert(msg);
+        error: function (xhr, _, msg) {
+            defaultErrorHandling(xhr, _, msg);
             window.location.href = "/profil";
         },
         contentType: "application/json"

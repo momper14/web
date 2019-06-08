@@ -24,9 +24,7 @@ function create() {
             success: function (xhr) {
                 window.location.href = "/karteikasten/edit-2/" + xhr;
             },
-            error: function (event, _, msg) {
-                alert(event.status + "\n\n" + msg);
-            },
+            error: defaultErrorHandling,
             contentType: "application/json"
         });
     } else {
@@ -36,9 +34,7 @@ function create() {
             success: function () {
                 window.location.href = "/karteikasten/edit-2/" + last;
             },
-            error: function (xhr, _, msg) {
-                alert(xhr.status + "\n\n" + msg);
-            },
+            error: defaultErrorHandling,
             contentType: "application/json"
         });
     }

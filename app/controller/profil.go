@@ -135,8 +135,7 @@ func ProfilControllerPut(w http.ResponseWriter, r *http.Request) {
 		internalError(err, w)
 	}
 
-	w.WriteHeader(http.StatusOK)
-	fmt.Fprintln(w, "ok")
+	ok(w)
 }
 
 // ProfilControllerDelete controller for profile delete
@@ -164,8 +163,7 @@ func ProfilControllerDelete(w http.ResponseWriter, r *http.Request) {
 	delete(session.Values, "user")
 	session.Save(r, w)
 
-	w.WriteHeader(http.StatusOK)
-	fmt.Fprintln(w, "Profil gelöscht")
+	ok(w)
 }
 
 // ProfilControllerCheckPasswort controller for checking Name
@@ -195,8 +193,7 @@ func ProfilControllerCheckPasswort(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	w.WriteHeader(http.StatusOK)
-	fmt.Fprintln(w, "ok")
+	ok(w)
 }
 
 // ProfilControllerCheckEMail controller for checking Name
@@ -216,6 +213,5 @@ func ProfilControllerCheckEMail(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	w.WriteHeader(http.StatusOK)
-	fmt.Fprintln(w, "ok")
+	ok(w)
 }

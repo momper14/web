@@ -31,7 +31,7 @@ function validateName() {
                 $("#register-input-username-help").toggleClass("is-invisible", false);
                 $("#register-input-username-icon-right").toggleClass("is-hidden", true);
             } else {
-                alert(msg);
+                defaultErrorHandling(xhr, _, msg);
             }
         }
     });
@@ -57,7 +57,7 @@ function validateEmail() {
                 $("#register-input-email-help").toggleClass("is-invisible", false);
                 $("#register-input-email-icon-right").toggleClass("is-hidden", true);
             } else {
-                alert(msg);
+                defaultErrorHandling(xhr, _, msg);
             }
         }
     });
@@ -86,11 +86,11 @@ function validatePassword() {
     }
 }
 
-function register(){
+function register() {
     validateName();
     validateEmail();
 
-    if (!validatePassword()){
+    if (!validatePassword()) {
         return false;
     }
 
@@ -113,7 +113,7 @@ function register(){
             if (xhr.status == 409) {
                 alert("Fehlerhafte Eingaben!");
             } else {
-                alert(msg);
+                defaultErrorHandling(xhr, _, msg);
             }
         },
         contentType: "application/json"

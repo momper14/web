@@ -38,14 +38,18 @@ func GetRouter() *mux.Router {
 	router.HandleFunc(url.LernPath, controller.LernControllerPost).Methods("POST")
 	router.HandleFunc(url.LernPath, controller.LernController).Methods("GET")
 
+	router.HandleFunc(fmt.Sprintf("%s/%s", url.KarteikastenPath, "{kastenid}"), controller.KarteikastenControllerDelete).Methods("DELETE")
 	router.HandleFunc(url.KarteikastenPath, controller.KarteikastenController).Methods("GET")
-	router.HandleFunc(fmt.Sprintf("%s/%s", url.KarteikastenPath, "{kastenid}"), controller.KarteikastenControllerRemove).Methods("REMOVE")
 
+	router.HandleFunc(fmt.Sprintf("%s/{karte}", url.Edit2Path), controller.Edit2ControllerDelete).Methods("DELETE")
+	router.HandleFunc(fmt.Sprintf("%s/{karte}", url.Edit2Path), controller.Edit2ControllerMitKarte).Methods("GET")
+	router.HandleFunc(fmt.Sprintf("%s/{karte}", url.Edit2Path), controller.Edit2ControllerPut).Methods("PUT")
 	router.HandleFunc(url.Edit2Path, controller.Edit2Controller).Methods("GET")
+	router.HandleFunc(url.Edit2Path, controller.Edit2ControllerPost).Methods("POST")
 
-	router.HandleFunc(url.EditPath, controller.EditControllerPost).Methods("POST")
 	router.HandleFunc(fmt.Sprintf("%s/%s", url.EditPath, "{kastenid}"), controller.EditControllerPut).Methods("PUT")
 	router.HandleFunc(fmt.Sprintf("%s/%s", url.EditPath, "{kastenid}"), controller.EditControllerBearbeiten).Methods("GET")
+	router.HandleFunc(url.EditPath, controller.EditControllerPost).Methods("POST")
 	router.HandleFunc(url.EditPath, controller.EditControllerNeu).Methods("GET")
 
 	router.HandleFunc(url.HomePath, controller.IndexController).Methods("GET")

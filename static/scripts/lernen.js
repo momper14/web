@@ -26,9 +26,7 @@ function sendeErgebnis(ergebnis) {
         type: "POST",
         data: JSON.stringify(data),
         success: function () { location.reload(); },
-        error: function (xhr, _, msg) {
-            alert(xhr.status + "\n\n" + msg);
-        },
+        error: defaultErrorHandling,
         contentType: "application/json"
     });
 }

@@ -21,7 +21,7 @@
     <!-- <link rel="stylesheet" href="css/debug.css"> -->
 
     <style>
-        #form {
+        #edit2-form-edit {
             margin: 2rem 2rem 2rem 0px;
         }
 
@@ -42,21 +42,26 @@
         .textarea {
             height: 27vh;
         }
+
+        .button-loeschen {}
     </style>
 
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/simplemde/1.11.2/simplemde.min.js"></script>
+    <script type="text/javascript" src="https://unpkg.com/turndown/dist/turndown.js"></script>
     <script type="text/javascript" src="/static/scripts/sha512.min.js"></script>
     <script type="text/javascript" src="/static/scripts/script.js"></script>
+    <script type="text/javascript" src="/static/scripts/edit-2.js"></script>
 
     <script>
         $(document).ready(function () {
-            var fragemde = new SimpleMDE({
-                element: $('#edit-input-frage')[0]
-            });
-            var antwortmde = new SimpleMDE({
-                element: $('#edit-input-antwort')[0]
-            });
+            fragemde = new SimpleMDE({ element: $('#edit-input-frage')[0] });
+            antwortmde = new SimpleMDE({ element: $('#edit-input-antwort')[0] });
+
+            let turndownService = new TurndownService()
+
+            fragemde.value(turndownService.turndown("{{ .Frage }}"));
+            antwortmde.value(turndownService.turndown("{{ .Antwort }}"));
         })
     </script>
 
@@ -67,7 +72,7 @@
         <nav id="placeholder-navbar" class="navbar background-green-light">{{ template "navbar" .Navbar}}</nav>
     </header>
 
-    <div class="columns is-fullheight">
+    <div class="columns is-fullheight" style="margin-bottom: 0px;">
 
         <aside id="placeholder-sidemenu"
             class="menu column is-narrow is-sidebar-menu is-hidden-touch background-blue-dark no-padding">
@@ -87,62 +92,68 @@
                 <div id="headline" class="top-border-green-light background-withe">
                     <div id="name" class="headline-item">
                         <p class="headline-title">Name</p>
-                        <p><strong>{{ .Name }}</strong></p>
+                        <p><strong>{{ .Headline.Name }}</strong></p>
                     </div>
                     <div id=kategorie class="headline-item">
                         <p class="headline-title">Kategorie</p>
                         <p>
                             <strong>
-                                {{ .Kategorie }}
+                                {{ .Headline.Kategorie }}
                                 <span class="icon is-small">
                                     <i class="fas fa-caret-right"></i>
                                 </span>
-                                {{ .SubKat }}
+                                {{ .Headline.SubKat }}
                             </strong>
                         </p>
                     </div>
                     <div id="fortschritt" class="headline-item">
                         <p class="headline-title">Fortschritt</p>
-                        <p><strong>{{ .Fortschritt }} %</strong></p>
+                        <p><strong>{{ .Headline.Fortschritt }} %</strong></p>
                     </div>
                     <div id="bearbeiten" class="control headline-item">
-                        <a href="/karteikasten/edit/{{ .KastenID }}">
+                        <form action="/karteikasten/edit/{{ .KastenID }}">
                             <button class="button background-green-light text-light" type="submit">
                                 <strong>Bearbeiten</strong>
                             </button>
-                        </a>
+                        </form>
                     </div>
                     <div class="headline-item">
                         <div id="hexagon" class="hexagon">
                             <div class="count">
-                                <p>{{ .Anzahl }}</p>
+                                <p>{{ .Headline.Anzahl }}</p>
                                 <span>Karten</span>
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <div id="cards" class="has-overflow-y"> {{ range .Karten }}
+                <div id="cards" class="has-overflow-y">
 
+                    {{ range $i, $v := .Karten }}
                     <div class="notification background-withe top-border-green-light">
-                        <p># {{ .Nr }}</p>
-                        <strong id="placeholder-titel">{{ .Titel }}</strong>
+                        <p># {{ $v.Nr }}</p>
+                        <strong id="placeholder-titel">{{ $v.Titel }}</strong>
                         <div class="buttons">
-                            <button class="button flex-right background-green-light text-light">
-                                <strong>Bearbeiten</strong>
-                            </button>
-                            <button class="button background-red-light">
-                                <span class="icon is-small text-light">
-                                    <i class="fas fa-trash-alt"></i>
-                                </span>
-                            </button>
+                            <form class="flex-right" action="/karteikasten/edit-2/{{ $.KastenID }}/{{ $i }}">
+                                <button class="button background-green-light text-light" type="submit">
+                                    <strong>Bearbeiten</strong>
+                                </button>
+                            </form>
+                            <form action="/karteikasten/edit-2/{{ $.KastenID }}/{{ $i }}" class="button-loeschen">
+                                <button class="button background-red-light" type="submit">
+                                    <span class="icon is-small text-light">
+                                        <i class="fas fa-trash-alt"></i>
+                                    </span>
+                                </button>
+                            </form>
                         </div>
                     </div>
                     {{ end }}
+
                 </div>
 
                 <div id="build" class="top-border-green-light background-withe ">
-                    <form id="form">
+                    <form id="edit2-form-edit">
 
                         <div class="field is-horizontal">
                             <div class="field-label center-vertical">
@@ -151,8 +162,8 @@
                             <div class="field-body">
                                 <div class="field">
                                     <p class="control is-expanded">
-                                        <input id="edit-input-title" class="input placeholder-is-dark" type="text"
-                                            placeholder="Titel" required="required" />
+                                        <input id="edit2-input-title" class="input placeholder-is-dark" type="text"
+                                            placeholder="Titel" value="{{ .Titel }}" required="required" />
                                     </p>
                                 </div>
                             </div>
@@ -195,7 +206,9 @@
                                             <button class="button background-yellow-dark text-light" type="submit">
                                                 <strong>Speichern</strong>
                                             </button>
-                                            <button class="button background-red-light text-light" type="submit">
+                                            <button id="edit2-button-cancel"
+                                                class="button background-red-light text-light" type="button"
+                                                value="/karteikasten/edit-2/{{ .KastenID }}">
                                                 <strong>Abbrechen</strong>
                                             </button>
                                         </div>
@@ -211,6 +224,25 @@
 
         </main>
 
+    </div>
+
+    <div id="edit2-modal" class="modal is-clipped">
+        <div class="modal-background"></div>
+        <div class="modal-content background-withe">
+            <div style="margin: 1rem;">
+                <p class="subtitle"><strong>Löschen</strong></p>
+                <p>Bist du dir sicher, dass du die Karteikarte löschen möchtest?</p>
+                <div class="buttons center" style="margin-top: 2rem;">
+                    <button id="edit2-modal-button-keep"
+                        class="button background-green-light text-light button-bearbeiten">
+                        <strong>Karte behalten</strong>
+                    </button>
+                    <button id="edit2-modal-button-delete" class="button background-red-light text-light">
+                        <strong>Karte löschen</strong>
+                    </button>
+                </div>
+            </div>
+        </div>
     </div>
 
 </body>

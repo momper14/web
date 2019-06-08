@@ -1,7 +1,6 @@
 package controller
 
 import (
-	"fmt"
 	"html/template"
 	"net/http"
 
@@ -12,8 +11,8 @@ import (
 	"github.com/gorilla/mux"
 )
 
-// KarteikastenControllerRemove controller for karteikasten remove
-func KarteikastenControllerRemove(w http.ResponseWriter, r *http.Request) {
+// KarteikastenControllerDelete controller for karteikasten delete
+func KarteikastenControllerDelete(w http.ResponseWriter, r *http.Request) {
 	defer recoverInternalError()
 
 	if !IstEingeloggt(w, r) {
@@ -49,8 +48,7 @@ func KarteikastenControllerRemove(w http.ResponseWriter, r *http.Request) {
 		}
 	}
 
-	w.WriteHeader(http.StatusOK)
-	fmt.Fprintln(w, "OK")
+	ok(w)
 }
 
 // KarteikastenController controller for karteikasten
