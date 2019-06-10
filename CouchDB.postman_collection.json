@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "236effc1-8f4e-48f6-bdb6-b445efb682e3",
+		"_postman_id": "89831f30-dd7e-4729-a0f7-f9b8a24161b2",
 		"name": "CouchDB",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -988,7 +988,7 @@
 								],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n    \"_id\": \"_design/util\",\n    \"views\": {\n        \"all_docs\": {\n            \"map\": \"function (doc) {\\n  emit(doc._id, doc._rev);\\n}\",\n            \"reduce\": \"_count\"\n        }\n    },\n    \"language\": \"javascript\"\n}"
+									"raw": "{\n    \"_id\": \"_design/util\",\n    \"views\": {\n        \"all_docs\": {\n            \"map\": \"function (doc) {\\n  emit(doc._id, doc._rev);\\n}\",\n            \"reduce\": \"_count\"\n        },\n        \"nach-email\": {\n            \"reduce\": \"_count\",\n            \"map\": \"function (doc) {\\n  if (doc.Email)\\n  emit(doc.Email, doc._id);\\n}\"\n        }\n    },\n    \"language\": \"javascript\"\n}"
 								},
 								"url": {
 									"raw": "{{url}}/{{db}}",
@@ -1168,7 +1168,7 @@
 								],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n    \"_id\": \"_design/util\",\n    \"views\": {\n        \"all_docs\": {\n            \"map\": \"function (doc) {\\n  emit(doc._id, doc._rev);\\n}\",\n            \"reduce\": \"_count\"\n        }\n    },\n    \"language\": \"javascript\"\n}"
+									"raw": "{\n    \"_id\": \"_design/util\",\n    \"views\": {\n        \"all_docs\": {\n            \"map\": \"function (doc) {\\n  emit(doc._id, doc._rev);\\n}\",\n            \"reduce\": \"_count\"\n        },\n        \"nach-email\": {\n            \"reduce\": \"_count\",\n            \"map\": \"function (doc) {\\n  if (doc.Email)\\n  emit(doc.Email, doc._id);\\n}\"\n        }\n    },\n    \"language\": \"javascript\"\n}"
 								},
 								"url": {
 									"raw": "{{url}}/{{db}}",
@@ -1248,7 +1248,7 @@
 								],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n    \"_id\": \"_design/kasten\",\n    \"views\": {\n        \"gelernt-von\": {\n            \"reduce\": \"_count\",\n            \"map\": \"function (doc) {\\n  emit([doc.User, doc.Kasten], doc._rev);\\n}\"\n        }\n    },\n    \"language\": \"javascript\"\n}"
+									"raw": "{\n    \"_id\": \"_design/kasten\",\n    \"views\": {\n        \"gelernt-von\": {\n            \"reduce\": \"_count\",\n            \"map\": \"function (doc) {\\n  emit([doc.User, doc.Kasten], doc._rev);\\n}\"\n        },\n        \"nach-id\": {\n            \"reduce\": \"_count\",\n            \"map\": \"function (doc) {\\n  emit(doc.Kasten, doc._rev);\\n}\"\n        }\n    },\n    \"language\": \"javascript\"\n}"
 								},
 								"url": {
 									"raw": "{{url}}/{{db}}",
@@ -1569,31 +1569,31 @@
 	],
 	"variable": [
 		{
-			"id": "93c6f6bd-ae36-4361-a399-345c8fdbbd34",
+			"id": "531a3551-c20e-4233-b6aa-1cd8157b0536",
 			"key": "ip",
 			"value": "localhost",
 			"type": "string"
 		},
 		{
-			"id": "ced3557e-3d68-4d5f-ad42-c42f328a3677",
+			"id": "21f0c401-ca18-43c9-9945-8c65d6efff8f",
 			"key": "port",
 			"value": "5984",
 			"type": "string"
 		},
 		{
-			"id": "192b6419-42a2-48b7-88a6-3c0f9b5cd2d5",
+			"id": "59b80ab1-ac60-4906-ae83-65877370f96e",
 			"key": "url",
 			"value": "{{ip}}:{{port}}",
 			"type": "string"
 		},
 		{
-			"id": "dd7eff1c-cec0-4a38-b1e3-b246e1094fce",
+			"id": "e0a0d906-e6f0-45c9-94c5-86448a699a11",
 			"key": "username",
 			"value": "admin",
 			"type": "string"
 		},
 		{
-			"id": "83af8e30-59cd-491a-b7a6-d8059a8fd1ea",
+			"id": "afadd116-728f-4b35-85f4-2f78d933286c",
 			"key": "db",
 			"value": "",
 			"type": "string"
