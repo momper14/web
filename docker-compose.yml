@@ -1,0 +1,27 @@
+version: '3'
+services:
+  web:
+    container_name: web
+    hostname: web
+    image: mmomper/web:latest
+    restart: unless-stopped
+    ports:
+      - 80:3001
+    environment: 
+      COUCHDB_URL: http://admin:$WEBPASS@web_couchdb:5984
+
+  couchdb:
+    container_name: web_couchdb
+    hostname: web_couchdb
+    image: couchdb:2.3.1
+    restart: unless-stopped
+    ports: 
+      - 5984:5984
+    environment: 
+     COUCHDB_USER: admin
+     COUCHDB_PASSWORD: $WEBPASS
+    volumes:
+      - Data:/opt/couchdb/data
+
+volumes:
+  Data:
