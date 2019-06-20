@@ -137,7 +137,6 @@ func ProfilControllerPut(w http.ResponseWriter, r *http.Request) {
 			internalError(err, w)
 		}
 
-		fmt.Println(dataURL.ContentType())
 		switch dataURL.ContentType() {
 		case "image/png":
 			file = fmt.Sprintf("%s/%s.png", imagePath, name)

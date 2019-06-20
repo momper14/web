@@ -9,6 +9,8 @@ services:
       - 80:3001
     environment: 
       COUCHDB_URL: http://admin:$WEBPASS@web_couchdb:5984
+    volumes: 
+      - Images:/go/src/github.com/momper14/web/static/images
 
   couchdb:
     container_name: web_couchdb
@@ -24,4 +26,5 @@ services:
       - Data:/opt/couchdb/data
 
 volumes:
+  Images:
   Data:

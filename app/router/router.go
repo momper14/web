@@ -12,6 +12,8 @@ import (
 // GetRouter returns all routers
 func GetRouter() *mux.Router {
 	router := mux.NewRouter()
+	router.HandleFunc(fmt.Sprintf("%s/{image}", url.ImagePath), controller.ImageController).Methods("GET")
+
 	router.PathPrefix(url.StaticPath).Handler(
 		http.StripPrefix(url.StaticPath, http.FileServer(http.Dir("static"))))
 

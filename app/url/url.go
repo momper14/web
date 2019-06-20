@@ -3,6 +3,8 @@ package url
 const (
 	// StaticPath URL path to static elements
 	StaticPath = "/static"
+	// ImagePath UTL path for images
+	ImagePath = "/static/images"
 	// HomePath URL path to main site
 	HomePath = "/"
 	// EditPath URL path to edit site
