@@ -44,15 +44,12 @@ func MeineKarteienController(w http.ResponseWriter, r *http.Request) {
 	user = GetUser(w, r)
 
 	lernen, err := lernen.New().GelerntVonUser(user)
-	if err != nil {
-		internalError(err, w)
-	}
+	errF(err, w)
 
 	for _, lerne := range lernen {
 		kas, err := karteikaesten.New().KastenByID(lerne.Kasten)
-		if err != nil {
-			internalError(err, w)
-		}
+		errF(err, w)
+
 		kasten = Kasten{
 			Kategorie:    kas.Kategorie,
 			SubKat:       kas.Unterkategorie,

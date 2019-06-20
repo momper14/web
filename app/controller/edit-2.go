@@ -89,9 +89,7 @@ func Edit2ControllerPost(w http.ResponseWriter, r *http.Request) {
 		Antwort: neu.Antwort,
 	}
 
-	if err = kasten.KarteHinzufuegen(karte); err != nil {
-		internalError(err, w)
-	}
+	errF(kasten.KarteHinzufuegen(karte), w)
 
 	ok(w)
 }
@@ -155,9 +153,7 @@ func Edit2ControllerPut(w http.ResponseWriter, r *http.Request) {
 		Antwort: neu.Antwort,
 	}
 
-	if err = kasten.KarteAktualisieren(index, karte); err != nil {
-		internalError(err, w)
-	}
+	errF(kasten.KarteAktualisieren(index, karte), w)
 
 	ok(w)
 }
@@ -202,9 +198,7 @@ func Edit2ControllerDelete(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	if err = kasten.KarteLoeschen(index); err != nil {
-		internalError(err, w)
-	}
+	errF(kasten.KarteLoeschen(index), w)
 
 	ok(w)
 }

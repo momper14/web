@@ -44,9 +44,8 @@ func customExecuteTemplate(w http.ResponseWriter, r *http.Request, templateName 
 
 		nb.Name = GetUser(w, r)
 		user, err := users.New().UserByID(nb.Name)
-		if err != nil {
-			internalError(err, w)
-		}
+		errF(err, w)
+
 		nb.Bild = user.Bild
 	} else {
 		navbar = templates.NavbarNoLogin
@@ -71,12 +70,9 @@ func customExecuteTemplate(w http.ResponseWriter, r *http.Request, templateName 
 	dataTmp["Navbar"] = nb
 
 	t, err := template.ParseFiles(templateName, navbar, sidemenu)
-	if err != nil {
-		internalError(err, w)
-	}
-	if err = t.Execute(w, dataTmp); err != nil {
-		internalError(err, w)
-	}
+	errF(err, w)
+
+	errF(t.Execute(w, dataTmp), w)
 
 }
 
@@ -99,4 +95,10 @@ func forbidden(w http.ResponseWriter) {
 func ok(w http.ResponseWriter) {
 	w.WriteHeader(http.StatusOK)
 	fmt.Fprintln(w, "OK")
+}
+
+func errF(err error, w http.ResponseWriter) {
+	if err != nil {
+		internalError(err, w)
+	}
 }

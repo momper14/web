@@ -84,9 +84,7 @@ func EditControllerPut(w http.ResponseWriter, r *http.Request) {
 		kasten.Beschreibung = neu.Beschreibung
 		kasten.Public = neu.Public
 
-		if err = kaesten.KastenBearbeiten(kasten); err != nil {
-			internalError(err, w)
-		}
+		errF(kaesten.KastenBearbeiten(kasten), w)
 	}
 
 	ok(w)
@@ -136,9 +134,7 @@ func EditControllerPost(w http.ResponseWriter, r *http.Request) {
 		Karten:         []karteikaesten.Karteikarte{},
 	}
 
-	if err = kaesten.KastenAnlegen(kasten); err != nil {
-		internalError(err, w)
-	}
+	errF(kaesten.KastenAnlegen(kasten), w)
 
 	w.WriteHeader(http.StatusOK)
 	fmt.Fprintln(w, uuid)
@@ -197,9 +193,7 @@ func EditControllerBase(w http.ResponseWriter, r *http.Request, data Edit) {
 	}
 
 	kats, err := kategorien.New().AlleKategorien()
-	if err != nil {
-		internalError(err, w)
-	}
+	errF(err, w)
 
 	for _, kat := range kats {
 		kat := EditKategorie{

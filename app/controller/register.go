@@ -3,6 +3,7 @@ package controller
 import (
 	"encoding/json"
 	"fmt"
+	"io/ioutil"
 	"net/http"
 	"time"
 
@@ -63,18 +64,22 @@ func RegisterControllerPost(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
+	fileName := fmt.Sprintf("%s/%s.svg", imagePath, registrierung.Name)
+
 	users.UserErstellen(userspkg.User{
 		Name:     registrierung.Name,
 		Password: registrierung.Passwort,
 		Email:    registrierung.EMail,
-		Bild:     "/static/res/Icons/Mein-Profil.svg",
+		Bild:     fileName,
 		Seit:     time.Now().Unix(),
 	})
 
+	file, err := ioutil.ReadFile("static/res/Icons/Mein-Profil.svg")
+	errF(err, w)
+	errF(ioutil.WriteFile(fileName[1:], file, 0644), w)
+
 	session, err := store.Get(r, SessionCookieName)
-	if err != nil {
-		internalError(err, w)
-	}
+	errF(err, w)
 
 	session.Values["authenticated"] = true
 	session.Values["user"] = registrierung.Name
@@ -91,9 +96,7 @@ func RegisterControllerCheckName(w http.ResponseWriter, r *http.Request) {
 	users := users.New()
 
 	vorhanden, err := users.CheckName(name)
-	if err != nil {
-		internalError(err, w)
-	}
+	errF(err, w)
 
 	if vorhanden {
 		http.Error(w, "Nutzername vergeben", http.StatusConflict)
@@ -111,9 +114,7 @@ func RegisterControllerCheckEMail(w http.ResponseWriter, r *http.Request) {
 	users := users.New()
 
 	vorhanden, err := users.CheckEmail(email)
-	if err != nil {
-		internalError(err, w)
-	}
+	errF(err, w)
 
 	if vorhanden {
 		http.Error(w, "Email vergeben", http.StatusConflict)

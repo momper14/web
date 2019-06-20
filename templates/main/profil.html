@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Karteikasten erstellen/bearbeiten</title>
+    <title>Profil</title>
 
     <link rel="icon" href="/static/res/Favicons/favicon.ico" type="image/x-icon">
 
@@ -14,8 +14,6 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.4/css/bulma.min.css">
     <link rel="stylesheet" href="/static/css/styleguide.css">
     <link rel="stylesheet" href="/static/css/grids/profile-grid.css">
-
-    <!-- <link rel="stylesheet" href="css/debug.css"> -->
 
     <style>
         #form {
@@ -78,13 +76,14 @@
                 <div id="overview" class="top-border-green-light">
                     <div class="card text-is-center">
                         <div class="card-image is-inline-block">
-                            <figure class="image is-128x128">
-                                <img class="is-rounded background-blue-light" src="{{ .Bild }}" alt="Placeholder image"
+                            <figure class="image is-128x128 is-inline-block">
+                                <img id="profile-profile-image" class="is-rounded background-blue-light" src="{{ .Bild }}" alt="Placeholder image"
                                     style="margin-top: 0.5rem;">
                             </figure>
-                            <button id="profil-button-edit" class="button background-yellow-dark text-light">
+                            <input id="input-image" type="file" class="is-hidden" accept=".png, .jpg, .svg">
+                            <label id="profil-button-edit" for="input-image" class="button background-yellow-dark text-light">
                                 <strong>Edit</strong>
-                            </button>
+                            </label>
                         </div>
                         <div class="card-content">
                             <h2 class="title" style="margin-bottom: 0.5rem">{{ .Name }}</h2>

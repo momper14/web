@@ -33,19 +33,13 @@ func KarteikastenControllerDelete(w http.ResponseWriter, r *http.Request) {
 	}
 
 	if kasten.Autor == user {
-		if err = kaesten.KastenLoeschen(kastenid); err != nil {
-			internalError(err, w)
-		}
+		errF(kaesten.KastenLoeschen(kastenid), w)
 	} else {
 		lernen := lernen.New()
 		lerne, err := lernen.LerneByUserAndKasten(user, kastenid)
-		if err != nil {
-			internalError(err, w)
-		}
+		errF(err, w)
 
-		if err := lernen.LoescheLerne(lerne.ID); err != nil {
-			internalError(err, w)
-		}
+		errF(lernen.LoescheLerne(lerne.ID), w)
 	}
 
 	ok(w)
@@ -83,15 +77,11 @@ func KarteikastenController(w http.ResponseWriter, r *http.Request) {
 	data.Eingeloggt = IstEingeloggt(w, r)
 
 	kategorien, err := kategorien.New().AlleKategorien()
-	if err != nil {
-		internalError(err, w)
-	}
+	errF(err, w)
 
 	for _, kat := range kategorien {
 		kaesten, err := karteikaesten.New().OeffentlicheKaestenByKategorie(kat.ID)
-		if err != nil {
-			internalError(err, w)
-		}
+		errF(err, w)
 
 		if len(kaesten) > 0 {
 			kategorie = Kategorie{

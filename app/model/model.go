@@ -20,6 +20,7 @@ type (
 		EMail    string `json:"EMail"`
 		Passwort string `json:"Passwort"`
 		Neu      string `json:"Neu"`
+		Bild     string `json:"Bild"`
 	}
 
 	// LernenErgebnis body of lern post

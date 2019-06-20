@@ -1,3 +1,5 @@
+var neuesBild = false;
+
 $(document).ready(function () {
     $('#profil-button-delete').click(function () {
         $('#modal').toggleClass("is-active", true);
@@ -11,7 +13,14 @@ $(document).ready(function () {
     $('#profil-input-wiederholen').blur(function () { validatePasswordNeu(); });
     $('#edit-button-save').click(updateProfil);
     $('#profil-modal-button-delete').click(deleteProfile);
+    $("#input-image").change(function (evnt) {
+        readImage(function (image) {
+            $('#profile-profile-image').attr('src', image);
+            neuesBild = true;
+        });
+    });
 })
+
 
 function validateEmail() {
     let val = $("#profil-input-email").val();
@@ -122,7 +131,7 @@ function updateProfil() {
 
     email = $('#profil-input-email').val()
     pwn = $('#profil-input-neu').val()
-    if (email == "" && pwn == "") {
+    if (email == "" && pwn == "" && !neuesBild) {
         alert("Es gibt keine Änderungen!");
         return false;
     }
@@ -146,24 +155,35 @@ function updateProfil() {
         data["Neu"] = sha512(pwn);
     }
 
-    $.ajax({
-        type: "PUT",
-        url: "/profil",
-        data: JSON.stringify(data),
-        success: function () {
-            window.location.href = "/profil";
-        },
-        error: function (xhr, _, msg) {
-            if (xhr.status == 401) {
-                alert("Altes Passwort falsch!");
-            } else if (xhr.status == 409) {
-                alert("Fehlerhafte Eingaben!");
-            } else {
-                defaultErrorHandling(xhr, _, msg);
-            }
-        },
-        contentType: "application/json"
-    });
+    var ajax = function (data) {
+        $.ajax({
+            type: "PUT",
+            url: "/profil",
+            data: JSON.stringify(data),
+            success: function () {
+                window.location.href = "/profil";
+            },
+            error: function (xhr, _, msg) {
+                if (xhr.status == 401) {
+                    alert("Altes Passwort falsch!");
+                } else if (xhr.status == 409) {
+                    alert("Fehlerhafte Eingaben!");
+                } else {
+                    defaultErrorHandling(xhr, _, msg);
+                }
+            },
+            contentType: "application/json"
+        });
+    }
+
+    if (neuesBild) {
+        readImage(function (image) {
+            data["Bild"] = image;
+            ajax(data)
+        })
+    } else {
+        ajax(data)
+    }
 }
 
 function deleteProfile() {
@@ -179,4 +199,27 @@ function deleteProfile() {
         },
         contentType: "application/json"
     });
+}
+
+function readImage(callback) {
+    let file = $("#input-image").prop('files')[0];
+
+    if (!file){
+        return;
+    }
+
+    let reader = new FileReader();
+
+    type = file.type;
+    type = type.substring(0, type.indexOf('/'));
+    if (type !== "image") {
+        alert("Keine gültige Bilddatei!");
+        return
+    }
+
+    reader.onload = function (data) {
+        callback(data.target.result);
+    }
+
+    reader.readAsDataURL(file);
 }

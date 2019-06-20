@@ -6,6 +6,74 @@
 	},
 	"item": [
 		{
+			"name": "pre",
+			"item": [
+				{
+					"name": "_users",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{url}}/_users",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"_users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "_replicator",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{url}}/_replicator",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"_replicator"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "_global_changes",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{url}}/_global_changes",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"_global_changes"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
 			"name": "DB karteikaesten",
 			"item": [
 				{
@@ -1031,7 +1099,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n\t\"_id\": \"Max Mustermann\",\n\t\"Password\": \"ba3253876aed6bc22d4a6ff53d8406c6ad864195ed144ab5c87621b6c233b548baeae6956df346ec8c17f5ea10f35ee3cbc514797ed7ddd3145464e2a0bab413\",\n\t\"Email\": \"mustermann@example.com\",\n\t\"Seit\": 1545606000000,\n\t\"Bild\": \"/static/res/Icons/Mein-Profil.svg\"\n}"
+							"raw": "{\n\t\"_id\": \"Max Mustermann\",\n\t\"Password\": \"ba3253876aed6bc22d4a6ff53d8406c6ad864195ed144ab5c87621b6c233b548baeae6956df346ec8c17f5ea10f35ee3cbc514797ed7ddd3145464e2a0bab413\",\n\t\"Email\": \"mustermann@example.com\",\n\t\"Seit\": 1545606000000,\n\t\"Bild\": \"/static/images/Max Mustermann.svg\"\n}"
 						},
 						"url": {
 							"raw": "{{url}}/{{db}}",

@@ -93,9 +93,7 @@ func LernController(w http.ResponseWriter, r *http.Request) {
 	}
 
 	faecher, err := kasten.KartenProFach(userid)
-	if err != nil {
-		internalError(err, w)
-	}
+	errF(err, w)
 
 	data.Headline.A0 = faecher[0]
 	data.Headline.A1 = faecher[1]
@@ -104,9 +102,7 @@ func LernController(w http.ResponseWriter, r *http.Request) {
 	data.Headline.A4 = faecher[4]
 
 	fach, err := kasten.FachVonKarte(userid, index)
-	if err != nil {
-		internalError(err, w)
-	}
+	errF(err, w)
 
 	switch fach {
 	case 0:

@@ -26,9 +26,7 @@ func LoginController(w http.ResponseWriter, r *http.Request) {
 	defer recoverInternalError()
 
 	session, err := store.Get(r, SessionCookieName)
-	if err != nil {
-		internalError(err, w)
-	}
+	errF(err, w)
 
 	if !IstEingeloggt(w, r) {
 		decoder := json.NewDecoder(r.Body)
@@ -74,9 +72,8 @@ func LoginController(w http.ResponseWriter, r *http.Request) {
 // LogoutController controller for logout
 func LogoutController(w http.ResponseWriter, r *http.Request) {
 	session, err := store.Get(r, SessionCookieName)
-	if err != nil {
-		internalError(err, w)
-	}
+	errF(err, w)
+
 	if auth, ok := session.Values["authenticated"].(bool); ok && auth {
 		delete(session.Values, "authenticated")
 		delete(session.Values, "user")
@@ -86,6 +83,7 @@ func LogoutController(w http.ResponseWriter, r *http.Request) {
 		fmt.Fprintln(w, "Logged out")
 		return
 	}
+
 	w.WriteHeader(http.StatusBadRequest)
 	fmt.Fprintln(w, "You are not logged in")
 }
@@ -93,21 +91,19 @@ func LogoutController(w http.ResponseWriter, r *http.Request) {
 // IstEingeloggt checks if session is logged in
 func IstEingeloggt(w http.ResponseWriter, r *http.Request) bool {
 	session, err := store.Get(r, SessionCookieName)
-	if err != nil {
-		internalError(err, w)
-	}
+	errF(err, w)
+
 	if auth, ok := session.Values["authenticated"].(bool); ok && auth {
 		return true
 	}
+
 	return false
 }
 
 // GetUser Returns the current User
 func GetUser(w http.ResponseWriter, r *http.Request) string {
 	session, err := store.Get(r, SessionCookieName)
-	if err != nil {
-		internalError(err, w)
-	}
+	errF(err, w)
 
 	if user, ok := session.Values["user"].(string); ok {
 		return user

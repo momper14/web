@@ -110,9 +110,7 @@ func ViewControllerBase(w http.ResponseWriter, r *http.Request, index int) {
 			fach = 0
 		} else {
 			fach, err = kasten.FachVonKarte(userid, index)
-			if err != nil {
-				internalError(err, w)
-			}
+			errF(err, w)
 		}
 
 		switch fach {
