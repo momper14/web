@@ -58,12 +58,14 @@
 
         .sized {
             width: 12rem;
+            height: 2.5rem !important;
         }
     </style>
 
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
     <script type="text/javascript" src="/static/scripts/sha512.min.js"></script>
     <script type="text/javascript" src="/static/scripts/script.js"></script>
+    <script type="text/javascript" src="/static/scripts/karteikasten.js"></script>
 
 </head>
 
@@ -84,27 +86,35 @@
 
                     <p class="center-text">Im Karteikasten findest du alle öffentlichen Karteien.</p>
 
-                    <div class="dropdown flex-right is-hidden-mobile has-border" style="margin-right: 1rem;">
-                        <div class="dropdown-trigger">
-                            <button class="button sized background-as-given" style="justify-content: flex-start"
-                                aria-haspopup="true" aria-controls="dropdown-menu">
-                                <span>Sortieren nach...</span>
-                                <span class="icon is-small flex-right">
-                                    <i class="fa fa-angle-down" aria-hidden="true"></i>
-                                </span>
-                            </button>
-                        </div>
-                        <div class="dropdown-menu" role="menu">
-                            <div class="dropdown-content">
-                                <a href="#" class="dropdown-item">
-                                    Dropdown item
-                                </a>
-                                <hr class="dropdown-divider">
-                                <a href="#" class="dropdown-item">
-                                    With a divider
-                                </a>
-                            </div>
-                        </div>
+                    <div class="select flex-right is-hidden-mobile" style="margin-right: 1rem;">
+
+                        {{ block "filter" .KarteikastenFilter }}
+                        <select id="karteikasten-filter-kategorie" class="sized background-as-given  has-border"
+                            style="justify-content: flex-start">
+                            <option value="" selected="selected">filtern...</option>
+                            {{ if and .IstKategorie .IstSubKategorie}}
+                            {{ range .Kategorien }}
+                            {{ $Kat := .Name}}
+                            <optgroup label="{{ .Name }}">
+                                {{ range .Sub }}
+                                <option value="{{ . }}" {{ if and (eq $.IstKategorie $Kat) (eq $.IstSubKategorie .) }}
+                                    selected="selected" {{ end }}>{{ . }}</option>
+                                {{ end }}
+                            </optgroup>
+                            {{ end }}
+                            {{ else }}
+                            {{ range .Kategorien }}
+                            <optgroup label="{{ .Name }}">
+                                {{ range .Sub }}
+                                <option value="{{ . }}">{{ . }}</option>
+                                {{ end }}
+                            </optgroup>
+                            {{ end }}
+                            {{ end }}
+
+                        </select>
+                        {{ end }}
+
                     </div>
 
                     <div class="control sized is-hidden-mobile has-border">
@@ -144,7 +154,8 @@
 
                                 </div>
                                 <p class="message-body-text">{{ .Beschreibung }}</p>
-                                <form class="buttons center" style="margin-top: 1rem;" action="/karteikasten/lern/{{ .ID }}" method="GET">
+                                <form class="buttons center" style="margin-top: 1rem;"
+                                    action="/karteikasten/lern/{{ .ID }}" method="GET">
                                     <button id="button" type="submit"
                                         class="button background-yellow-dark text-light {{ if not $.Eingeloggt }} is-invisible {{ end }}">Lernen</button>
                                 </form>

@@ -41,6 +41,7 @@ func GetRouter() *mux.Router {
 	router.HandleFunc(url.LernPath, controller.LernController).Methods("GET")
 
 	router.HandleFunc(fmt.Sprintf("%s/%s", url.KarteikastenPath, "{kastenid}"), controller.KarteikastenControllerDelete).Methods("DELETE")
+	router.HandleFunc(url.KarteikastenPath, controller.KarteikastenControllerFilterKategorie).Methods("GET").Queries("oberkategorie", "{oberkategorie}", "unterkategorie", "{unterkategorie}")
 	router.HandleFunc(url.KarteikastenPath, controller.KarteikastenController).Methods("GET")
 
 	router.HandleFunc(fmt.Sprintf("%s/{karte}", url.Edit2Path), controller.Edit2ControllerDelete).Methods("DELETE")
