@@ -616,7 +616,7 @@
 								],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n    \"_id\": \"_design/kasten\",\n    \"views\": {\n        \"nach-autor\": {\n            \"map\": \"function (doc) {\\n  if(doc.Autor){\\n    emit(doc.Autor, doc._id);\\n  }\\n}\",\n            \"reduce\": \"_count\"\n        },\n        \"oeffentlich-nach-kategorie\": {\n            \"reduce\": \"_count\",\n            \"map\": \"function (doc) {\\n  if(doc.Kategorie && doc.Public){\\n    emit(doc.Kategorie, doc._id);\\n  }\\n}\"\n        }\n    },\n    \"language\": \"javascript\"\n}"
+									"raw": "{\n    \"_id\": \"_design/kasten\",\n    \"views\": {\n        \"nach-autor\": {\n            \"map\": \"function (doc) {\\n  if(doc.Autor){\\n    emit(doc.Autor, doc._id);\\n  }\\n}\",\n            \"reduce\": \"_count\"\n        },\n        \"oeffentlich-nach-kategorie\": {\n            \"reduce\": \"_count\",\n            \"map\": \"function (doc) {\\n  if(doc.Kategorie && doc.Public){\\n    emit(doc.Kategorie, doc._id);\\n  }\\n}\"\n        },\n        \"oeffentlich-nach-ober-unterkategorie\": {\n            \"reduce\": \"_count\",\n            \"map\": \"function (doc) {\\n  if(doc.Kategorie && doc.Public){\\n    emit([doc.Kategorie, doc.Unterkategorie], doc._rev);\\n  }\\n}\"\n        }\n    },\n    \"language\": \"javascript\"\n}"
 								},
 								"url": {
 									"raw": "{{url}}/{{db}}",
