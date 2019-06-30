@@ -5,23 +5,16 @@ FROM golang:1.12
 LABEL maintainer="Moritz Momper <moritz.momper@gmail.com>"
 
 # Set the Current Working Directory inside the container
-WORKDIR /go/src/github.com/momper14/web
+WORKDIR /app
 
 # Copy everything from the current directory to the PWD(Present Working Directory) inside the container
-COPY . .
-
-# enable go mod
-ENV GO111MODULE=on
-
-# Install the package
-# https://stackoverflow.com/questions/28031603/what-do-three-dots-mean-in-go-command-line-invocations
-RUN go install -v ./...
+ADD app.tar /app
 
 # set volumes
-VOLUME ["/go/src/github.com/momper14/web/static/images"]
+VOLUME ["/app/static/images"]
 
 # This container exposes port 3001 to the outside world
 EXPOSE 3001
 
 # Run the executable
-CMD ["web"]
+CMD ["./web"]
