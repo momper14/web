@@ -50,11 +50,13 @@ func ProfilController(w http.ResponseWriter, r *http.Request) {
 	errF(err, w)
 
 	data = Data{
-		Bild:  user.Bild,
 		Name:  user.Name,
 		Email: user.Email,
 		Seit:  time.Unix(user.Seit, 0).Format(layout),
 	}
+
+	data.Bild, err = imageLastmod(user.Bild)
+	errF(err, w)
 
 	if data.Karteien, err = karteikaesten.New().AnzahlKaestenUser(userid); err != nil {
 		internalError(err, w)

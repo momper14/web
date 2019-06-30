@@ -75,15 +75,19 @@
 
                 <div id="overview" class="top-border-green-light">
                     <div class="card text-is-center">
-                        <div class="card-image is-inline-block">
-                            <figure class="image is-128x128 is-inline-block">
-                                <img id="profile-profile-image" class="is-rounded background-blue-light" src="{{ .Bild }}" alt="Placeholder image"
-                                    style="margin-top: 0.5rem;">
-                            </figure>
-                            <input id="input-image" type="file" class="is-hidden" accept=".png, .jpg, .svg">
-                            <label id="profil-button-edit" for="input-image" class="button background-yellow-dark text-light">
-                                <strong>Edit</strong>
-                            </label>
+                        <div class="card-image card is-contents">
+                            <div class="card-image is-inline-flex">
+                                <figure class="image is-128x128">
+                                    <img id="profile-profile-image" class="is-rounded background-blue-light" src="{{ .Bild }}" alt="Placeholder image"
+                                        style="margin-top: 0.5rem;">
+                                </figure>
+                            </div>
+                            <div class="card-content" style="padding: 5px;">
+                                <input id="input-image" type="file" class="is-hidden" accept=".png, .jpg, .svg">
+                                <label id="profil-button-edit" for="input-image" class="button background-yellow-dark text-light">
+                                    <strong>Edit</strong>
+                                </label>
+                            </div>
                         </div>
                         <div class="card-content">
                             <h2 class="title" style="margin-bottom: 0.5rem">{{ .Name }}</h2>

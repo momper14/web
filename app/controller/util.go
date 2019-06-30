@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"html/template"
 	"net/http"
+	"os"
 
 	"github.com/Momper14/web/templates"
 	"github.com/Momper14/weblib/client/karteikaesten"
@@ -46,7 +47,8 @@ func customExecuteTemplate(w http.ResponseWriter, r *http.Request, templateName 
 		user, err := users.New().UserByID(nb.Name)
 		errF(err, w)
 
-		nb.Bild = user.Bild
+		nb.Bild, err = imageLastmod(user.Bild)
+		errF(err, w)
 	} else {
 		navbar = templates.NavbarNoLogin
 		sidemenu = templates.SidemenuNoLogin
@@ -101,4 +103,18 @@ func errF(err error, w http.ResponseWriter) {
 	if err != nil {
 		internalError(err, w)
 	}
+}
+
+// imageLastmod returns the file with ?lastmod=...
+func imageLastmod(file string) (string, error) {
+
+	tmp, err := os.Stat(file[1:])
+
+	if err != nil {
+		return "", err
+	}
+
+	file = fmt.Sprintf("%s?lastmod=%d", file, tmp.ModTime().Unix())
+
+	return file, nil
 }
